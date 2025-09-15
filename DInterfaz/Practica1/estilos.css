@@ -1,0 +1,63 @@
+
+
+p { 
+    font-family: Georgia;
+    color: rgb(78, 78, 78);
+}
+
+.noticia_urgente {
+    background-color: rgb(250, 125, 125);
+}
+
+.evento_importante {
+    font-weight: bold;
+}
+
+#principal {
+    text-align: center;
+    text-transform: uppercase;
+    color: rgb(35, 83, 216);
+}
+
+a[href$=".pdf"] { 
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    color: green;
+}
+
+a[href*="mailto"] { 
+    font-style: italic;
+}
+
+p span {
+    color: orange;
+}
+
+.calendario li {
+    padding-left: 20px;
+}
+
+section > h2 {
+    border-bottom: 1px solid gray;
+}
+
+h2 + p { 
+    margin-top: 0;
+}
+
+h1 ~ p { 
+    font-style: italic;
+}
+
+/* Ampliación */ 
+
+* {
+    margin: 7px;
+    font-family: 'Franklin Gothic Medium';
+}
+
+.noticia, .evento {
+  border: 2px solid red;
+}
+
+li[class*="evento"] { color: purple; }
