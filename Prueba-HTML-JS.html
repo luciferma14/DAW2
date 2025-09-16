@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejemplo Cliente</title>
+    </head>
+    <body>
+        <h1>Hola, mi nombre es Lucía Ferrandis</h1>
+        <p>La hora actual es: <span id="hora"></span></p>
+
+        <script>
+            function mostrarHora() {
+                const ahora = new Date();
+                document.getElementById('hora').textContent = ahora.toLocaleTimeString();
+            }
+            mostrarHora();
+            setInterval(mostrarHora, 1000); // Actualiza cada segundo
+        </script>
+    </body>
+</html>
