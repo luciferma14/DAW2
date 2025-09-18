@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica Unidad 6</title>
+    
+    <!--Parte C: Pseudo-clases de formularios (25%) -->
+
+    <style>
+
+        * {
+            margin: 10px;
+        }
+        .header {
+            text-align: center;
+            background-color: rgb(147, 243, 222);
+            padding: 1px;
+        }
+
+        li:first-child {text-transform: uppercase;}
+        li:last-child { background-color: rgb(92, 163, 245);}
+        li:nth-child(odd) { background: lightgray } 
+        li:nth-child(3) {font-weight: bold}
+
+        table, td, tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 25%;
+        }
+
+        tr:first-child {background-color: rgb(247, 247, 116)}
+        td:last-child {border: 1.5px solid red}
+        tr:nth-child(odd) {background-color:aqua}
+        tr:nth-child(even) {background-color:rgb(158, 216, 41)}
+
+        #google:link { color: rgb(43, 211, 241)} 
+        #google:visited { color: rgb(115, 62, 240) }
+
+        #google:hover {text-decoration: underline;}
+        #google:active { color: rgb(0, 255, 42)}
+
+        button:hover { background-color: rgb(161, 86, 223)}
+        button:focus { 
+            outline: none;
+            border: 3px solid hsl(187, 93%, 52%);
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <head>
+        <div class="header">
+            <h1>Práctica Unidad 6</h1>
+            <p>Lucía Ferrandis Martínez</p>
+        </div>
+    </head>
+
+    <main>
+
+        <h2 id="parteA" style="padding-top: 10px; padding-bottom: 10px">Parte A: Pseudo-clases estructurales </h2>
+        <h3>Diversos enlaces</h3>
+        <ul>
+            <li> <a href="https://github.com/luciferma14/DAW2"> Repositorio Github Lucía</a></li>
+            <li> <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9021009"> Práctica Unidad 6</a></li>
+            <li> <a href="https://workspace.google.com/intl/es/gmail/"> Gmail</a></li>
+            <li> <a href="https://www.gva.es/va/inicio/presentacion"> Generalitat Valenciana</a></li>
+            <li> <a href="https://portal.edu.gva.es/lliurex/va/"> Lliurex</a></li>
+            <li> <a href="https://mestreacasa.gva.es/web/guest/inicio"> Mestre a casa</a></li>
+        </ul>
+
+
+        <h3 style="padding-top: 20px; padding-bottom: 10px">Tabla horario</h3>
+        <table>
+            <tr>
+                <td>Lunes</td>
+                <td>Inglés</td>
+                <td>2 horas</td>
+            </tr>
+            <tr>
+                <td>Martes</td>
+                <td>Química</td>
+                <td>1 hora</td>
+                 
+            </tr>
+            <tr>
+                <td>Miércoles</td>
+                <td>Lengua</td>
+                <td>2 horas</td>
+                
+            </tr>
+             <tr>
+                <td>Jueves</td>
+                <td>Física</td>
+                <td>1 hora</td>
+            </tr>
+        </table>
+
+        <h2 style="padding-top: 40px; padding-bottom: 10px">Parte B: Pseudo-clases de interacción </h2>
+
+        <ul>
+            <a id="google" href="https://www.google.com/?hl=es&zx=1758209894597&no_sw_cr=1"> Google</a>
+            <a href="#parteA">Ir a Parte A</a>
+        </ul>
+
+        <button>Click</button>
+
+    </main>
+</body>
+</html>
