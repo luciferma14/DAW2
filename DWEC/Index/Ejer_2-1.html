@@ -3,7 +3,7 @@
     <head>
        <meta charset="UTF-8">
        <title> Ejercicios Actividad 2.1  </title>
-       <script src = "script1.js"></script>
+       <script src = "/DWEC/Scripts/script1.js"></script>
       
         <style>
             * {
@@ -31,10 +31,16 @@
         <form>  
             <label for="suelActLabel">Sueldo Actual</label>
             <input type="number" id="sActual"><br>
+
+            <label for="edUsu">Edad</label>
+            <input type="number" id="edUsu"><br>
+
+            <label for="hijosUsu">¿Tienes hijos?</label>
+            <input type="checkbox" name="hijos" id="hijosUsu" value="si"><br>
             
-            <button onclick="procesar()">Procesar</button>
+            <button onclick="procesar(event)">Procesar</button>
         </form>  
-        <p id="resultado">Sueldo actual: </p>
+        <p id="resultado"></p>
     </body>
 </html>
 
