@@ -10,7 +10,7 @@
     <style>
 
         * {
-            margin: 10px;
+            margin: 7px;
         }
         .header {
             text-align: center;
@@ -18,10 +18,10 @@
             padding: 1px;
         }
 
-        li:first-child {text-transform: uppercase;}
-        li:last-child { background-color: rgb(92, 163, 245);}
-        li:nth-child(odd) { background: lightgray } 
-        li:nth-child(3) {font-weight: bold}
+        .ulClass:first-child {text-transform: uppercase;}
+        .ulClass:last-child { background-color: rgb(92, 163, 245);}
+        .ulClass:nth-child(odd) { background: lightgray } 
+        .ulClass:nth-child(3) {font-weight: bold}
 
         table, td, tr {
             border: 1px solid black;
@@ -45,7 +45,35 @@
             outline: none;
             border: 3px solid hsl(187, 93%, 52%);
         }
-        
+
+        input:required { border: 1px solid red; } 
+        #idEmail:valid { background-color: rgb(98, 226, 98) }
+        #idEmail:invalid { background-color: rgb(228, 103, 124);}
+        #idEdad:valid { background-color: rgb(98, 226, 98) }
+        #idEdad:invalid { background-color: rgb(233, 63, 63);}
+        input:checked + label {
+            font-weight: bold;
+            color: red;
+        }
+
+        #idParrafo::first-letter { font-size: 170%; color: rgb(0, 102, 255); } 
+        #idParrafo::first-line { background-color: lightgray; }
+
+        .corazon::before {
+            content: "✩";
+        }
+
+        .corazon::after {
+            content: "✮";
+        }
+
+        .liNum::marker { color: rgb(144, 50, 231);}
+
+        ::selection {
+            background-color: yellow;
+            color: black;
+        }
+
     </style>
 </head>
 <body>
@@ -62,12 +90,12 @@
         <h2 id="parteA" style="padding-top: 10px; padding-bottom: 10px">Parte A: Pseudo-clases estructurales </h2>
         <h3>Diversos enlaces</h3>
         <ul>
-            <li> <a href="https://github.com/luciferma14/DAW2"> Repositorio Github Lucía</a></li>
-            <li> <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9021009"> Práctica Unidad 6</a></li>
-            <li> <a href="https://workspace.google.com/intl/es/gmail/"> Gmail</a></li>
-            <li> <a href="https://www.gva.es/va/inicio/presentacion"> Generalitat Valenciana</a></li>
-            <li> <a href="https://portal.edu.gva.es/lliurex/va/"> Lliurex</a></li>
-            <li> <a href="https://mestreacasa.gva.es/web/guest/inicio"> Mestre a casa</a></li>
+            <li class="ulClass"> <a href="https://github.com/luciferma14/DAW2"> Repositorio Github Lucía</a></li>
+            <li class="ulClass"> <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9021009"> Práctica Unidad 6</a></li>
+            <li class="ulClass"> <a href="https://workspace.google.com/intl/es/gmail/"> Gmail</a></li>
+            <li class="ulClass"> <a href="https://www.gva.es/va/inicio/presentacion"> Generalitat Valenciana</a></li>
+            <li class="ulClass"> <a href="https://portal.edu.gva.es/lliurex/va/"> Lliurex</a></li>
+            <li class="ulClass"> <a href="https://mestreacasa.gva.es/web/guest/inicio"> Mestre a casa</a></li>
         </ul>
 
 
@@ -105,6 +133,44 @@
         </ul>
 
         <button>Click</button>
+
+        <h2 style="padding-top: 40px; padding-bottom: 10px"">Parte C: Pseudo-clases de formularios</h3>
+
+        <form>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="idNombre" required>
+            <br>
+            <label for="email">Mail</label>
+            <input type="email" name="email" id="idEmail">
+            <br>
+            <label for="edad">Edad (18-99)</label>
+            <input type="number" name="edad" id="idEdad" min="18" max="99">
+            <br>
+            <input type="checkbox" name="chec" id="idChec">
+            <label for="idChec">Acepto los términos</label>
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
+
+        <h2 class="corazon" style="padding-top: 40px; padding-bottom: 10px"> Parte D: Pseudo-elementos </h2>
+
+        <p id="idParrafo">Un párrafo, también llamado parágrafo o acápite, <br>
+            es una unidad comunicativa del lenguaje escrito <br>
+            compuesta por un conjunto de oraciones que tienen <br>
+            cierta unidad temática o que, sin tenerla, se enuncian juntas.
+        </p>
+        <br>
+        <ol>
+            <li class="liNum">Comprar leche</li>
+            <li class="liNum">Poner comida a los gatos</li>
+            <li class="liNum">Hacer ejercicio</li>
+            <li class="liNum">Deberes</li>
+            <li class="liNum">Escuchar música</li>
+            <li class="liNum">Terminar serie Netflix</li>
+        </ol>
+        <br>
+        <input type="password" placeholder="Password">
+
 
     </main>
 </body>
