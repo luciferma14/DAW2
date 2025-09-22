@@ -1,177 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Práctica Unidad 6</title>
-    
-    <!--Parte C: Pseudo-clases de formularios (25%) -->
-
-    <style>
-
-        * {
-            margin: 7px;
-        }
-        .header {
-            text-align: center;
-            background-color: rgb(147, 243, 222);
-            padding: 1px;
-        }
-
-        .ulClass:first-child {text-transform: uppercase;}
-        .ulClass:last-child { background-color: rgb(92, 163, 245);}
-        .ulClass:nth-child(odd) { background: lightgray } 
-        .ulClass:nth-child(3) {font-weight: bold}
-
-        table, td, tr {
-            border: 1px solid black;
-            border-collapse: collapse;
-            width: 25%;
-        }
-
-        tr:first-child {background-color: rgb(247, 247, 116)}
-        td:last-child {border: 1.5px solid red}
-        tr:nth-child(odd) {background-color:aqua}
-        tr:nth-child(even) {background-color:rgb(158, 216, 41)}
-
-        #google:link { color: rgb(43, 211, 241)} 
-        #google:visited { color: rgb(115, 62, 240) }
-
-        #google:hover {text-decoration: underline;}
-        #google:active { color: rgb(0, 255, 42)}
-
-        button:hover { background-color: rgb(161, 86, 223)}
-        button:focus { 
-            outline: none;
-            border: 3px solid hsl(187, 93%, 52%);
-        }
-
-        input:required { border: 1px solid red; } 
-        #idEmail:valid { background-color: rgb(98, 226, 98) }
-        #idEmail:invalid { background-color: rgb(228, 103, 124);}
-        #idEdad:valid { background-color: rgb(98, 226, 98) }
-        #idEdad:invalid { background-color: rgb(233, 63, 63);}
-        input:checked + label {
-            font-weight: bold;
-            color: red;
-        }
-
-        #idParrafo::first-letter { font-size: 170%; color: rgb(0, 102, 255); } 
-        #idParrafo::first-line { background-color: lightgray; }
-
-        .corazon::before {
-            content: "✩";
-        }
-
-        .corazon::after {
-            content: "✮";
-        }
-
-        .liNum::marker { color: rgb(144, 50, 231);}
-
-        ::selection {
-            background-color: yellow;
-            color: black;
-        }
-
-    </style>
-</head>
-<body>
-    
     <head>
-        <div class="header">
-            <h1>Práctica Unidad 6</h1>
-            <p>Lucía Ferrandis Martínez</p>
-        </div>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica Unidad 6</title>
+        
+        <style>
+
+            * {
+                margin: 7px;
+            }
+            .header {
+                text-align: center;
+                background-color: rgb(147, 243, 222);
+                padding: 1px;
+            }
+
+            .ulClass:first-child {text-transform: uppercase;}
+            .ulClass:last-child { background-color: rgb(92, 163, 245);}
+            .ulClass:nth-child(odd) { background: lightgray } 
+            .ulClass:nth-child(3) {font-weight: bold}
+
+            table, td, tr {
+                border: 1px solid black;
+                border-collapse: collapse;
+                width: 25%;
+            }
+
+            tr:first-child {background-color: rgb(247, 247, 116)}
+            td:last-child {border: 1.5px solid red}
+            tr:nth-child(odd) {background-color:aqua}
+            tr:nth-child(even) {background-color:rgb(158, 216, 41)}
+
+            #google:link { color: rgb(43, 211, 241)} 
+            #google:visited { color: rgb(115, 62, 240) }
+
+            #google:hover {text-decoration: underline;}
+            #google:active { color: rgb(0, 255, 42)}
+
+            button:hover { background-color: rgb(161, 86, 223)}
+            button:focus { 
+                outline: none;
+                border: 3px solid hsl(187, 93%, 52%);
+            }
+
+            input:required { border: 1px solid red; } 
+            #idEmail:valid { background-color: rgb(98, 226, 98) }
+            #idEmail:invalid { background-color: rgb(228, 103, 124);}
+            #idEdad:valid { background-color: rgb(98, 226, 98) }
+            #idEdad:invalid { background-color: rgb(233, 63, 63);}
+            input:checked + label {
+                font-weight: bold;
+                color: red;
+            }
+
+            #idParrafo::first-letter { font-size: 170%; color: rgb(0, 102, 255); } 
+            #idParrafo::first-line { background-color: lightgray; }
+
+            .corazon::before {
+                content: "✩";
+            }
+
+            .corazon::after {
+                content: "✮";
+            }
+
+            .liNum::marker { color: rgb(144, 50, 231);}
+
+            ::selection {
+                background-color: yellow;
+                color: black;
+            }
+
+        </style>
     </head>
+    <body>
+        
+        <head>
+            <div class="header">
+                <h1>Práctica Unidad 6</h1>
+                <p>Lucía Ferrandis Martínez</p>
+            </div>
+        </head>
 
-    <main>
+        <main>
 
-        <h2 id="parteA" style="padding-top: 10px; padding-bottom: 10px">Parte A: Pseudo-clases estructurales </h2>
-        <h3>Diversos enlaces</h3>
-        <ul>
-            <li class="ulClass"> <a href="https://github.com/luciferma14/DAW2"> Repositorio Github Lucía</a></li>
-            <li class="ulClass"> <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9021009"> Práctica Unidad 6</a></li>
-            <li class="ulClass"> <a href="https://workspace.google.com/intl/es/gmail/"> Gmail</a></li>
-            <li class="ulClass"> <a href="https://www.gva.es/va/inicio/presentacion"> Generalitat Valenciana</a></li>
-            <li class="ulClass"> <a href="https://portal.edu.gva.es/lliurex/va/"> Lliurex</a></li>
-            <li class="ulClass"> <a href="https://mestreacasa.gva.es/web/guest/inicio"> Mestre a casa</a></li>
-        </ul>
+            <h2 id="parteA" style="padding-top: 10px; padding-bottom: 10px">Parte A: Pseudo-clases estructurales </h2>
+            <h3>Diversos enlaces</h3>
+            <ul>
+                <li class="ulClass"> <a href="https://github.com/luciferma14/DAW2"> Repositorio Github Lucía</a></li>
+                <li class="ulClass"> <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9021009"> Práctica Unidad 6</a></li>
+                <li class="ulClass"> <a href="https://workspace.google.com/intl/es/gmail/"> Gmail</a></li>
+                <li class="ulClass"> <a href="https://www.gva.es/va/inicio/presentacion"> Generalitat Valenciana</a></li>
+                <li class="ulClass"> <a href="https://portal.edu.gva.es/lliurex/va/"> Lliurex</a></li>
+                <li class="ulClass"> <a href="https://mestreacasa.gva.es/web/guest/inicio"> Mestre a casa</a></li>
+            </ul>
 
 
-        <h3 style="padding-top: 20px; padding-bottom: 10px">Tabla horario</h3>
-        <table>
-            <tr>
-                <td>Lunes</td>
-                <td>Inglés</td>
-                <td>2 horas</td>
-            </tr>
-            <tr>
-                <td>Martes</td>
-                <td>Química</td>
-                <td>1 hora</td>
-                 
-            </tr>
-            <tr>
-                <td>Miércoles</td>
-                <td>Lengua</td>
-                <td>2 horas</td>
-                
-            </tr>
-             <tr>
-                <td>Jueves</td>
-                <td>Física</td>
-                <td>1 hora</td>
-            </tr>
-        </table>
+            <h3 style="padding-top: 20px; padding-bottom: 10px">Tabla horario</h3>
+            <table>
+                <tr>
+                    <td>Lunes</td>
+                    <td>Inglés</td>
+                    <td>2 horas</td>
+                </tr>
+                <tr>
+                    <td>Martes</td>
+                    <td>Química</td>
+                    <td>1 hora</td>
+                    
+                </tr>
+                <tr>
+                    <td>Miércoles</td>
+                    <td>Lengua</td>
+                    <td>2 horas</td>
+                    
+                </tr>
+                <tr>
+                    <td>Jueves</td>
+                    <td>Física</td>
+                    <td>1 hora</td>
+                </tr>
+            </table>
 
-        <h2 style="padding-top: 40px; padding-bottom: 10px">Parte B: Pseudo-clases de interacción </h2>
+            <h2 style="padding-top: 40px; padding-bottom: 10px">Parte B: Pseudo-clases de interacción </h2>
 
-        <ul>
-            <a id="google" href="https://www.google.com/?hl=es&zx=1758209894597&no_sw_cr=1"> Google</a>
-            <a href="#parteA">Ir a Parte A</a>
-        </ul>
+            <ul>
+                <a id="google" href="https://www.google.com/?hl=es&zx=1758209894597&no_sw_cr=1"> Google</a>
+                <a href="#parteA">Ir a Parte A</a>
+            </ul>
 
-        <button>Click</button>
+            <button>Click</button>
 
-        <h2 style="padding-top: 40px; padding-bottom: 10px"">Parte C: Pseudo-clases de formularios</h3>
+            <h2 style="padding-top: 40px; padding-bottom: 10px"">Parte C: Pseudo-clases de formularios</h3>
 
-        <form>
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="idNombre" required>
+            <form>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="idNombre" required>
+                <br>
+                <label for="email">Mail</label>
+                <input type="email" name="email" id="idEmail">
+                <br>
+                <label for="edad">Edad (18-99)</label>
+                <input type="number" name="edad" id="idEdad" min="18" max="99">
+                <br>
+                <input type="checkbox" name="chec" id="idChec">
+                <label for="idChec">Acepto los términos</label>
+                <br>
+                <input type="submit" value="Enviar">
+            </form>
+
+            <h2 class="corazon" style="padding-top: 40px; padding-bottom: 10px"> Parte D: Pseudo-elementos </h2>
+
+            <p id="idParrafo">Un párrafo, también llamado parágrafo o acápite, <br>
+                es una unidad comunicativa del lenguaje escrito <br>
+                compuesta por un conjunto de oraciones que tienen <br>
+                cierta unidad temática o que, sin tenerla, se enuncian juntas.
+            </p>
             <br>
-            <label for="email">Mail</label>
-            <input type="email" name="email" id="idEmail">
+            <ol>
+                <li class="liNum">Comprar leche</li>
+                <li class="liNum">Poner comida a los gatos</li>
+                <li class="liNum">Hacer ejercicio</li>
+                <li class="liNum">Deberes</li>
+                <li class="liNum">Escuchar música</li>
+                <li class="liNum">Terminar serie Netflix</li>
+            </ol>
             <br>
-            <label for="edad">Edad (18-99)</label>
-            <input type="number" name="edad" id="idEdad" min="18" max="99">
-            <br>
-            <input type="checkbox" name="chec" id="idChec">
-            <label for="idChec">Acepto los términos</label>
-            <br>
-            <input type="submit" value="Enviar">
-        </form>
-
-        <h2 class="corazon" style="padding-top: 40px; padding-bottom: 10px"> Parte D: Pseudo-elementos </h2>
-
-        <p id="idParrafo">Un párrafo, también llamado parágrafo o acápite, <br>
-            es una unidad comunicativa del lenguaje escrito <br>
-            compuesta por un conjunto de oraciones que tienen <br>
-            cierta unidad temática o que, sin tenerla, se enuncian juntas.
-        </p>
-        <br>
-        <ol>
-            <li class="liNum">Comprar leche</li>
-            <li class="liNum">Poner comida a los gatos</li>
-            <li class="liNum">Hacer ejercicio</li>
-            <li class="liNum">Deberes</li>
-            <li class="liNum">Escuchar música</li>
-            <li class="liNum">Terminar serie Netflix</li>
-        </ol>
-        <br>
-        <input type="password" placeholder="Password">
-
-
-    </main>
-</body>
+            <input type="password" placeholder="Password">
+        </main>
+    </body>
 </html>
