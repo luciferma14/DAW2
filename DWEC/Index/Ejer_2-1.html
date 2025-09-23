@@ -4,43 +4,89 @@
        <meta charset="UTF-8">
        <title> Ejercicios Actividad 2.1  </title>
        <script src = "/DWEC/Scripts/script1.js"></script>
+       <script src = "/DWEC/Scripts/script2.js"></script>
       
         <style>
             * {
                 margin: 10px;
             }
 
+            main { 
+                font-family: sans-serif; 
+                display: flex; 
+                justify-content:center; 
+                align-items: center; 
+                height: 100vh;  
+                padding: 10px;
+            }
+
+            .titulos{
+                padding-top: 20px; 
+                padding-bottom: 10px; 
+                text-align: center;
+            }
+
+            .divClass{
+                padding: 20px;
+                border: 5px solid rgb(127, 157, 255);
+                border-radius: 10px;
+            }
 
             table{
                border-collapse: collapse;
                width: 100%; 
             }
             td{
-                border: 3px solid red;
+                border:  2px solid red;
             }
-            
        </style>
-
     </head>
+    
     <body>
+        <header>
+            <h1 style="text-align: center; padding-bottom: 0px;">Ejercicios Actividad 2.1</h1>
+        </header>
+        
+        <main>
+            <div class="divClass"">
+                <h2 class="titulos">Ejercicio 1</h2>
 
-        <h1 style="text-align: center;">Ejercicios Actividad 2.1</h1>
+                <form>  
 
-        <h3>Ejercicio 1</h3>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nomUsu"><br>
 
-        <form>  
-            <label for="suelActLabel">Sueldo Actual</label>
-            <input type="number" id="sActual"><br>
+                    <label for="suelActLabel">Sueldo Actual</label>
+                    <input type="number" id="sActual"><br>
 
-            <label for="edUsu">Edad</label>
-            <input type="number" id="edUsu"><br>
+                    <label for="eUsu">Edad</label>
+                    <input type="number" id="edUsu"><br>
 
-            <label for="hijosUsu">¿Tienes hijos?</label>
-            <input type="checkbox" name="hijos" id="hijosUsu" value="si"><br>
-            
-            <button onclick="procesar(event)">Procesar</button>
-        </form>  
-        <p id="resultado"></p>
+                    <label for="hijosUsu">Número de hijos</label>
+                    <input type="number" id="hijosUsu""><br>
+                    
+                    <button onclick="procesar(event)">Procesar</button>
+                </form>  
+                <p id="resultado"></p>
+
+                <h2 class="titulos">Ejercicio 2</h2>
+
+                <form>
+
+                    <label for="nomFilas">Nombre</label>
+                    <input type="text" id="nombreFilas"><br>
+
+                    <label for="fi">Filas</label>
+                    <input type="number" id="filas"><br>
+
+                    <label for="co">Columnas</label>
+                    <input type="number" id="columnas""><br>
+
+                    <button onclick="dibujar(event)">Dibujar</button>
+                </form>
+                <div id="tabla"></div>
+            </div>
+        </main>
     </body>
 </html>
 

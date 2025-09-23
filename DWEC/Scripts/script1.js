@@ -12,24 +12,40 @@ function procesar(event){
     hijos = document.getElementById("hijosUsu").value;
 
 
-    if(sueldoActual > 0 &&  edad < 30 && hijos == "si"){
+    if (sueldoActual < 1000 && edad < 30 && hijos > 0){
         
         sueldoNuevo = 1200;
 
         document.getElementById("resultado").textContent = "Tu sueldo nuevo es: " + sueldoNuevo;
-    
     }
 
-    document.getElementById("resultado").textContent = "Tu sueldo nuevo es: " + sueldoActual;
+    if (sueldoActual < 1000 && edad < 30 && hijos == 0){
 
+        sueldoNuevo = (+sueldoActual * 0.05) + +sueldoActual;
 
-    // switch(sueldoActual){
-    //     case edad < 30 && hijos == true: sueldoNuevo == 1200;
+        document.getElementById("resultado").textContent = "Tu sueldo nuevo es: " + sueldoNuevo;
+    }
 
-    //     document.getElementById("resultado").textContent = "Tu sueldo actual es: " + sueldoNuevo;
-    
-    // }
+    if ((edad >= 30 && edad <= 45) && sueldoActual < 1250 && hijos == 2){
 
+        sueldoNuevo = (+sueldoActual * 0.10) + +sueldoActual;
+        
+        document.getElementById("resultado").textContent = "Tu sueldo nuevo es: " + sueldoNuevo;
+    }
+
+    if ((edad >= 30 && edad <= 45) && sueldoActual < 1250 && hijos >= 3){
+
+        sueldoNuevo = (+sueldoActual * 0.15) + +sueldoActual;
+        
+        document.getElementById("resultado").textContent = "Tu sueldo nuevo es: " + sueldoNuevo;
+    }
+
+    if (edad > 45 && sueldoActual < 2000){
+
+        sueldoNuevo = (+sueldoActual * 0.15) + +sueldoActual;
+        
+        document.getElementById("resultado").textContent = "Tu sueldo nuevo es: " + sueldoNuevo;
+    }
 }
 
 
