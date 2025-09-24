@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Barra de progreso</title>
+        <style>
+        /* Contenedor de la barra */
+        .progress-container {
+            width: 400px;        /* ancho total */
+            height: 15px;        /* alto de la barra */
+            display: flex;       /* hijos en línea */
+            border-radius: 15px; /* bordes redondeados */
+            overflow: hidden;    /* recorta el exceso */
+            border: 1px solid #000; /* borde externo opcional */
+            background-color: #111;
+        }
+
+        /* Parte morada relleno) */
+        .progress-filled {
+            background: linear-gradient(135deg, #8c4ffe, #7700ff);
+            height: 100%;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            transition: width 0.3s ease-in-out;
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.4),
+                        inset 0 -2px 5px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Rayas animadas encima del relleno */
+        .progress-filled::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,0.3),
+                rgba(255,255,255,0.3) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            background-size: 400px 400px;
+            animation: moveStripes 10s linear infinite;
+        }
+
+        @keyframes moveStripes {
+            from { background-position: 0 0; }
+            to { background-position: 400px 0; }
+        }
+
+        /* Parte negra (vacía) */
+        .progress-empty {
+            background-color: #111;
+            height: 100%;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            transition: width 0.3s ease-in-out;
+        }
+        </style>
+    </head>
+    <body>
+
+        <h2>Barra de progreso personalizada</h2>
+
+        <div class="progress-container">
+        <div class="progress-filled" style="width: 40%;"></div>
+        <div class="progress-empty" style="width: 60%;"></div>
+        </div>
+
+        <br>
+        <label for="porcentaje">Porcentaje:</label>
+        <input type="number" id="porcentaje" min="0" max="100" value="40">
+        <button onclick="updateProgress()">Actualizar</button>
+
+        <script>
+            function updateProgress() {
+                const pct = parseInt(document.getElementById('porcentaje').value);
+                const filled = document.querySelector('.progress-filled');
+                const empty = document.querySelector('.progress-empty');
+
+                // Ajusta los anchos de los divs según el porcentaje
+                filled.style.width = pct + '%';
+                empty.style.width = (100 - pct) + '%';
+            }
+        </script>
+
+    </body>
+</html>
