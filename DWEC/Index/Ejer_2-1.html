@@ -5,18 +5,25 @@
        <title> Ejercicios Actividad 2.1  </title>
        <script src = "/DWEC/Scripts/script1.js"></script>
        <script src = "/DWEC/Scripts/script2.js"></script>
+       <script src = "/DWEC/Scripts/script3.js"></script>
+       <script src = "/DWEC/Scripts/script4.js"></script>
+       <script src = "/DWEC/Scripts/script5.js"></script>
       
         <style>
             * {
-                margin: 10px;
+                margin: 5px;
+            }
+
+            .cabeza {
+                text-align: center;
+                background-color: rgb(127, 157, 255);
+                padding: 7px;
             }
 
             main { 
-                font-family: sans-serif; 
                 display: flex; 
                 justify-content:center; 
-                align-items: center; 
-                height: 100vh;  
+                align-items: center;  
                 padding: 10px;
             }
 
@@ -39,12 +46,19 @@
             td{
                 border:  2px solid red;
             }
+
+            .pie {
+                text-align: center;
+                background-color: rgb(127, 157, 255);
+                padding: 7px;
+            }
+
        </style>
     </head>
     
     <body>
-        <header>
-            <h1 style="text-align: center; padding-bottom: 0px;">Ejercicios Actividad 2.1</h1>
+        <header class="cabeza">
+            <h1>Ejercicios Actividad 2.1</h1>
         </header>
         
         <main>
@@ -52,7 +66,6 @@
                 <h2 class="titulos">Ejercicio 1</h2>
 
                 <form>  
-
                     <label for="nombre">Nombre</label>
                     <input type="text" id="nomUsu"><br>
 
@@ -72,7 +85,6 @@
                 <h2 class="titulos">Ejercicio 2</h2>
 
                 <form>
-
                     <label for="nomFilas">Nombre</label>
                     <input type="text" id="nombreFilas"><br>
 
@@ -85,8 +97,48 @@
                     <button onclick="dibujar(event)">Dibujar</button>
                 </form>
                 <div id="tabla"></div>
+
+                <h2 class="titulos">Ejercicio 3</h2>
+
+                <form>
+                    <label for="nu">Número: </label>
+                    <input type="number" id="numEj3"><br>
+
+                    <label for="veces">Veces: </label><br>
+                    <input type="number" id="vecesEj3" min="1" value="3">
+
+                    <button onclick="dobles()">Calcular</button>
+                </form>
+                
+                <p id="salidaEj3"></p>
+
+                <h2 class="titulos">Ejercicio 4</h2>
+
+                <p>Introduce un número entre 0 y 10:</p>
+                <input type="number" id="entradaEj4" min="0" max="10"><br>
+
+                <button onclick="probar()">Probar</button>
+                <button onclick="reiniciar()">Reiniciar</button>
+
+                <p id="salidaEj4"></p>
+
+                <h2 class="titulos">Ejercicio 5</h2>
+
+                <p>¿Es primo?</p>
+                <input type="number" id="numPrimo">
+                <button onclick="comprobarPrimo()">Comprobar</button>
+                <p id="salidaPrimo"></p>
+              
+                <p>Listar primos hasta N</p>
+                <input type="number" id="numListaPrimos">
+                <button onclick="listarPrimos()">Listar</button>
+                <p id="salidaListaPrimos"></p>
             </div>
         </main>
+
+        <footer class="pie">
+            <p>Lucía Ferrandis Martínez</p>
+        </footer>
     </body>
 </html>
 
