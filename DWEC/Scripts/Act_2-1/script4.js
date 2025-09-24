@@ -1,3 +1,5 @@
+
+
 let secreto = Math.floor(Math.random()*11);
 let intentos = 0;
 
@@ -15,7 +17,7 @@ function probar() {
   }
   intentos++;
   if (n === secreto) {
-    salida.textContent = `🎉 ¡Has acertado en ${intentos} intentos!`;
+    salida.textContent = `¡Has acertado en ${intentos} intentos!`;
   } else if (n < secreto) {
     salida.textContent = `El número es MAYOR. Intentos: ${intentos}`;
   } else {
