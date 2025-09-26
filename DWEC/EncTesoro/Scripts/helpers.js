@@ -11,6 +11,7 @@ function getDistance(even, target){
 }
 
 function getDistanceHint(distance){
+    
     if(distance < 30){
         return "Te quemass!!!!";
     }else if (distance < 40){

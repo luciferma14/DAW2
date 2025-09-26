@@ -15,6 +15,7 @@ $map.addEventListener('click', function(even){
     clicks++;
     let distance = getDistance(even, target);
     let distanceHint = getDistanceHint(distance);
+    
     $distance.innerHTML = `<h1>${distanceHint}</h1>`;
 
     if (distance < 20){
