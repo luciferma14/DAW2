@@ -29,7 +29,7 @@ public class Ejer5 {
                         int valor = Integer.parseInt(valorStr);
                         lista.add(new Municipio(codigo, territorio, valor));
                     } catch (NumberFormatException e) {
-                        // ignorar filas con valores no válidos
+                        System.out.println(e.getMessage());
                     }
                 }
             }
