@@ -6,8 +6,7 @@ use PHPUnit\Framework\TestCase;
 // Asumiendo que la clase Calculadora está en el mismo namespace o cargada con autoload
 // Si está en otro namespace, ajusta el use correspondiente o incluye el archivo
 
-class CalculadoraTest extends TestCase
-{
+class CalculadoraTest extends TestCase {
     public function testSumar()
     {
         $cal = new Calculadora();
