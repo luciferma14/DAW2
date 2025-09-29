@@ -10,15 +10,15 @@ public class Municipio implements Comparable<Municipio> {
     }
 
     public String getCodigo() {
-        return codigo;
+        return this.codigo;
     }
 
     public String getTerritorio() {
-        return territorio;
+        return this.territorio;
     }
 
     public Integer getValor() {
-        return valor;
+        return this.valor;
     }
 
     @Override
