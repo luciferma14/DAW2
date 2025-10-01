@@ -1,4 +1,4 @@
-<?php /* Calculadora.php */
+<?php 
     class Calculadora {
         public function sumar($a=0, $b=0){
             return $a + $b;
