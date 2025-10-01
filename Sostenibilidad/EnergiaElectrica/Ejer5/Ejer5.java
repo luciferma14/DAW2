@@ -1,65 +1,51 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Collections;
 
-public class Ejer5{    
-
-    class Municipio{
-    
-        private String codigo; 
-        private String territorio;
-        private String valor;
-
-        public Municipio(String territorio, String valor, String codigo){
-            this.territorio = territorio;
-            this.valor = valor;
-            this.codigo = codigo;
-        } 
-    }
-
+public class Ejer5 {
     public static void main(String[] args) {
-        
-        Scanner sc = new Scanner(System.in);
+        if (args.length < 1) {
+            System.out.println("Falta el archivo .csv como argumento");
+            return;
+        }
 
-        if (args.length <= 0){
-            System.out.println("No hay argumentos");
-        }else{
+        String fichero = args[0];
+        int num = 3; // valor por defecto
+        ArrayList<Municipio> lista = new ArrayList<>();
 
-            String fichero = args[0];
-            String codigo; 
-            String territorio;
-            String valor;
-            ArrayList <Municipio> lista = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
+            String linea = br.readLine(); // saltar cabecera
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(";");
+                if (partes.length > 4) {
+                    String codigo = partes[2].trim();
+                    String territorio = partes[3].trim();
+                    String valorStr = partes[4].trim();
 
-            try {
-                
-                FileReader fr = new FileReader(fichero);
-                BufferedReader br = new BufferedReader(fr);
-                String linea1 = br.readLine();
+                    if (valorStr.equals("-") || valorStr.isEmpty()) continue;
 
-                while ((fichero = br.readLine()) != null){
-                    codigo = fichero.split(";")[2];
-                    territorio = fichero.split(";")[3];
-                    valor = fichero.split(";")[4];
-
-                    try{
-                        lista.add(new Municipio(territorio, valor, codigo));
-
-                    }catch(Exception e){}
-
-
-                    System.out.println("Codigo: " + codigo);
-                    System.out.println("Territorio: " + territorio);
-                    System.out.println("Valor: " + valor);
+                    try {
+                        int valor = Integer.parseInt(valorStr);
+                        lista.add(new Municipio(codigo, territorio, valor));
+                    } catch (NumberFormatException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
-
-                fr.close();
-                br.close();
-
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
             }
+        } catch (Exception e) {
+            System.out.println("Error leyendo el archivo: " + e.getMessage());
+            return;
+        }
+
+        Collections.sort(lista);
+
+        for (int i = 0; i < Math.min(num, lista.size()); i++) {
+            Municipio m = lista.get(i);
+            System.out.println("Territorio: " + m.getTerritorio());
+            System.out.println("Valor: " + m.getValor());
+            System.out.println("Código: " + m.getCodigo());
+            System.out.println("----------------");
         }
     }
 }

@@ -2,8 +2,9 @@
 include "Calculadora.php";
 use PHPUnit\Framework\TestCase;
 
-class CalculadoraTest extends TestCase{
+class CalculadoraTest extends TestCase {
     public function testSumar(){
+
         $cal = new Calculadora();
         $this->assertEquals(6, $cal->sumar(2, 4), "2+4 debe dar 6");
         $this->assertEquals(0, $cal->sumar(-1, 1), "-1+1 debe dar 0");

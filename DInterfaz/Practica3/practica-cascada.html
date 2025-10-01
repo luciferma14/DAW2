@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Práctica: Cascada, Especificidad y Layers</title>
+
+        <style id="styles">
+        
+            @layer theme, reset;
+
+            @layer reset {
+                body { color: gray; }
+                h1 { color: green; }
+                .btn_primary { background: red; }
+            }
+
+            @layer theme {
+                .btn { background: blue; color: white; }
+                footer { color: blue; }
+                h2 { color: purple !important; }
+            }
+
+            #main p { font-size: 16px; } 
+
+            #main .content { font-size: 18px; }
+
+            * { line-height: 2; }
+
+            p.note { line-height: 1.2; } 
+
+            a { color: orange; }
+            a:hover { color: green; }
+
+        </style>
+    </head>
+
+    <body id="main">
+        <h1>Página de práctica</h1>
+
+        <section>
+            <p class="content">Este párrafo debería verse grande.</p>
+            <p class="note">Este párrafo tiene otra línea base.</p>
+        </section>
+
+        <nav id="menu">
+            <a href="#">Enlace 1</a>
+            <a href="#">Enlace 2</a>
+        </nav>
+
+        <button class="btn">Botón normal</button>
+        <button class="btn_primary" style="background:yellow">Botón primario</button>
+
+        <h2>Subtítulo problemático</h2>
+
+        <footer>Texto del footer</footer>
+    </body>
+</html>
