@@ -1,0 +1,134 @@
+
+
+* {
+    text-align: center;
+}
+
+.div1{
+    color:rgb(0, 119, 255);
+    border: 1px solid black;
+    margin-bottom: 15px;
+}
+
+span {color: inherit;}
+
+p { 
+    font-weight: bold;
+    font-weight: initial;
+    font-weight: revert;
+}
+
+.texto::after{
+    content: "Hola mundo";
+}
+
+p {font-family: "Times New Roman";}
+
+@keyframes parpadeo { from { opacity: 1; } to { opacity: 0; }} 
+
+.parpadeo { 
+    animation: parpadeo 0.8s infinite; 
+}
+
+.caja {
+    width: 300px;
+    height: 200px;
+    background: url("imagen.jpg");
+    background-size: cover;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.padre {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    z-index: 1; 
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.cajas {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    opacity: 0.7;
+}
+
+.morado {
+    background: rgb(90, 4, 160);
+    top: 70px;
+    left: 70px;
+    z-index: 2;
+}
+
+.rosa {
+    background: rgb(233, 45, 139);
+    top: 40px;
+    left: 40px;
+    z-index: 3;
+}
+
+.azul {
+    background: blue;
+    top: 100px;
+    left: 100px;
+    z-index: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5px;
+    width: 50%;
+    max-width: 400px;
+    border: 1px solid black;
+}
+
+.grids {
+    padding: 20px;
+    color: black;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.uno {
+    background: rgb(248, 97, 77);
+}
+
+.dos {
+    background: rgb(74, 71, 255);
+}
+
+.pe {
+    font-size: 16px;
+    padding: 2rem; 
+    background: lightblue;
+}
+
+p span {
+    display: block;
+    background: lightgreen;
+    font-size: 1.5rem;
+    padding: 2em; 
+}
+
+p span em {
+    display: block;
+    background: pink;
+    font-size: 1rem; 
+    padding: 2em; 
+}
+
+.huno { font-size: 10vw; }
+
+main { width: calc(100% - 200px); }
+
+p { width: min(90%, 600px); }
+
+.clamp {
+    font-size: clamp(1rem, 5vw, 3rem);
+}
+
+p::after { content: " (" attr(data-info) ")"; }
