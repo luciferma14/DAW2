@@ -1,28 +1,27 @@
 <?php
-
-function perma($vec2){
-
-    $tam = count($vec2);
-    $pos = 0;
-    for($i = 1; $i < $tam; $i++){
+    function permu($vec2) {
 
         $tam = count($vec2);
-        
-        $vec2[$tam-$i] = $vec2[$pos];
-        $pos++;
+
+        for ($i = 0; $i < $tam / 2; $i++) {
+            $temp = $vec2[$i];
+            $vec2[$i] = $vec2[$tam - 1 - $i];
+            $vec2[$tam - 1 - $i] = $temp;
+        }
+        return $vec2;
     }
 
-    echo "<pre>";
-    print_r($vec2);
-    echo "</pre>";
+    $tamanyo = readline("Tamaño del vector: ");
 
-    // $vec[$tam-1] = $vec[0];
-    // $vec[$tam-2] = $vec[1];
-    // $vec[$tam-3] = $vec[2];
-}
+    $vec = [];
 
-$vec = [1,2,3,4,5,6];
+    for($i = 1; $i <= $tamanyo; $i++){
+        $valor = readline("Número de la posición $i: ");
+        $vec[] = $valor;
+    }
 
-echo perma($vec);
+    $resul = permu($vec);
+
+    print_r($resul);
 
 ?>

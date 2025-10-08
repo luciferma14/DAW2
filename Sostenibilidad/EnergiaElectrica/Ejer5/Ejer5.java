@@ -11,11 +11,11 @@ public class Ejer5 {
         }
 
         String fichero = args[0];
-        int num = 3; // valor por defecto
+        int num = 3; // Valor por defecto
         ArrayList<Municipio> lista = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
-            String linea = br.readLine(); // saltar cabecera
+            String linea = br.readLine(); // Saltar cabecera
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(";");
                 if (partes.length > 4) {
