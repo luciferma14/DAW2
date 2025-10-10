@@ -1,18 +1,21 @@
 <?php
-// Ejecutar: php -S localhost:8000 --> Navegador: http://localhost:8000/DWES/EjerUP2/Ejer1.php
-function potencias($num, $exp){
+    function potencias($num, $exp){
 
-    for($i = 1; $i <= $exp; $i++){
-        $vec[] = pow($num, $i);
+        for($i = 1; $i <= $exp; $i++){
+            $vec[] = pow($num, $i);
+        }
+        return $vec;
     }
-    return $vec;
-}
 
-$resul = potencias(5, 4);
+    $num = readline("Número: ");
+    $exp = readline("Exponente: ");
 
-foreach($resul as $i => $valor){
-    echo "Potencia " . ($i+1) . " = $valor <br>";
-    $suma += $valor;
-}
-echo "Suma de las potencias: " . $suma;
+    $resul = potencias($num, $exp);
+
+    $suma = 0;
+    foreach($resul as $i => $valor){
+        print_r("Potencia " . ($i + 1) . " = $valor\n");
+        $suma += $valor;
+    }
+    print_r("Suma de las potencias: $suma\n");
 ?>
