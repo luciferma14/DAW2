@@ -22,6 +22,6 @@
 
     $resul = permu($vec);
 
-    print_r($resul);
+    echo($resul);
 
 ?>

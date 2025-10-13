@@ -14,8 +14,8 @@
 
     $suma = 0;
     foreach($resul as $i => $valor){
-        print_r("Potencia " . ($i + 1) . " = $valor\n");
+        echo("Potencia " . ($i + 1) . " = $valor\n");
         $suma += $valor;
     }
-    print_r("Suma de las potencias: $suma\n");
+    echo("Suma de las potencias: $suma\n");
 ?>

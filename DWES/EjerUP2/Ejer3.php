@@ -21,18 +21,18 @@
         $trabajadores[$nombre] = $salario;
     }
 
-    print_r("\nSalarios iniciales\n");
+    echo("\nSalarios iniciales\n");
     foreach ($trabajadores as $nombre => $salario) {
-        print_r("$nombre: $salario €\n");
+        echo("$nombre: $salario €\n");
     }
 
     $max = salMax($trabajadores);
     $min = salMin($trabajadores);
     $media = salMed($trabajadores);
 
-    print_r("\nSalario máximo: $max €");
-    print_r("\nSalario mínimo: $min €");
-    print_r("\nSalario medio: " . round($media, 2) . " €\n");
+    echo("\nSalario máximo: $max €");
+    echo("\nSalario mínimo: $min €");
+    echo("\nSalario medio: " . round($media, 2) . " €\n");
     // Redondea un número decimal y las decimas que quieras --> round()
 
     $incremento = (float)readline("\nIntroduce el porcentaje de incremento salarial (%): ");
@@ -41,16 +41,16 @@
         $trabajadores[$nombre] = $salario + ($salario * $incremento / 100);
     }
 
-    print_r("\nSalarios tras incremento del $incremento%\n");
+    echo("\nSalarios tras incremento del $incremento%\n");
     foreach ($trabajadores as $nombre => $salario) {
-        print_r("$nombre: " . round($salario, 2) . " €\n");
+        echo("$nombre: " . round($salario, 2) . " €\n");
     }
 
     $max = salMax($trabajadores);
     $min = salMin($trabajadores);
     $media = salMed($trabajadores);
 
-    print_r("\nNuevo salario máximo: $max €");
-    print_r("\nNuevo salario mínimo: $min €");
-    print_r("\nNuevo salario medio: " . round($media, 2) . " €\n");
+    echo("\nNuevo salario máximo: $max €");
+    echo("\nNuevo salario mínimo: $min €");
+    echo("\nNuevo salario medio: " . round($media, 2) . " €\n");
 ?>
