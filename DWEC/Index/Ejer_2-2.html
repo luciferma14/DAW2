@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="UTF-8">
+       <title> Ejercicios Actividad 2.1  </title>
+       <script src = "/DWEC/Scripts/Act_2-2/script1.js"></script>
+
+       <style>
+
+            main { 
+                display: flex; 
+                justify-content:center; 
+                align-items: center;  
+                padding: 10px;
+            }
+            .divClass{
+                padding: 20px;
+                border: 5px solid rgb(127, 157, 255);
+                border-radius: 10px;
+            }
+       </style>
+    </head>
+    <body>
+      <header class="cabeza">
+            <h1>Ejercicios Actividad 2.2</h1>
+        </header>
+        
+        <main>
+            <div class="divClass"">
+                <h2>Ejercicio 1</h2>
+                <form>
+                    <p>Escribe dos frase y te diré si son iguales o no:</p><br>
+                    <label>Frase 1:</label>
+                    <textarea name="cadena1" id="cadena1"></textarea><br>
+                    <label>Frase 2:</label>
+                    <textarea name="cadena2" id="cadena2"></textarea><br><br>
+
+                    <button onclick="iguales(event)">Procesar</button>
+                </form>
+
+                <p id="resultado"></p>
+
+            </div>
+        </main>
+
+        <footer class="pie">
+            <p>Lucía Ferrandis Martínez</p>
+        </footer>
+    </body>
+</html>
