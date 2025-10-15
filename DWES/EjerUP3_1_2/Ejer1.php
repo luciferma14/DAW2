@@ -28,11 +28,11 @@
                 $pesetas = 166.386;
 
                 if($conversion == "eurosPes"){
-                    $final = $dinero * $pesetas;
+                    $final = round($dinero * $pesetas, 2);
                     
                     echo "<p>$dinero euros son $final ptas</p>";
                 }else if($conversion == "pesetasEu"){
-                    $final = $dinero / $pesetas;
+                    $final = round($dinero / $pesetas, 2);
 
                     echo "<p>$dinero ptas son $final euros</p>";
                 }
