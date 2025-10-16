@@ -7,7 +7,7 @@
     <body>
         <h2>Lucía Ferrandis Martínez</h2>
         <hr> 
-        <h1>¿Qué es el carácter?</h1>
+        <h1>¿Cuál es el carácter?</h1>
 
         <form method="POST">
             <label>Carácter</label>
