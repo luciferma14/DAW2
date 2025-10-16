@@ -16,18 +16,20 @@
         }
 
         .header {
-            /* TU CÓDIGO AQUÍ - header fijo */
             background: #333;
             color: white;
             padding: 1em;
+            position: sticky;
+            top: 0;
         }
 
         .wrapper {
             /* TU CÓDIGO AQUÍ - contenedor principal */
+            float: left;
         }
 
         .sidebar {
-            /* TU CÓDIGO AQUÍ - sidebar flotante */
+            float: left ;
             background: #f0f0f0;
             padding: 20px;
         }
@@ -42,6 +44,7 @@
 
         .main-content {
             /* TU CÓDIGO AQUÍ - contenido principal */
+            float: left;
             padding: 20px;
         }
 
@@ -51,6 +54,8 @@
             color: white;
             padding: 20px;
             text-align: center;
+            margin-bottom: 0;
+
         }
 
         .scroll-top {
@@ -62,7 +67,12 @@
             width: 50px;
             height: 50px;
             cursor: pointer;
+            position: absolute;
+            float: right;
+            right: 0;
+            bottom: 0;
         }
+
     </style>
 </head>
 <body>
@@ -112,13 +122,11 @@
         </main>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2024 Mi Sitio Web. Todos los derechos reservados.</p>
-    </footer>
+    
 
     <button class="scroll-top">↑</button>
 
-    <div style="background: #f8f9fa; padding: 20px; margin: 20px;">
+    <div class="objetivo" style="background: #f8f9fa; padding: 20px; margin: 20px;">
         <h3>Objetivo del Layout:</h3>
         <ul>
             <li>Header fijo en la parte superior</li>
@@ -129,5 +137,9 @@
         </ul>
         <p><strong>Restricción:</strong> No uses Flexbox ni Grid, solo float y position.</p>
     </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Mi Sitio Web. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

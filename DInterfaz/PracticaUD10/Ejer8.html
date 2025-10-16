@@ -12,33 +12,24 @@
 
         .wrapper {
             width: 100%;
+            
         }
 
         .sidebar {
-            float: left;
-            width: 200px;
             background: #333;
-            height: 100vh;
             color: white;
             padding: 20px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            margin: 10px 0;
         }
 
         .sidebar a {
             color: white;
             text-decoration: none;
+            padding: 120px;
+            text-align: center;
         }
 
         .content {
-            margin-left: 200px;
+            margin: 10px;
         }
 
         .hero {
@@ -53,25 +44,19 @@
 
         .hero h1 {
             font-size: 3em;
-            margin: 0;
+            text-align: center;
         }
 
         .cta {
             position: absolute;
             bottom: 20px;
             right: 20px;
-            z-index: 999999;
             background: #ff6b6b;
             color: white;
-            border: none;
             padding: 15px 30px;
             font-size: 1.2em;
             cursor: pointer;
             border-radius: 5px;
-        }
-
-        .main-content {
-            padding: 20px;
         }
     </style>
 </head>
@@ -81,12 +66,12 @@
 
     <div class="wrapper">
         <nav class="sidebar">
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
+            
+            <a href="#">Inicio</a>
+            <a href="#">Productos</a>
+            <a href="#">Servicios</a>
+            <a href="#">Contacto</a>
+
         </nav>
         
         <main class="content">
