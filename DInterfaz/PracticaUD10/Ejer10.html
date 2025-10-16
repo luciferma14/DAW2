@@ -11,8 +11,14 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%; /* permite controlar el alto total */
+        }
+
         body {
             font-family: Arial, sans-serif;
+            position: relative; /* para posicionar el botón sobre el body */
+            min-height: 100vh; /* asegura que el footer esté abajo */
         }
 
         .header {
@@ -24,14 +30,17 @@
         }
 
         .wrapper {
-            /* TU CÓDIGO AQUÍ - contenedor principal */
+            /* contenedor principal */
             float: left;
+            width: 100%;
+            padding-bottom: 80px; /* espacio para el footer */
         }
 
         .sidebar {
-            float: left ;
+            float: left;
             background: #f0f0f0;
             padding: 20px;
+            width: 200px;
         }
 
         .sidebar ul {
@@ -43,23 +52,26 @@
         }
 
         .main-content {
-            /* TU CÓDIGO AQUÍ - contenido principal */
+            /* contenido principal */
             float: left;
             padding: 20px;
+            width: calc(100% - 240px); /* espacio restante */
         }
 
         .footer {
-            /* TU CÓDIGO AQUÍ - footer al final */
+            /* footer al final */
             background: #666;
             color: white;
             padding: 20px;
             text-align: center;
-            margin-bottom: 0;
-
+            position: relative;
+            clear: both; /* empuja debajo de los floats */
+            bottom: 0;
+            z-index: 10;
         }
 
         .scroll-top {
-            /* TU CÓDIGO AQUÍ - botón scroll to top fijo */
+            /* botón scroll to top fijo */
             background: #007bff;
             color: white;
             border: none;
@@ -67,12 +79,12 @@
             width: 50px;
             height: 50px;
             cursor: pointer;
-            position: absolute;
-            float: right;
-            right: 0;
-            bottom: 0;
+            position: fixed; /* fijo en la pantalla */
+            right: 20px;
+            bottom: 20px;
+            font-size: 20px;
+            z-index: 20;
         }
-
     </style>
 </head>
 <body>
@@ -121,8 +133,6 @@
             <p>Velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
         </main>
     </div>
-
-    
 
     <button class="scroll-top">↑</button>
 
