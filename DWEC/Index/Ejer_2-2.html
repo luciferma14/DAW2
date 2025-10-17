@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-       <meta charset="UTF-8">
-       <title> Ejercicios Actividad 2.1  </title>
-       <script src = "/DWEC/Scripts/Act_2-2/script1.js"></script>
+        <meta charset="UTF-8">
+        <title> Ejercicios Actividad 2.2  </title>
+        <script src = "/DWEC/Scripts/Act_2-2/script1.js"></script>
+        <script src = "/DWEC/Scripts/Act_2-2/script2.js"></script>
+        <script src = "/DWEC/Scripts/Act_2-2/script3.js"></script>
 
-       <style>
+    <style>
+
+             .cabeza {
+                text-align: center;
+                background-color: rgb(127, 157, 255);
+                padding: 7px;
+            }
 
             main { 
                 display: flex; 
@@ -13,21 +21,36 @@
                 align-items: center;  
                 padding: 10px;
             }
+
+            .titulos{
+                padding-top: 20px; 
+                padding-bottom: 10px; 
+                text-align: center;
+            }
+
             .divClass{
                 padding: 20px;
                 border: 5px solid rgb(127, 157, 255);
                 border-radius: 10px;
             }
-       </style>
+
+            .pie {
+                text-align: center;
+                background-color: rgb(127, 157, 255);
+                padding: 7px;
+            }
+
+    </style>
     </head>
     <body>
-      <header class="cabeza">
+        <header class="cabeza">
             <h1>Ejercicios Actividad 2.2</h1>
         </header>
         
+        
         <main>
             <div class="divClass"">
-                <h2>Ejercicio 1</h2>
+                <h2 class="titulos">Ejercicio 1</h2>
                 <form>
                     <p>Escribe dos frase y te diré si son iguales o no:</p><br>
                     <label>Frase 1:</label>
@@ -35,10 +58,34 @@
                     <label>Frase 2:</label>
                     <textarea name="cadena2" id="cadena2"></textarea><br><br>
 
-                    <button onclick="iguales(event)">Procesar</button>
+                    <button type="button" onclick="iguales(event)">Procesar</button>
                 </form>
 
-                <p id="resultado"></p>
+                <p id="resultado1"></p>
+
+
+                <h2 class="titulos">Ejercicio 2</h2>
+
+                <label>Texto a cifrar:</label>
+                <textarea name="texto" id="texto"></textarea><br><br>
+                <label>Desplazamiento de x nº: </label>
+                <input type="number" name="desplaza" id="desplaza" min="1" max="25"><br><br>
+
+                <button type="button" onclick="cifradoCesar(event)">Cifrar</button>
+
+                <p id="resultado2"></p>
+
+
+                <h2 class="titulos">Ejercicio 3</h2>
+
+                <label>Frase 1:</label>
+                <textarea name="frase1" id="frase1"></textarea><br><br>
+                <label>Frase 2:</label>
+                <textarea name="frase2" id="frase2"></textarea><br><br>
+
+                <button type="button" onclick="analizar(event)">Analizar</button>
+
+                <p id="resultado3"></p>
 
             </div>
         </main>
