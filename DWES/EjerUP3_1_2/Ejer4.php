@@ -32,70 +32,50 @@
                 $cuatro = $_POST["cuatro"];
                 $cinco = $_POST["cinco"];
 
+                $suma1 = 0;
+                $suma2 = 0;
+                $suma3 = 0;
+                $suma4 = 0;
+                $suma5 = 0;
+
                 if($uno > 3){
-                    $pUno = 5;
-                    $suma1 = 0;
-                    for($i = 0; $i < $uno - 3; $i++){
-                        $suma1 = $pUno + $suma1;
-                    }
-                    $suma1 = $suma1 + 10;
-                    echo "<p>La 1ª llamada de $uno mins cuesta $suma1 céntimos</p>";
+                    $suma1 = 10 + (($uno - 3) * 5);
                 } else {
-                    $pUno = 10;
-                    echo "<p>La 1ª llamada de $uno mins cuesta $pUno céntimos</p>";
-
+                    $suma1 = 10;
                 }
+                echo "<p>La 1ª llamada de $uno mins cuesta $suma1 céntimos</p>";
+
                 if($dos > 3){
-                    $pDos = 5;
-                    $suma2 = 0;
-                    for($i = 0; $i < $dos - 3; $i++){
-                        $suma2 = $pDos + $suma2;
-                    }
-                    $suma2 = $suma2 + 10;
-                    echo "<p>La 2ª llamada de $dos mins cuesta $suma2 céntimos</p>";
+                    $suma2 = 10 + (($dos - 3) * 5);
                 } else {
-                    $pDos = 10;
-                    echo "<p>La 2ª llamada de $dos mins cuesta $pDos céntimos</p>";
-
+                    $suma2 = 10;
                 }
+                echo "<p>La 2ª llamada de $dos mins cuesta $suma2 céntimos</p>";
+
                 if($tres > 3){
-                    $pTres = 5;
-                    $suma3 = 0;
-                    for($i = 0; $i < $tres - 3; $i++){
-                        $suma3 = $pTres + $suma3;
-                    }
-                    $suma3 = $suma3 + 10;
-                    echo "<p>La 3ª llamada de $tres mins cuesta $suma3 céntimos</p>";
+                    $suma3 = 10 + (($tres - 3) * 5);
                 } else {
-                    $pTres = 10;
-                    echo "<p>La 3ª llamada de $tres mins cuesta $pTres céntimos</p>";
+                    $suma3 = 10;
                 }
+                echo "<p>La 3ª llamada de $tres mins cuesta $suma3 céntimos</p>";
+
                 if($cuatro > 3){
-                    $pCuatro = 5;
-                    $suma4 = 0;
-                    for($i = 0; $i < $cuatro - 3; $i++){
-                        $suma4 = $pCuatro + $suma4;
-                    }
-                    $suma4 = $suma4 + 10;
-                    echo "<p>La 4ª llamada de $cuatro mins cuesta $suma4 céntimos</p>";
+                    $suma4 = 10 + (($cuatro - 3) * 5);
                 } else {
-                    $pCuatro = 10;
-                    echo "<p>La 4ª llamada de $cuatro mins cuesta $pCuatro céntimos</p>";
-
+                    $suma4 = 10;
                 }
+                echo "<p>La 4ª llamada de $cuatro mins cuesta $suma4 céntimos</p>";
+
                 if($cinco > 3){
-                    $pCinco = 5;
-                    $suma5 = 0;
-                    for($i = 0; $i < $cinco - 3; $i++){
-                        $suma5 = $pCinco + $suma5;
-                    }
-                    $suma5 = $suma5 + 10;
-                    echo "<p>La 5ª llamada de $cinco mins cuesta $suma5 céntimos</p>";
+                    $suma5 = 10 + (($cinco - 3) * 5);
                 } else {
-                    $pCinco = 10;
-                    echo "<p>La 5ª llamada de $cinco mins cuesta $pCinco céntimos</p>";
-
+                    $suma5 = 10;
                 }
+                echo "<p>La 5ª llamada de $cinco mins cuesta $suma5 céntimos</p>";
+
+                $total = $suma1 + $suma2 + $suma3 + $suma4 + $suma5;
+                echo "<hr>";
+                echo "<p> El total de las 5 llamadas es de $total céntimos</p>";
             }
         ?>
     </body>

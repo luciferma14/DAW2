@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Ejercicios Actividad 2.2  </title>
+        <script src = "/DWEC/Scripts/Act_2-2/script1.js"></script>
+        <script src = "/DWEC/Scripts/Act_2-2/script2.js"></script>
+        <script src = "/DWEC/Scripts/Act_2-2/script3.js"></script>
+        <script src = "/DWEC/Scripts/Act_2-2/script4.js"></script>
+        <script src = "/DWEC/Scripts/Act_2-2/script5.js"></script>
+        <script src = "/DWEC/Scripts/Act_2-2/script6.js"></script>
+
+        <style>
+
+            .cabeza {
+            text-align: center;
+            background-color: rgb(127, 157, 255);
+            padding: 7px;
+        }
+
+        main { 
+            display: flex; 
+            justify-content:center; 
+            align-items: center;  
+            padding: 10px;
+        }
+
+        .titulos{
+            padding-top: 20px; 
+            padding-bottom: 10px; 
+            text-align: center;
+        }
+
+        .divClass{
+            padding: 20px;
+            border: 5px solid rgb(127, 157, 255);
+            border-radius: 10px;
+        }
+
+        .pie {
+            text-align: center;
+            background-color: rgb(127, 157, 255);
+            padding: 7px;
+        }
+
+        </style>
+    </head>
+    <body>
+        <header class="cabeza">
+            <h1>Ejercicios Actividad 2.2</h1>
+        </header>
+        
+        
+        <main>
+            <div class="divClass"">
+                <h2 class="titulos">Ejercicio 1</h2>
+                <form>
+                    <p>Escribe dos frase y te diré si son iguales o no:</p><br>
+                    <label>Frase 1:</label>
+                    <textarea name="cadena1" id="cadena1"></textarea><br>
+                    <label>Frase 2:</label>
+                    <textarea name="cadena2" id="cadena2"></textarea><br><br>
+
+                    <button type="button" onclick="iguales(event)">Procesar</button>
+                </form>
+
+                <p id="resultado1"></p>
+
+
+                <h2 class="titulos">Ejercicio 2</h2>
+
+                <label>Texto a cifrar:</label>
+                <textarea name="texto" id="texto"></textarea><br><br>
+                <label>Desplazamiento de x nº: </label>
+                <input type="number" name="desplaza" id="desplaza" min="1" max="25"><br><br>
+
+                <button type="button" onclick="cifradoCesar(event)">Cifrar</button>
+
+                <p id="resultado2"></p>
+
+
+                <h2 class="titulos">Ejercicio 3</h2>
+
+                <label>Frase 1:</label>
+                <textarea name="frase1" id="frase1"></textarea><br><br>
+                <label>Frase 2:</label>
+                <textarea name="frase2" id="frase2"></textarea><br><br>
+
+                <button type="button" onclick="analizar(event)">Analizar</button>
+
+                <p id="resultado3"></p>
+
+
+                <h2 class="titulos">Ejercicio 4</h2>
+
+                <p>Introduce 3 palabras (mínimo 4, 5 y 6 letras respectivamente):</p>
+
+                <label>Primera palabra:</label>
+                <input type="text" id="palabra1"><br>
+                <label>Segunda palabra:</label>
+                <input type="text" id="palabra2"><br>
+                <label>Tercera palabra:</label>
+                <input type="text" id="palabra3"><br><br>
+
+                <button type="button" onclick="generarPalabra(event)">Generar palabra</button>
+
+                <p id="resultado4"></p>
+
+
+                <h2 class="titulos">Ejercicio 5</h2>
+
+                <p>Introduce un texto (mínimo 3 palabras) y un carácter a buscar:</p>
+
+                <label>Texto:</label>
+                <textarea id="textoBuscar"></textarea><br>
+                <label>Carácter:</label>
+                <input type="text" id="caracterBuscar" maxlength="1"><br><br>
+
+                <button type="button" onclick="contarCaracter(event)">Contar</button>
+
+                <p id="resultado5"></p>
+
+
+                <h2 class="titulos">Ejercicio 6</h2>
+
+                <p>Introduce el número de cadenas aleatorias a generar (de 0 a 10 caracteres cada una):</p>
+
+                <label>Número de cadenas:</label>
+                <input type="number" id="numCadenas" min="1"><br><br>
+
+                <button type="button" onclick="generarCadenas(event)">Generar cadenas</button>
+
+                <p id="resultado6"></p>
+
+            </div>
+        </main>
+
+        <footer class="pie">
+            <p>Lucía Ferrandis Martínez</p>
+        </footer>
+    </body>
+</html>
