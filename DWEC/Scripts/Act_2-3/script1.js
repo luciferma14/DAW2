@@ -2,15 +2,22 @@
 function multi(event){
     event.preventDefault();
     
-    let numMulti = document.getElementById("numMulti").value;
-    let doble;
-    let cont;
+    let numMulti = parseFloat(document.getElementById("numMulti").value);
 
-    for (let i = 1; i = Infinity; i++){
-        doble = pow(numMulti, i);
-        cont++;
-        document.getElementById("resultado1").textContent = numMulti + " x " + doble + " es: " + doble;
+    if(numMulti === 0 || numMulti === 1 || numMulti === -1){
+        document.getElementById("resultado1").innerHTML = "Ese valor no esta permitido";
+        return;
     }
 
-    document.getElementById("resultado1").textContent = "El número de operaciones necesarias ha/n sido " +  cont;
+    let cont = 0;
+    let valor = numMulti;
+
+    while(valor < Infinity){
+        let anterior = valor;
+        valor = valor * numMulti;
+        cont++;
+        
+        document.getElementById("resultado1").innerHTML = numMulti + " x " + anterior + " = " + valor 
+        + "<br> Se ha multiplicado por si mismo " + cont + " veces";
+    }
 }

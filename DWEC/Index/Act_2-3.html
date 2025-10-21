@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <title> Ejercicios Actividad 2.3</title>
         <script src = "/DWEC/Scripts/Act_2-3/script1.js"></script>
-        <!-- <script src = "/DWEC/Scripts/Act_2-3/script2.js"></script>
-        <script src = "/DWEC/Scripts/Act_2-3/script3.js"></script> -->
+        <script src = "/DWEC/Scripts/Act_2-3/script2.js"></script>
+        <script src = "/DWEC/Scripts/Act_2-3/script3.js"></script>
 
         <style>
 
@@ -62,19 +62,39 @@
                 <p id="resultado1"></p>
 
 
-                <!-- <h2 class="titulos">Ejercicio 2</h2>
+                <h2 class="titulos">Ejercicio 2</h2>
 
-                <label>Texto a cifrar:</label>
-                <textarea name="texto" id="texto"></textarea><br><br>
-                <label>Desplazamiento de x nº: </label>
-                <input type="number" name="desplaza" id="desplaza" min="1" max="25"><br><br>
+                <label>¿Cuántos comensales vamos a contar?</label><br>
+                <input type="number" id="total" min="1"><br><br>
 
-                <button type="button" onclick="cifradoCesar(event)">Cifrar</button>
+                <label>¿Cuántos son mayores de 65 años?</label><br>
+                <input type="number" id="mayores" min="0"><br><br>
 
-                <p id="resultado2"></p>
+                <label>¿Y cuántos son menores de 10 años con menú infantil?</label><br>
+                <input type="number" id="ninos" min="0"><br><br>
 
+                <button type="button" onclick="verMenus()">Continuar</button>
 
-                <h2 class="titulos">Ejercicio 3</h2>
+                <div id="paso2" style="display:none;">
+                    <h3>Menús disponibles</h3>
+                    <p>Menú 1 (Económico): 12.50 €</p>
+                    <p>Menú 2 (Clásico): 18.75 €</p>
+                    <p>Menú 3 (Premium): 25.40 €</p>
+                    <p>Menú infantil: 8.90 €</p>
+                    <p><i>Precios sin IVA (10%)</i></p>
+
+                    <h3>Elige los menús para adultos</h3>
+                    <label>¿Cuántos comerán el menú 1?</label><br>
+                    <input type="number" id="m1" min="0"><br><br>
+                    <label>¿Cuántos comerán el menú 2?</label><br>
+                    <input type="number" id="m2" min="0"><br><br>
+                    <label>¿Cuántos comerán el menú 3?</label><br>
+                    <input type="number" id="m3" min="0"><br><br>
+                    <button type="button" onclick="calcularFactura()">Calcular factura</button>
+
+                <div id="resultado" style="margin-top:20px;"></div>
+
+                <!-- <h2 class="titulos">Ejercicio 3</h2>
 
                 <label>Frase 1:</label>
                 <textarea name="frase1" id="frase1"></textarea><br><br>
