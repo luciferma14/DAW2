@@ -20,7 +20,7 @@ function generarPalabra(event) {
     } else {
         mitad = p2.slice(Math.floor(len2 / 2) - 1, Math.floor(len2 / 2) + 2).toLowerCase();
     }
-
+ 
     let final = p3.slice(-2).toUpperCase();
 
     let resultado = inicio + mitad + final;

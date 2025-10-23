@@ -12,10 +12,10 @@ function verMenus() {
   }
 
   document.getElementById("paso2").style.display = "block";
-  document.getElementById("resultado").innerHTML = "";
-}
+  document.getElementById("resultado2").innerHTML = "";
+  }
 
-function calcularFactura() {
+  function calcularFactura() {
   const IVA = 0.10;
   const DESCUENTO = 0.15;
   const menu1 = 12.50, menu2 = 18.75, menu3 = 25.40, menuNino = 8.90;
@@ -33,7 +33,7 @@ function calcularFactura() {
   let totalMenusAdultos = m1 + m2 + m3;
 
   if (totalMenusAdultos !== (adultos + mayores)) {
-    document.getElementById("resultado").innerHTML =
+    document.getElementById("resultado2").innerHTML =
       `Error: has asignado ${totalMenusAdultos} menús adultos, pero hay ${(adultos + mayores)} adultos (mayores incluidos).`;
     return;
   }
@@ -67,7 +67,7 @@ function calcularFactura() {
   let ivaTotal = subtotal * IVA;
   let totalFinal = subtotal + ivaTotal;
 
-  
+
   let html = `<h3>Resumen de la factura</h3>
   <p>Total comensales: ${total}</p>
   <p>Adultos: ${adultos} | Mayores: ${mayores} | Niños: ${ninos}</p>
@@ -88,5 +88,5 @@ function calcularFactura() {
   <p><strong>IVA (10%):</strong> ${ivaTotal.toFixed(2)} €</p>
   <p><strong>Total con IVA:</strong> ${totalFinal.toFixed(2)} €</p>`;
 
-  document.getElementById("resultado").innerHTML = html;
+  document.getElementById("resultado2").innerHTML = html;
 }
