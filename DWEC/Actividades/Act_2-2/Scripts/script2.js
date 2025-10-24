@@ -1,9 +1,8 @@
 
+function cifradoCesar() {
 
-function cifradoCesar(event) {
-    event.preventDefault();
-    let texto = document.getElementById("texto").value; 
-    let desplaza = parseInt(document.getElementById("desplaza").value);
+    let texto = prompt("Cadena a cifrar: ");
+    let desplaza = parseInt(prompt("Número de desplazamientos: "));
     const abc = "abcdefghijklmnopqrstuvwxyz";
     let resultado = "";
 
@@ -16,6 +15,5 @@ function cifradoCesar(event) {
         }
     }
 
-    document.getElementById("resultado2").textContent = "'" + texto + "'" + " se ha convertido en  " + resultado;
-
+    console.log("Tu texto cifrado: " + resultado);
 }

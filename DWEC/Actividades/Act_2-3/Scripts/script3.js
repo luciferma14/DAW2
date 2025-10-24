@@ -4,7 +4,7 @@ function convertirPrompt() {
     let decimal;
 
     if (!input) {
-        resultado.textContent = "Por favor, introduce un número.";
+        console.log("Por favor, introduce un número.");
         return;
     }
 
