@@ -19,13 +19,12 @@ function convertirPrompt() {
     }
 
     if (isNaN(decimal) || decimal < 0) {
-        resultado.textContent = "Número inválido o negativo.";
+        console.log("Número inválido o negativo.");
         return;
     }
 
-    resultado.innerHTML = 
-    `Decimal: ${decimal}<br>` +
-    `Binario: ${decimal.toString(2)}<br>` +
-    `Octal: ${decimal.toString(8)}<br>` +
-    `Hexadecimal: ${decimal.toString(16).toUpperCase()}`;
+    console.log(`Decimal: ${decimal}`);
+    console.log(`Binario: ${decimal.toString(2)}`);
+    console.log(`Octal: ${decimal.toString(8)}`);
+    console.log(`Hexadecimal: ${decimal.toString(16).toUpperCase()}`);
 }
