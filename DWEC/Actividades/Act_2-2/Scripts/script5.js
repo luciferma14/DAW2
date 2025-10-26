@@ -1,17 +1,15 @@
 
-
-function contarCaracter(event) {
-    event.preventDefault();
-    let texto = document.getElementById("textoBuscar").value.trim();
-    let caracter = document.getElementById("caracterBuscar").value;
+function contarCaracter() {
+    let texto = prompt("Introduce el texto:");
+    let caracter = prompt("Carácter que quieres contar:");
 
     if (texto.split(" ").filter(p => p !== "").length < 3) {
-        document.getElementById("resultado5").textContent = "El texto debe tener al menos 3 palabras.";
+        alert("El texto debe tener al menos 3 palabras.");
         return;
     }
 
     if (caracter.length !== 1) {
-        document.getElementById("resultado5").textContent = "Debes introducir solo un carácter.";
+        alert("Debes introducir solo un carácter.");
         return;
     }
 
@@ -20,6 +18,6 @@ function contarCaracter(event) {
         if (char === caracter) contador++;
     }
 
-    document.getElementById("resultado5").textContent = `En el texto "${texto}", el carácter "${caracter}" aparece ${contador} veces.`;
+    alert(`En el texto "${texto}", el carácter "${caracter}" aparece ${contador} veces.`);
 }
 

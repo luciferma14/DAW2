@@ -1,12 +1,10 @@
-function generarCadenas(event) {
-    event.preventDefault();
+function generarCadenas() {
 
     const ABCNUM = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const num = parseInt(document.getElementById("numCadenas").value);
-    const resultado = document.getElementById("resultado6");
+    let num = parseInt(prompt("Número de cadenas que quieres crear:"));
 
     if (isNaN(num) || num <= 0) {
-        resultado.textContent = "Introduce un número válido mayor que 0.";
+        console.log("Introduce un número válido mayor que 0.");
         return;
     }
 
@@ -14,19 +12,16 @@ function generarCadenas(event) {
     let textoResultado = "Cadenas generadas:<br>";
 
     for (let i = 1; i <= num; i++) {
-        // Longitud aleatoria de 0 a 10
         let longitud = Math.floor(Math.random() * 11);
         let cadena = "";
 
-        // Generar la cadena carácter a carácter
         for (let j = 0; j < longitud; j++) {
             cadena += ABCNUM[Math.floor(Math.random() * ABCNUM.length)];
         }
 
         if (cadena === "") vacias++;
-        textoResultado += `Cadena ${i}: "${cadena}"<br>`;
+        textoResultado += console.log(`Cadena ${i}: "${cadena}"`);
     }
 
-    textoResultado += `<br>Número de cadenas vacías: ${vacias}`;
-    resultado.innerHTML = textoResultado;
+    textoResultado += console.log(`Número de cadenas vacías: ${vacias}`);
 }
