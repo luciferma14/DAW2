@@ -23,8 +23,8 @@ function numIntervalo(){
         },
 
         set alea(num){
-            this.minimo = Math.min(...numeros);
-            this.maximo = Math.max(...numeros);
+            this.minimo = Math.min(...num);
+            this.maximo = Math.max(...num);
         }
 
     }
@@ -34,12 +34,13 @@ function numIntervalo(){
         nuevos.push(Math.floor(Math.random() * 100) + 1);
     }
 
-    console.log("Mínimo:", intervalo.minimo);
-    console.log("Máximo:", intervalo.maximo);
-    console.log("Array:", intervalo.rango);
-
-    console.log(intervalo.nuevosValores = nuevos);
-    console.log("Máximo:", intervalo.maximo);
-    console.log("Array:", intervalo.rango);
+    console.log("Según su intervalo:");
+    console.log("Array: ", intervalo.relleno);
+    console.log("Mínimo: ", intervalo.minimo);
+    console.log("Máximo: ", intervalo.maximo);
+    console.log("Con números aleatorios:");
+    console.log("Array: " , intervalo.alea = nuevos);
+    console.log("Mínimo: ", intervalo.minimo);
+    console.log("Máximo: ", intervalo.maximo);
 
 }
