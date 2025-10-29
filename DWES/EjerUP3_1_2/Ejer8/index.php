@@ -10,7 +10,7 @@
         <hr> 
         <h1>Formulario</h1>
 
-        <form method="POST" action="Eje8.php">
+        <form method="POST" action="Ejer8.php">
             <label>Introduzca el correo electrónico</label><br>
             <input type="email" name="correo" placeholder="ejemplo@gmail.com" size="25" required><br><br>
             <label>Confirme el correo electrónico</label><br>
