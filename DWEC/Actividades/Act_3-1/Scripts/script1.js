@@ -38,9 +38,9 @@ function numIntervalo(){
     console.log("Array: ", intervalo.relleno);
     console.log("Mínimo: ", intervalo.minimo);
     console.log("Máximo: ", intervalo.maximo);
+
     console.log("Con números aleatorios:");
     console.log("Array: " , intervalo.alea = nuevos);
     console.log("Mínimo: ", intervalo.minimo);
     console.log("Máximo: ", intervalo.maximo);
-
 }
