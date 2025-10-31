@@ -1,21 +1,33 @@
-function palabras(){
-
-    
+function palabras() {
     let palabras = [];
     let palabra;
-    palabra = prompt("Dime palabras aleatorias");
 
-    while (palabra !== null && palabra.trim() !== "") {
+    while (true) {
+        palabra = prompt("Escribe una palabra:");
 
-        palabras.push(palabra);
-
-        for (let i = 0; i <= palabras.length; i++){
-            let palab = palabras[i];
-
+        if (palabra === null || palabra === "") {
+            break;
         }
 
-        alert(palabras);
+        palabra = palabra.trim();
+
+        let tienenum = false;
+
+        for (let i = 0; i < palabra.length; i++) {
+            if (palabra[i] >= "0" && palabra[i] <= "9") {
+                tienenum = true;
+                break;
+            }
+        }
+
+        if ((palabra !== "") && (tienenum === false) && (!palabra.includes(" "))) {
+            palabras.push(palabra);
+        }
     }
 
-    
+    palabras.sort().reverse();
+
+    for (let i = 0; i < palabras.length; i++) {
+        console.log(`El elemento ${i + 1} es: ${palabras[i]}`);
+    }
 }
