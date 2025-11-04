@@ -4,11 +4,14 @@ function fechas(){
 
     function esFechaValida(fecha) {
         let partes = fecha.split("/");
-        if (partes.length !== 3) return false;
+        if (partes.length !== 3) {
+            return false;
+        }
         let dia = parseInt(partes[0]);
         let mes = parseInt(partes[1]) - 1;
         let anio = parseInt(partes[2]);
         let f = new Date(anio, mes, dia);
+        
         return f.getDate() === dia && f.getMonth() === mes && f.getFullYear() === anio;
     }
 
