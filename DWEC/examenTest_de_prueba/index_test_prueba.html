@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen JS Interactivo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body oncontextmenu="return false;">
+    <div class="quiz-container">
+        <h1>Examen de JavaScript: Practica tus conocimientos</h1>
+        
+        <div id="student-info">
+            <label for="studentName">Nombre del Alumno/a:</label>
+            <input type="text" id="studentName" required placeholder="Introduce tu nombre completo">
+        </div>
+
+        <div id="score-display">Puntuación: 0 / 40</div>
+        <div id="question-counter">Pregunta 1 de 40</div>
+
+        <div id="question-area">
+            <h2 id="question-text"></h2>
+            <div id="options-container"></div>
+        </div>
+
+        <div id="feedback-area">
+            </div>
+
+        <div class="navigation">
+            <button id="prev-btn" disabled>← Anterior</button>
+            <button id="check-btn">Comprobar Respuesta</button>
+            <button id="next-btn" disabled>Siguiente →</button>
+        </div>
+
+        <div id="final-results" style="display: none;">
+            </div>
+    </div>
+
+    <script src="script_prueba.js"></script>
+</body>
+</html>
