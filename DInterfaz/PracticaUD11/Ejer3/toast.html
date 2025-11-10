@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios UD11</title>
+</head>
+<body>
+    <script src="./theme-toggle.js"></script> 
+    <script>
+        $toggle.addEventListener("click", () => {
+            const isDark = document.body.classList.toggle("dark-theme");
+            $toggle.setAttribute("aria-pressed", isDark.toString());
+        });
+    </script> 
+</body>
+</html>
