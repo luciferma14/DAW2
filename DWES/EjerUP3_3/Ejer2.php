@@ -42,7 +42,7 @@
         <h2>Preferencias</h2>
 
         <form method="post" action="">
-            <label for="nombre">Nombre:</label>
+            <label>Nombre:</label>
             <input type="text" name="nombre" id="nombre" required><br><br>
 
             <label>Preferencia de idioma:</label><br>
