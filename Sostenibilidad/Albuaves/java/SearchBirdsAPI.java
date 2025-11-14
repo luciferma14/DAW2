@@ -4,10 +4,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.*;
-// import org.json.JSONArray;
-// import org.json.JSONObject;
-
-// --------------------------------------------- DESCOMETAR CÓDIGO QUE FALTA -----------------------------------------
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class SearchBirdsAPI {
 
@@ -24,7 +22,7 @@ public class SearchBirdsAPI {
             // Mostrar la respuesta
             System.out.println("Response from API:");
             System.out.println(response);
-            //printJSONLint(response);
+            printJSONLint(response);
 
         } catch (IOException e) {
             System.err.println("Error connecting with API: " + e.getMessage());
@@ -70,39 +68,39 @@ public class SearchBirdsAPI {
     }
     
     
-// private static void printJSONLint(String json) {
-        //try {
-            // Si la respuesta es un array de aves
-        //     JSONArray birdsArray = new JSONArray(json);
-        //     System.out.println("🌿 Lista de aves en la Albufera 🌿\n");
-        //     System.out.println("+----+----------------+---------------------+----------------+-----------------------+");
-        //     System.out.println("| ID |    Nombre      |      Cientifico       |   Descripción    | Img    |");
-        //     System.out.println("+----+----------------+---------------------+----------------+-----------------------+");
+    private static void printJSONLint(String json) {
+        try {
+            //Si la respuesta es un array de aves
+            JSONArray birdsArray = new JSONArray(json);
+            System.out.println("🌿 Lista de aves en la Albufera 🌿\n");
+            System.out.println("+----+----------------+---------------------+----------------+-----------------------+");
+            System.out.println("| ID |    Nombre      |      Cientifico       |   Descripción    | Img    |");
+            System.out.println("+----+----------------+---------------------+----------------+-----------------------+");
 
-        //     for (int i = 0; i < birdsArray.length(); i++) {
-        //         JSONObject bird = birdsArray.getJSONObject(i);
-        //         System.out.printf(
-        //             "| %2d | %-14s | %-19s | %-14s | %-21s |\n",
-        //             bird.getInt("bird_id"),
-        //             bird.getString("common_name"),
-        //             bird.getString("scientific_name"),
-        //             bird.getString("description"),
-        //             bird.getString("img_url")
-        //         );
-        //     }
+            for (int i = 0; i < birdsArray.length(); i++) {
+                JSONObject bird = birdsArray.getJSONObject(i);
+                System.out.printf(
+                    "| %2d | %-14s | %-19s | %-14s | %-21s |\n",
+                    bird.getInt("bird_id"),
+                    bird.getString("common_name"),
+                    bird.getString("scientific_name"),
+                    bird.getString("description"),
+                    bird.getString("img_url")
+                );
+            }
 
-        //     System.out.println("+----+----------------+---------------------+----------------+-----------------------+");
-        // } catch (Exception e) {
-        //     // Si la respuesta es un solo objeto (por ejemplo, al buscar por ID)
+            System.out.println("+----+----------------+---------------------+----------------+-----------------------+");
+        } catch (Exception e) {
+            // Si la respuesta es un solo objeto (por ejemplo, al buscar por ID)
             
-        //     JSONObject bird = new JSONObject(json);
-        //     System.out.println("\n📜 Detalle del ave 📜");
-        //     System.out.println("ID: " + bird.getInt("bird_id"));
-        //     System.out.println("Nombre: " + bird.getString("common_name"));
-        //     System.out.println("Científico: " + bird.getString("scientific_name"));
-        //     System.out.println("Descripción: " + bird.getString("description"));
-        //     System.out.println("Imagen: " + bird.getString("img_url"));
+            JSONObject bird = new JSONObject(json);
+            System.out.println("\n📜 Detalle del ave 📜");
+            System.out.println("ID: " + bird.getInt("bird_id"));
+            System.out.println("Nombre: " + bird.getString("common_name"));
+            System.out.println("Científico: " + bird.getString("scientific_name"));
+            System.out.println("Descripción: " + bird.getString("description"));
+            System.out.println("Imagen: " + bird.getString("img_url"));
             
-        //}
-    //}
+        }
+    }
 }
