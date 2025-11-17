@@ -1,158 +1,120 @@
-/* ======== ESTILOS BÁSICOS — Disponibilidad Valenbisi ======== */
-
+/* --- RESET BÁSICO --- */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
+/* --- ESTILO GENERAL --- */
 body {
-  font-family: "Inter", Arial, sans-serif;
-  margin: 0;
-  background-color: #f9f9f9;
-  color: #222;
+  background: linear-gradient(135deg, #0e1525, #1f2a3a);
+  color: #e4e8ef;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-/* CABECERA */
-.cabecera {
-  background: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 1rem;
-  text-align: center;
-}
-
-.cabecera h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #0077b6;
-}
-
-.cabecera .sub {
-  margin-top: 0.3rem;
-  color: #555;
-  font-size: 1rem;
-}
-
-/* CONTENEDOR PRINCIPAL */
-.contenedor {
+/* --- CONTENEDOR PRINCIPAL --- */
+.contenedor-principal {
+  max-width: 1200px;
+  margin: auto;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 25px;
 }
 
-.panel {
-  background: #fff;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-/* CONTROLES */
-#controles {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}
-
-#controles label {
+/* --- TITULOS --- */
+h1, h2, h3 {
   font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.15);
 }
 
-#controles input[type="range"] {
-  width: 150px;
-}
-
-#controles span {
-  font-weight: 600;
-  color: #0077b6;
-}
-
-#btn-refrescar {
-  background: #0077b6;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#btn-refrescar:hover {
-  background: #0096c7;
-}
-
-/* MAPA */
-.mapa {
-  height: 400px;
-  border-radius: 8px;
+/* --- MAPA --- */
+#mapa {
+  width: 100%;
+  height: 420px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+
+  /* efecto glass */
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
 }
 
-/* TABLA */
-.tabla-panel {
-  overflow-x: auto;
+/* --- TABLA DE ESTACIONES --- */
+.tabla-contenedor {
+  background: rgba(255,255,255,0.06);
+  padding: 20px;
+  border-radius: 14px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 18px rgba(0,0,0,0.45);
 }
 
-table {
+#tabla-estaciones {
   width: 100%;
   border-collapse: collapse;
+  color: #d8dde5;
+}
+
+#tabla-estaciones thead {
+  background: rgba(255,255,255,0.1);
+  font-weight: bold;
+}
+
+#tabla-estaciones th,
+#tabla-estaciones td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+#tabla-estaciones tr:hover {
+  background: rgba(255,255,255,0.08);
+  transition: 0.2s;
+}
+
+/* --- CONTROLES --- */
+.controles {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  background: rgba(255,255,255,0.06);
+  padding: 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 18px rgba(0,0,0,0.4);
+}
+
+.controles label {
   font-size: 0.95rem;
 }
 
-th,
-td {
-  padding: 0.6rem;
-  border-bottom: 1px solid #eaeaea;
-  text-align: left;
+.controles select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #1f2a3a;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-th {
-  background-color: #f3f6f9;
-  font-weight: 600;
-  color: #333;
+.controles select:hover {
+  background: #2d3a4e;
 }
 
-tbody tr:nth-child(even) {
-  background-color: #fafafa;
-}
-
-/* PIE */
-.pie {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* LEYENDA DEL MAPA */
-.legend {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  z-index: 4000;
-  background: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  font-size: 0.85rem;
-  color: #333;
-}
-
-.legend strong {
-  display: block;
-  margin-bottom: 0.3rem;
-}
-
-/* RESPONSIVE */
-@media (min-width: 900px) {
-  .contenedor {
-    grid-template-columns: 0.45fr 0.55fr;
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  #mapa {
+    height: 300px;
   }
 
-  .mapa {
-    grid-column: 1 / span 2;
-    height: 480px;
+  .controles {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

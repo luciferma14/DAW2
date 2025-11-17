@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+    <style>
+        #lista-frutas li.oculto {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="buscador"">
+    <div class="contador" id="contador">Mostrando 6 frutas</div>
+    <ul id="lista-frutas">
+        <li data-fruta="manzana">Manzana</li>
+        <li data-fruta="banana">Banana</li>
+        <li data-fruta="naranja">Naranja</li>
+        <li data-fruta="pera">Pera</li>
+        <li data-fruta="uva">Uva</li>
+        <li data-fruta="fresa">Fresa</li>
+    </ul>
+    <div id="no-resultados" class="no-resultados" style="display: none;">
+        No se encontraron frutas que coincidan con tu búsqueda.
+    </div>
+    <script src="./Ejer2.js"></script>
+</body>
+</html>
