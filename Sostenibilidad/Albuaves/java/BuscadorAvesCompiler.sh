@@ -7,7 +7,7 @@ javac -cp .:json-20250517.jar SearchBirdsAPI.java
 
 # Ejecuta
 echo " * Ejecutando el Buscador "
-/usr/lib/jvm/java-26-openjdk-amd64/bin/java -cp .:json-20250517.jar SearchBirdsAPI
+/usr/lib/jvm/java-17-openjdk-amd64/bin/java -cp .:json-20250517.jar SearchBirdsAPI
 
 
 exit 0

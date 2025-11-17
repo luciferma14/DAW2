@@ -8,6 +8,13 @@ Por una parte tendremos una base de datos en `SQLite` que editaremos de manera
 sencilla con `sqlitebrowser` y que usaremos como persistencia en el lado 
 del servidor.
 
+### Llamada a la API en el navegador
+![alt text](./imgs/API_nav.png)
+
+### Java ejecutandose en el terminal
+![alt text](./imgs/Java_terminal.png)
+
+
 Serviremos una API Rest, programada en PHP, por ahora se plantea con dos únicas
 funciones: 
 
