@@ -27,7 +27,7 @@ export class Vista{
     setUsuario([lat,lon]){
         this.usuario = [lat,lon];
         if (this._usuarioMarker) this.mapa.removeLayer(this._usuarioMarker);
-        this._usuarioMarker = L.circleMarker([lat,lon], {radius:8, color:'blue'}).addTo(this.mapa).bindPopup('Tu ubicación').openPopup();
+        this._usuarioMarker = L.circleMarker([lat,lon], {radius:8, color:'purple'}).addTo(this.mapa).bindPopup('Tu ubicación').openPopup();
         this.mapa.setView([lat,lon], 14);
     }
 
