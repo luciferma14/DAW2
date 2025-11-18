@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function limpiar(array){
+            return array.filter(palabra => !(/\d/.test(palabra) || /\s/.test(palabra) || /^\s*$/.test(palabra)));
+        }
+        palabras = [];
+        while(true){
+            let palabra = prompt("PALABRA: ");
+            if(palabra==""){
+                break;
+            }
+            palabras.push(palabra);
+
+        }
+        let clean = limpiar(palabras);
+
+        console.log(clean.sort((a, b) => a - b));
+</script>
+</body>
+</html>
+
+<!--min,max,medio,modal,ordenar array,ejemplos de regExp para eliminar numeros,espacios,-->

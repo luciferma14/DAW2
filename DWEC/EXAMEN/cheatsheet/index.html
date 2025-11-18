@@ -1,0 +1,2872 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guía Completa de JavaScript</title>
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <style>
+          /*  :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --warning: #f39c12;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+            --code-comment: #6a9955;
+            --code-keyword: #569cd6;
+            --code-string: #ce9178;
+            --code-number: #b5cea8;
+            --code-function: #dcdcaa;
+        }*/
+        :root {
+    --primary: #3498db;
+    --secondary: #2ecc71;
+    --accent: #e74c3c;
+    --warning: #f39c12;
+    
+    /* Colores del tema oscuro */
+    --dark: #1a1a1a;
+    --darker: #121212;
+    --dark-medium: #2d2d2d;
+    --dark-light: #3a3a3a;
+    --light: #e0e0e0;
+    --lighter: #f5f5f5;
+    --muted: #888888;
+    
+    /* Elementos de la interfaz */
+    --bg-primary: var(--darker);
+    --bg-secondary: var(--dark);
+    --bg-card: var(--dark-medium);
+    --bg-hover: var(--dark-light);
+    --text-primary: var(--light);
+    --text-secondary: var(--muted);
+    --border-color: #404040;
+    
+    /* Efectos */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 15px rgba(0, 0, 0, 0.4);
+    
+    /* Colores para código (ya tenías estos) */
+    --code-bg: #1e1e1e;
+    --code-text: #d4d4d4;
+    --code-comment: #6a9955;
+    --code-keyword: #569cd6;
+    --code-string: #ce9178;
+    --code-number: #b5cea8;
+    --code-function: #dcdcaa;
+}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 24px;
+            background: var(--primary);
+            margin-right: 12px;
+            border-radius: 4px;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 18px;
+            background: var(--secondary);
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        
+.code-block {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-left: 4px solid #3498db;
+    position: relative;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    tab-size: 4;
+}
+
+.code-block::before {
+    content: "JavaScript";
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #3498db;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 0 0 0 4px;
+    font-weight: bold;
+}
+
+/* COLORES VIVOS PARA CADA ELEMENTO */
+.code-comment {
+    color: #6a9955 !important;
+    font-style: italic;
+    display: block;
+    margin: 0.5em 0;
+    padding-left: 1em;
+    border-left: 2px solid #6a9955;
+}
+
+.code-keyword {
+    color: #569cd6 !important;
+    font-weight: bold;
+}
+
+.code-keyword::after {
+    margin-right: 0.3em;
+}
+
+.code-string {
+    color: #ce9178 !important;
+    background: rgba(206, 145, 120, 0.1);
+    padding: 0.1em 0.2em;
+    border-radius: 3px;
+}
+
+.code-number {
+    color: #b5cea8 !important;
+    font-weight: bold;
+}
+
+.code-function {
+    color: #dcdcaa !important;
+    font-weight: bold;
+}
+
+.code-function::after {
+    content: " ";
+    margin-right: 0.3em;
+}
+
+.code-parameter {
+    color: #9cdcfe !important;
+    font-style: italic;
+}
+
+.code-property {
+    color: #9cdcfe !important;
+}
+
+.code-punctuation {
+    color: #d4d4d4 !important;
+    margin-right: 0.5em;
+}
+
+.code-operator {
+    color: #d4d4d4 !important;
+    margin: 0 0.3em;
+    font-weight: bold;
+}
+
+.code-class {
+    color: #4ec9b0 !important;
+    font-weight: bold;
+}
+
+.code-constant {
+    color: #4fc1ff !important;
+    font-weight: bold;
+}
+
+.code-variable {
+    color: #9cdcfe !important;
+}
+
+.code-builtin {
+    color: #4ec9b0 !important;
+    font-style: italic;
+}
+
+/* ESPACIADO Y ESTRUCTURA */
+.code-block span {
+    display: inline-block;
+    margin-right: 0.2em;
+    position: relative;
+}
+
+.indent-1 { padding-left: 1.5em; }
+.indent-2 { padding-left: 3em; }
+.indent-3 { padding-left: 4.5em; }
+.indent-4 { padding-left: 6em; }
+
+.code-line {
+    display: block;
+    min-height: 1.4em;
+    margin-bottom: 0.2em;
+    transition: background-color 0.2s ease;
+}
+
+.code-line:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.code-spacer { display: block; height: 0.8em; }
+.code-spacer-small { display: block; height: 0.4em; }
+.code-spacer-large { display: block; height: 1.2em; }
+
+.code-section {
+    display: block;
+    margin: 1em 0;
+    padding: 0.5em 0;
+    border-bottom: 1px solid rgba(100, 149, 237, 0.3);
+}
+
+.nested {
+    padding-left: 2em;
+    margin: 0.5em 0;
+    border-left: 2px solid rgba(86, 156, 214, 0.3);
+}
+
+/* ESTILOS ESPECIALES PARA DESTACAR */
+.highlight {
+    background: rgba(255, 255, 0, 0.1);
+    border: 1px solid rgba(255, 255, 0, 0.3);
+    border-radius: 3px;
+    padding: 0.1em 0.3em;
+}
+
+.error {
+    color: #f44747 !important;
+    background: rgba(244, 71, 71, 0.1);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+
+.warning {
+    color: #ffcc02 !important;
+    background: rgba(255, 204, 2, 0.1);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+
+.success {
+    color: #4ec9b0 !important;
+    background: rgba(78, 201, 176, 0.1);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+        .output {
+            background: #edf2f7;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+        
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .concept-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .concept-card h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .example-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.3s, transform 0.2s;
+            font-weight: 500;
+        }
+        
+        .example-btn:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        .tip {
+            background: #e1f5fe;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .tip::before {
+            content: "💡";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .warning {
+            background: #fff8e1;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .warning::before {
+            content: "⚠️";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            background: var(--dark);
+            color: white;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+        }
+        
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+/* --- Contenedor del índice --- */
+.index-container {
+    max-width: 450px;
+    margin: 0 auto;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- Título del índice --- */
+.index-title {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+/* --- Estilos para el acordeón --- */
+.accordion-button {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.9rem 1rem;
+    background: #f7f7f7;
+    color: #333;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.accordion-item {
+    border-radius: 8px !important;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+}
+
+/* --- Enlaces internos del índice --- */
+.list-group-item {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.95rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.list-group-item:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+/* --- Subcategorías --- */
+.accordion-body .fw-bold {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #555;
+    text-transform: uppercase;
+}
+
+/* --- Espaciado entre grupos --- */
+.accordion-body {
+    padding: 0.6rem 0.8rem;
+}
+
+/* --- Enlaces más visibles --- */
+.list-group-item-action {
+    border-radius: 4px;
+}
+
+/* --- Mejor suavidad en las transiciones del acordeón --- */
+.accordion-collapse {
+    transition: all 0.25s ease;
+}
+
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: var(--light);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+.scroll-top-btn:hover {
+    background: var(--dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.scroll-top-btn:active {
+    transform: translateY(-1px);
+}
+
+.scroll-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+}
+  </style>
+  <body>
+    <header>
+      <h1>Guía Completa de JavaScript</h1>
+      <p class="subtitle">
+        Conceptos fundamentales desde polimorfismo hasta estructuras de datos
+      </p>
+    </header>
+    <div id="scrollToTopBtn" class="scroll-top-btn">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M12 20L12 4M12 4L5 11M12 4L19 11"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div class="container">
+      <div class="accordion" id="jsIndexAccordion">
+        <!-- FUNDAMENTOS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFundamentos">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFundamentos"
+              aria-expanded="true"
+              aria-controls="collapseFundamentos"
+            >
+              FUNDAMENTOS
+            </button>
+          </h2>
+
+          <div
+            id="collapseFundamentos"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#jsIndexAccordion"
+          >
+            <div class="accordion-body list-group">
+              <a
+                href="#fundamentos"
+                class="list-group-item list-group-item-action"
+              >
+                Fundamentos
+              </a>
+
+              <a href="#entrada" class="list-group-item list-group-item-action">
+                Entrada de datos del usuario
+              </a>
+
+              <a href="#loop" class="list-group-item list-group-item-action">
+                Loops para entradas con función
+              </a>
+
+              <a
+                href="#anonimas"
+                class="list-group-item list-group-item-action"
+              >
+                Funciones Anónimas y de Flecha
+              </a>
+
+              <a
+                href="#generadoras"
+                class="list-group-item list-group-item-action"
+              >
+                Funciones Generadoras
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- VALIDACIONES -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingValidaciones">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseValidaciones"
+              aria-expanded="false"
+              aria-controls="collapseValidaciones"
+            >
+              VALIDACIONES
+            </button>
+          </h2>
+
+          <div
+            id="collapseValidaciones"
+            class="accordion-collapse collapse"
+            data-bs-parent="#jsIndexAccordion"
+          >
+            <div class="accordion-body list-group">
+              <a
+                href="#validaciones"
+                class="list-group-item list-group-item-action"
+              >
+                Validaciones (concepto general)
+              </a>
+
+              <!-- Validaciones Subnivel -->
+              <div class="mt-3 fw-bold">Subcategorías:</div>
+
+              <a href="#num" class="list-group-item list-group-item-action">
+                Números
+              </a>
+
+              <a href="#letra" class="list-group-item list-group-item-action">
+                Letras
+              </a>
+
+              <a href="#char" class="list-group-item list-group-item-action">
+                Carácter concreto
+              </a>
+
+              <a href="#varias" class="list-group-item list-group-item-action">
+                Varias
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLASES -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingClases">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseClases"
+              aria-expanded="false"
+              aria-controls="collapseClases"
+            >
+              CLASES
+            </button>
+          </h2>
+
+          <div
+            id="collapseClases"
+            class="accordion-collapse collapse"
+            data-bs-parent="#jsIndexAccordion"
+          >
+            <div class="accordion-body list-group">
+              <a
+                href="#ejemploClases"
+                class="list-group-item list-group-item-action"
+              >
+                Ejemplo Clases
+              </a>
+
+              <a
+                href="#polimorfismo"
+                class="list-group-item list-group-item-action"
+              >
+                polimorfismo
+              </a>
+
+              <a
+                href="#literales"
+                class="list-group-item list-group-item-action"
+              >
+                Objetos Literales y Constructores
+              </a>
+
+              <a
+                href="#primarios"
+                class="list-group-item list-group-item-action"
+              >
+                Constructores Primarios
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- OBJETOS Y MANEJO DE DATOS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingObjetos">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseObjetos"
+              aria-expanded="false"
+              aria-controls="collapseObjetos"
+            >
+              OBJETOS Y MÉTODOS
+            </button>
+          </h2>
+
+          <div
+            id="collapseObjetos"
+            class="accordion-collapse collapse"
+            data-bs-parent="#jsIndexAccordion"
+          >
+            <div class="accordion-body list-group">
+              <a
+                href="#mathDate"
+                class="list-group-item list-group-item-action"
+              >
+                Objetos Math y Date
+              </a>
+
+              <a href="#object" class="list-group-item list-group-item-action">
+                Métodos de Object
+              </a>
+
+              <a
+                href="#duplicacion"
+                class="list-group-item list-group-item-action"
+              >
+                Duplicación de Objetos
+              </a>
+
+              <a
+                href="#destructuracion"
+                class="list-group-item list-group-item-action"
+              >
+                Destructuración
+              </a>
+
+              <a href="#spread" class="list-group-item list-group-item-action">
+                Spread Operator
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALMACENAMIENTO: ARRAYS, MAPS, SETS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingAlmacenamiento">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseAlmacenamiento"
+              aria-expanded="false"
+              aria-controls="collapseAlmacenamiento"
+            >
+              ESTRUCTURAS DE ALMACENAMIENTO
+            </button>
+          </h2>
+
+          <div
+            id="collapseAlmacenamiento"
+            class="accordion-collapse collapse"
+            data-bs-parent="#jsIndexAccordion"
+          >
+            <div class="accordion-body list-group">
+              <a
+                href="#metodoMap"
+                class="list-group-item list-group-item-action"
+              >
+                Método Map para Arrays
+              </a>
+
+              <a
+                href="#cheatsheets"
+                class="list-group-item list-group-item-action"
+              >
+                Cheatsheets
+              </a>
+
+              <!-- Subnivel cheatsheets -->
+              <div class="mt-3 fw-bold">Subcategorías:</div>
+
+              <a href="#datecs" class="list-group-item list-group-item-action">
+                Date
+              </a>
+
+              <a
+                href="#arrayscs"
+                class="list-group-item list-group-item-action"
+              >
+                Arrays
+              </a>
+
+              <a href="#mapscs" class="list-group-item list-group-item-action">
+                Maps
+              </a>
+
+              <a href="#setscs" class="list-group-item list-group-item-action">
+                Sets
+              </a>
+
+              <a
+                href="#stringscs"
+                class="list-group-item list-group-item-action"
+              >
+                Strings
+              </a>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+      </div>
+      <!-- FUNDAMENTOS DE JAVASCRIPT -->
+      <section id="fundamentos" class="section">
+        <h2>Fundamentos de JavaScript</h2>
+
+        <h3>Tipos de Variables</h3>
+        <p>JavaScript tiene tres formas de declarar variables:</p>
+        <div class="code-block">
+          <span class="code-comment"
+            >// var - alcance de función (evitar usar en código moderno)</span
+          ><br />
+          <span class="code-keyword">var</span>
+          <span class="code-variable">nombre</span> =
+          <span class="code-string">"Juan"</span>;<br />
+          <span class="code-comment"
+            >// let - alcance de bloque (recomendado para variables que
+            cambian)</span
+          ><br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">edad</span> =
+          <span class="code-number">25</span>;<br />
+          <span class="code-comment"
+            >// const - alcance de bloque, valor constante (recomendado)</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">PI</span> =
+          <span class="code-number">3.1416</span>;
+        </div>
+
+        <div class="tip">
+          <p>
+            <strong>Tip:</strong> Usa <code>const</code> por defecto y
+            <code>let</code> solo cuando necesites reasignar valores. Evita
+            <code>var</code> en código moderno.
+          </p>
+        </div>
+
+        <h3>Tipos de Datos</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>String</td>
+                <td>Cadena de texto</td>
+                <td>"Hola Mundo"</td>
+              </tr>
+              <tr>
+                <td>Number</td>
+                <td>Números (enteros y decimales)</td>
+                <td>42, 3.14</td>
+              </tr>
+              <tr>
+                <td>Boolean</td>
+                <td>Valor verdadero o falso</td>
+                <td>true, false</td>
+              </tr>
+              <tr>
+                <td>Undefined</td>
+                <td>Variable declarada pero sin valor</td>
+                <td>let x;</td>
+              </tr>
+              <tr>
+                <td>Null</td>
+                <td>Valor nulo intencional</td>
+                <td>let y = null;</td>
+              </tr>
+              <tr>
+                <td>Object</td>
+                <td>Estructura de datos compleja</td>
+                <td>{nombre: "Juan"}</td>
+              </tr>
+              <tr>
+                <td>Array</td>
+                <td>Lista ordenada de valores</td>
+                <td>[1, 2, 3]</td>
+              </tr>
+              <tr>
+                <td>Function</td>
+                <td>Bloque de código reutilizable</td>
+                <td>function() {}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <section id="validaciones" class="section">
+          <h2>Validaciones</h2>
+
+          <div class="nav-tabs">
+            <div class="tab" onclick="openTab(event, 'number-tab')">Número</div>
+            <div class="tab" onclick="openTab(event, 'letter-tab')">Letra</div>
+            <div class="tab" onclick="openTab(event, 'special-tab')">
+              Carácter Específico
+            </div>
+            <div class="tab active" onclick="openTab(event, 'other-tab')">
+              Otras Validaciones
+            </div>
+          </div>
+
+          <div id="number-tab" class="tab-content">
+            <h3>Validaciones de Números</h3>
+            <div class="code-block">
+              <span class="code-comment">// Validar si es un número</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esNumero</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span> !isNaN(valor)
+              &amp;&amp; valor !==
+              <span class="code-string">""</span> &amp;&amp; valor !==
+              <span class="code-keyword">null</span>;<br />
+              }<br /><br />
+
+              <span class="code-comment">// Validar número entero</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esEntero</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              Number.isInteger(Number(valor));<br />
+              }<br /><br />
+
+              <span class="code-comment">// Validar número positivo</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esPositivo</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              esNumero(valor) &amp;&amp; Number(valor) &gt;
+              <span class="code-number">0</span>;<br />
+              }<br /><br />
+
+              <span class="code-comment">// Validar rango numérico</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">enRango</span>(<span
+                class="code-param"
+                >valor, min, max</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              esNumero(valor) &amp;&amp; Number(valor) &gt;= min &amp;&amp;
+              Number(valor) &lt;= max;<br />
+              }<br /><br />
+
+              <span class="code-comment">// Ejemplos de uso</span><br />
+              console.log(esNumero(<span class="code-string">"123"</span>));
+              <span class="code-comment">// true</span><br />
+              console.log(esNumero(<span class="code-string">"abc"</span>));
+              <span class="code-comment">// false</span><br />
+              console.log(esEntero(<span class="code-string">"5.5"</span>));
+              <span class="code-comment">// false</span><br />
+              console.log(enRango(<span class="code-string">"15"</span>,
+              <span class="code-number">10</span>,
+              <span class="code-number">20</span>));
+              <span class="code-comment">// true</span>
+            </div>
+          </div>
+
+          <div id="letter-tab" class="tab-content">
+            <h3>Validaciones de Letras</h3>
+            <div class="code-block">
+              <span class="code-comment"
+                >// Validar si es solo texto (sin números)</span
+              ><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esSoloTexto</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              /^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+$/.test(valor);<br />
+              }<br /><br />
+
+              <span class="code-comment"
+                >// Validar si contiene solo letras mayúsculas</span
+              ><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esMayusculas</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              /^[A-ZÁÉÍÓÚÑ\s]+$/.test(valor);<br />
+              }<br /><br />
+
+              <span class="code-comment"
+                >// Validar si contiene solo letras minúsculas</span
+              ><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esMinusculas</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              /^[a-záéíóúñ\s]+$/.test(valor);<br />
+              }<br /><br />
+
+              <span class="code-comment"
+                >// Validar formato de nombre (primera letra mayúscula)</span
+              ><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esFormatoNombre</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              /^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s]*$/.test(valor);<br />
+              }<br /><br />
+
+              <span class="code-comment">// Ejemplos de uso</span><br />
+              console.log(esSoloTexto(<span class="code-string"
+                >"Hola Mundo"</span
+              >)); <span class="code-comment">// true</span><br />
+              console.log(esSoloTexto(<span class="code-string">"Texto123"</span
+              >)); <span class="code-comment">// false</span><br />
+              console.log(esMayusculas(<span class="code-string">"TEXTO"</span
+              >)); <span class="code-comment">// true</span><br />
+              console.log(esFormatoNombre(<span class="code-string"
+                >"María"</span
+              >)); <span class="code-comment">// true</span>
+            </div>
+          </div>
+
+          <div id="special-tab" class="tab-content">
+            <h3>Validaciones de Caracteres Específicos</h3>
+            <div class="code-block">
+              <span class="code-comment">// Validar email</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esEmail</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);<br />
+              }<br /><br />
+
+              <span class="code-comment">// Validar URL</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esURL</span>(<span class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?$/.test(valor);<br />
+              }<br /><br />
+
+              <span class="code-comment"
+                >// Validar teléfono (formato español)</span
+              ><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esTelefono</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              /^[6-9]\d{8}$/.test(valor);<br />
+              }<br /><br />
+
+              <span class="code-comment"
+                >// Validar contraseña segura (mínimo 8 caracteres, 1 mayúscula,
+                1 minúscula, 1 número)</span
+              ><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esContrasenaSegura</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(valor);<br />
+              }<br /><br />
+
+              <span class="code-comment">// Validar DNI español</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esDNI</span>(<span class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">const</span> letras =
+              <span class="code-string">"TRWAGMYFPDXBNJZSQVHLCKE"</span>;<br />
+              &nbsp;&nbsp;<span class="code-keyword">const</span> numero =
+              valor.substring(0, valor.length - 1);<br />
+              &nbsp;&nbsp;<span class="code-keyword">const</span> letra =
+              valor.substring(valor.length - 1).toUpperCase();<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span>
+              /^\d{8}[A-Z]$/.test(valor) &amp;&amp; letra === letras[numero %
+              23];<br />
+              }<br /><br />
+
+              <span class="code-comment">// Ejemplos de uso</span><br />
+              console.log(esEmail(<span class="code-string"
+                >"usuario@dominio.com"</span
+              >)); <span class="code-comment">// true</span><br />
+              console.log(esTelefono(<span class="code-string">"612345678"</span
+              >)); <span class="code-comment">// true</span><br />
+              console.log(esContrasenaSegura(<span class="code-string"
+                >"Pass1234"</span
+              >)); <span class="code-comment">// true</span><br />
+              console.log(esDNI(<span class="code-string">"12345678Z"</span>));
+              <span class="code-comment">// true</span>
+            </div>
+          </div>
+
+          <div id="other-tab" class="tab-content active">
+            <h3>Otras Validaciones Comunes</h3>
+            <div class="code-block">
+              <span class="code-comment">// Validar campo vacío</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">noEstaVacio</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span> valor !==
+              <span class="code-string">""</span> &amp;&amp; valor !==
+              <span class="code-keyword">null</span> &amp;&amp; valor !==
+              <span class="code-keyword">undefined</span>;<br />
+              }<br /><br />
+
+              <span class="code-comment">// Validar longitud mínima</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">longitudMinima</span>(<span
+                class="code-param"
+                >valor, min</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span> valor.length
+              &gt;= min;<br />
+              }<br /><br />
+
+              <span class="code-comment">// Validar longitud máxima</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">longitudMaxima</span>(<span
+                class="code-param"
+                >valor, max</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span> valor.length
+              &lt;= max;<br />
+              }<br /><br />
+
+              <span class="code-comment">// Validar longitud exacta</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">longitudExacta</span>(<span
+                class="code-param"
+                >valor, longitud</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span> valor.length
+              === longitud;<br />
+              }<br /><br />
+
+              <span class="code-comment"
+                >// Validar fecha (formato dd/mm/aaaa)</span
+              ><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esFechaValida</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">const</span> partes =
+              valor.split(<span class="code-string">"/"</span>);<br />
+              &nbsp;&nbsp;<span class="code-keyword">if</span> (partes.length
+              !== <span class="code-number">3</span>)
+              <span class="code-keyword">return false</span>;<br />
+              &nbsp;&nbsp;<span class="code-keyword">const</span> dia =
+              parseInt(partes[0]);<br />
+              &nbsp;&nbsp;<span class="code-keyword">const</span> mes =
+              parseInt(partes[1]) - 1;<br />
+              &nbsp;&nbsp;<span class="code-keyword">const</span> anio =
+              parseInt(partes[2]);<br />
+              &nbsp;&nbsp;<span class="code-keyword">const</span> fecha = new
+              Date(anio, mes, dia);<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;fecha.getDate() === dia &amp;&amp;
+              fecha.getMonth() === mes &amp;&amp; fecha.getFullYear() ===
+              anio;<br />
+              }<br /><br />
+
+              <span class="code-comment">// Validar si es booleano</span><br />
+              <span class="code-keyword">function</span>
+              <span class="code-function">esBooleano</span>(<span
+                class="code-param"
+                >valor</span
+              >) {<br />
+              &nbsp;&nbsp;<span class="code-keyword">return</span> valor ===
+              true || valor === false || valor ===
+              <span class="code-string">"true"</span> || valor ===
+              <span class="code-string">"false"</span>;<br />
+              }<br /><br />
+
+              <span class="code-comment">// Ejemplos de uso</span><br />
+              console.log(noEstaVacio(<span class="code-string">"texto"</span
+              >)); <span class="code-comment">// true</span><br />
+              console.log(longitudMinima(<span class="code-string">"abc"</span>,
+              <span class="code-number">3</span>));
+              <span class="code-comment">// true</span><br />
+              console.log(esFechaValida(<span class="code-string"
+                >"15/05/2023"</span
+              >)); <span class="code-comment">// true</span><br />
+              console.log(esBooleano(<span class="code-string">"true"</span>));
+              <span class="code-comment">// true</span>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- POLIMORFISMO -->
+      <section id="polimorfismo" class="section">
+        <h2>Polimorfismo</h2>
+        <p>
+          El polimorfismo permite que objetos de diferentes clases respondan al
+          mismo método de manera específica para cada clase.
+        </p>
+
+        <div class="code-block">
+          <span class="code-comment">// Clase base</span><br />
+          <span class="code-keyword">class</span>
+          <span class="code-function">Animal</span> {<br />
+          &nbsp;&nbsp;<span class="code-keyword">constructor</span>(<span
+            class="code-param"
+            >nombre</span
+          >) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">this</span>.nombre
+          = nombre;<br />
+          &nbsp;&nbsp;}<br />
+          <br />
+          &nbsp;&nbsp;<span class="code-function">sonido</span>() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="code-string"
+            >"Los animales hacen sonidos..."</span
+          >);<br />
+          &nbsp;&nbsp;}<br />
+          }<br /><br />
+
+          <span class="code-comment">// Clase derivada</span><br />
+          <span class="code-keyword">class</span>
+          <span class="code-function">Perro</span>
+          <span class="code-keyword">extends</span>
+          <span class="code-function">Animal</span> {<br />
+          &nbsp;&nbsp;<span class="code-function">sonido</span>() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="code-string"
+            >"El perro "</span
+          >
+          + <span class="code-keyword">this</span>.nombre +
+          <span class="code-string">" hace guau."</span>);<br />
+          &nbsp;&nbsp;}<br />
+          }<br /><br />
+
+          <span class="code-comment">// Uso del polimorfismo</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">perro1</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Perro</span>(<span class="code-string"
+            >"Fido"</span
+          >);<br />
+          perro1.sonido();
+          <span class="code-comment">// Output: El perro Fido hace guau.</span>
+        </div>
+
+        <div class="output">
+          <p><strong>Salida:</strong> "El perro Fido hace guau."</p>
+        </div>
+
+        <div class="tip">
+          <p>
+            <strong>Tip:</strong> El polimorfismo es fundamental en la
+            programación orientada a objetos y permite escribir código más
+            genérico y reutilizable.
+          </p>
+        </div>
+      </section>
+
+      <!-- OBJETOS LITERALES Y CONSTRUCTORES -->
+      <section id="literales" class="section">
+        <h2>Objetos Literales y Constructores</h2>
+        <p>
+          JavaScript ofrece dos formas principales de crear objetos: literales y
+          constructores.
+        </p>
+
+        <h3>Objetos Literales</h3>
+        <div class="code-block">
+          <span class="code-comment">// Objeto literal directo</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">coche</span> = {<br />
+          &nbsp;&nbsp;<span class="code-string">"marca"</span>:
+          <span class="code-string">"Ford"</span>,<br />
+          &nbsp;&nbsp;<span class="code-string">"modelo"</span>:
+          <span class="code-string">"Fiesta"</span>,<br />
+          &nbsp;&nbsp;<span class="code-function">mostrarInfo</span>() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span>
+          <span class="code-string">`${this.marca} ${this.modelo}`</span>;<br />
+          &nbsp;&nbsp;}<br />
+          };<br />
+          console.log(coche.marca);
+          <span class="code-comment">// Output: Ford</span><br />
+          console.log(coche.mostrarInfo());
+          <span class="code-comment">// Output: Ford Fiesta</span>
+        </div>
+
+        <h3>Constructores</h3>
+        <div class="code-block">
+          <span class="code-comment">// Función constructora</span><br />
+          <span class="code-keyword">function</span>
+          <span class="code-function">Coche</span>(<span class="code-param"
+            >marca, modelo</span
+          >) {<br />
+          &nbsp;&nbsp;<span class="code-keyword">this</span>.marca = marca;<br />
+          &nbsp;&nbsp;<span class="code-keyword">this</span>.modelo = modelo;<br />
+          &nbsp;&nbsp;<span class="code-keyword">this</span>.mostrarInfo =
+          <span class="code-keyword">function</span>() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span>
+          <span class="code-string">`${this.marca} ${this.modelo}`</span>;<br />
+          &nbsp;&nbsp;};<br />
+          }<br /><br />
+          <span class="code-comment">// Crear objeto con constructor</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">coche2</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Coche</span>(<span class="code-string"
+            >"Ford"</span
+          >, <span class="code-string">"Fiesta"</span>);<br />
+          console.log(coche2.modelo);
+          <span class="code-comment">// Output: Fiesta</span><br />
+          console.log(coche2.mostrarInfo());
+          <span class="code-comment">// Output: Ford Fiesta</span>
+        </div>
+      </section>
+
+      <!-- CONSTRUCTORES PRIMARIOS -->
+      <section id="primarios" class="section">
+        <h2>Constructores Primarios</h2>
+        <p>
+          JavaScript tiene constructores integrados para tipos de datos
+          primitivos y objetos.
+        </p>
+
+        <div class="code-block">
+          <span class="code-comment">// String</span><br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">string</span> =
+          <span class="code-string">"string"</span>;<br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">stringObj</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">String</span>(<span class="code-string"
+            >"string"</span
+          >);<br /><br />
+
+          <span class="code-comment">// Number</span><br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">number</span> =
+          <span class="code-number">1234</span>;<br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">numberObj</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Number</span>(<span class="code-number"
+            >1234</span
+          >);<br /><br />
+
+          <span class="code-comment">// Array</span><br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">array</span> = [];<br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">arrayObj</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Array</span>();<br /><br />
+
+          <span class="code-comment">// Boolean</span><br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">boolean</span> =
+          <span class="code-keyword">false</span>;<br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">booleanObj</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Boolean</span>(<span class="code-keyword"
+            >false</span
+          >);<br /><br />
+
+          <span class="code-comment">// RegExp</span><br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">regex</span> = /^$/;<br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">regexObj</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">RegExp</span>(<span class="code-string"
+            >"^$"</span
+          >);<br /><br />
+
+          <span class="code-comment">// Function</span><br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">functionName</span> =
+          <span class="code-keyword">function</span>() { console.log(<span
+            class="code-string"
+            >"xd"</span
+          >); };<br />
+          functionName();<br /><br />
+
+          <span class="code-comment">// Date</span><br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">date</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Date</span>();<br /><br />
+
+          <span class="code-comment"
+            >// Math (no es un constructor, tiene métodos estáticos)</span
+          ><br />
+          <span class="code-keyword">let</span>
+          <span class="code-variable">random</span> = Math.random() *
+          <span class="code-number">11</span>;<br />
+        </div>
+      </section>
+
+      <!-- OBJETOS MATH Y DATE -->
+      <section id="mathDate" class="section">
+        <h2>Objetos Math y Date</h2>
+
+        <h3>Objeto Math</h3>
+        <p>
+          El objeto Math proporciona propiedades y métodos para operaciones
+          matemáticas.
+        </p>
+
+        <div class="code-block">
+          <span class="code-comment">// Propiedades comunes</span><br />
+          console.log(Math.PI);
+          <span class="code-comment">// 3.141592653589793</span><br />
+          console.log(Math.E);
+          <span class="code-comment">// 2.718281828459045</span><br /><br />
+
+          <span class="code-comment">// Métodos útiles</span><br />
+          console.log(Math.round(<span class="code-number">4.7</span>));
+          <span class="code-comment">// 5 - redondeo</span><br />
+          console.log(Math.ceil(<span class="code-number">4.3</span>));
+          <span class="code-comment">// 5 - redondeo hacia arriba</span><br />
+          console.log(Math.floor(<span class="code-number">4.7</span>));
+          <span class="code-comment">// 4 - redondeo hacia abajo</span><br />
+          console.log(Math.sqrt(<span class="code-number">16</span>));
+          <span class="code-comment">// 4 - raíz cuadrada</span><br />
+          console.log(Math.pow(<span class="code-number">2</span>,
+          <span class="code-number">3</span>));
+          <span class="code-comment">// 8 - potencia</span><br />
+          console.log(Math.abs(-<span class="code-number">5</span>));
+          <span class="code-comment">// 5 - valor absoluto</span><br />
+          console.log(Math.max(<span class="code-number">1</span>,
+          <span class="code-number">3</span>,
+          <span class="code-number">2</span>));
+          <span class="code-comment">// 3 - máximo</span><br />
+          console.log(Math.min(<span class="code-number">1</span>,
+          <span class="code-number">3</span>,
+          <span class="code-number">2</span>));
+          <span class="code-comment">// 1 - mínimo</span><br />
+          console.log(Math.random());
+          <span class="code-comment">// número aleatorio entre 0 y 1</span
+          ><br /><br />
+
+          <span class="code-comment"
+            >// Generar número aleatorio entre min y max</span
+          ><br />
+          <span class="code-keyword">function</span>
+          <span class="code-function">randomEntre</span>(<span
+            class="code-param"
+            >min, max</span
+          >) {<br />
+          &nbsp;&nbsp;<span class="code-keyword">return</span>
+          Math.floor(Math.random() * (max - min +
+          <span class="code-number">1</span>)) + min;<br />
+          }<br />
+          console.log(randomEntre(<span class="code-number">1</span>,
+          <span class="code-number">10</span>));
+          <span class="code-comment">// número entre 1 y 10</span><br />
+        </div>
+
+        <h3>Objeto Date</h3>
+        <p>El objeto Date se utiliza para trabajar con fechas y horas.</p>
+
+        <div class="code-block">
+          <span class="code-comment">// Crear fecha actual</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">ahora</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Date</span>();<br />
+          console.log(ahora);
+          <span class="code-comment">// fecha y hora actual</span><br /><br />
+
+          <span class="code-comment">// Crear fecha específica</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">fechaNacimiento</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Date</span>(<span class="code-string"
+            >"1990-05-15"</span
+          >);<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">fechaEvento</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Date</span>(<span class="code-number"
+            >2023</span
+          >, <span class="code-number">11</span>,
+          <span class="code-number">25</span>);<br />
+          <span class="code-comment">// 25 de diciembre de 2023</span
+          ><br /><br />
+
+          <span class="code-comment"
+            >// Métodos para obtener componentes de fecha</span
+          ><br />
+          console.log(ahora.getFullYear());
+          <span class="code-comment">// año (4 dígitos)</span><br />
+          console.log(ahora.getMonth());
+          <span class="code-comment">// mes (0-11)</span><br />
+          console.log(ahora.getDate());
+          <span class="code-comment">// día del mes (1-31)</span><br />
+          console.log(ahora.getDay());
+          <span class="code-comment">// día de la semana (0-6)</span><br />
+          console.log(ahora.getHours());
+          <span class="code-comment">// horas (0-23)</span><br />
+          console.log(ahora.getMinutes());
+          <span class="code-comment">// minutos (0-59)</span><br /><br />
+
+          <span class="code-comment"
+            >// Métodos para establecer componentes de fecha</span
+          ><br />
+          ahora.setFullYear(<span class="code-number">2024</span>);<br />
+          ahora.setMonth(<span class="code-number">5</span>);
+          <span class="code-comment">// junio (0-11)</span><br /><br />
+
+          <span class="code-comment">// Formatear fecha</span><br />
+          console.log(ahora.toDateString());
+          <span class="code-comment">// "Mon Dec 25 2023"</span><br />
+          console.log(ahora.toISOString());
+          <span class="code-comment">// "2023-12-25T10:30:00.000Z"</span><br />
+          console.log(ahora.toLocaleDateString());
+          <span class="code-comment">// formato local</span><br /><br />
+
+          <span class="code-comment">// Calcular diferencia entre fechas</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">hoy</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Date</span>();<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">navidad</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Date</span>(hoy.getFullYear(),
+          <span class="code-number">11</span>,
+          <span class="code-number">25</span>);<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">diferencia</span> = navidad - hoy;<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">diasParaNavidad</span> =
+          Math.ceil(diferencia / (<span class="code-number">1000</span> *
+          <span class="code-number">60</span> *
+          <span class="code-number">60</span> *
+          <span class="code-number">24</span>));<br />
+          console.log(<span class="code-string"
+            >`Faltan ${diasParaNavidad} días para Navidad`</span
+          >);<br />
+        </div>
+      </section>
+
+      <!-- DESTRUCTURACIÓN -->
+      <section id="destructuracion" class="section">
+        <h2>Destructuración</h2>
+        <p>
+          La destructuración permite extraer valores de objetos o arrays en
+          variables individuales.
+        </p>
+
+        <div class="code-block">
+          <span class="code-keyword">const</span>
+          <span class="code-variable">producto</span> = {<br />
+          &nbsp;&nbsp;<span class="code-string">"nombre"</span>:
+          <span class="code-string">"cactus"</span>,<br />
+          &nbsp;&nbsp;<span class="code-string">"info"</span>: {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"peso"</span>:
+          <span class="code-number">30</span>,<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"alto"</span>:
+          <span class="code-number">50</span>,<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"pais"</span>: {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string"
+            >"nombre"</span
+          >: <span class="code-string">"china"</span>,<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string"
+            >"region"</span
+          >: <span class="code-string">"shangai"</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+          &nbsp;&nbsp;},<br />
+          &nbsp;&nbsp;<span class="code-string">"precio"</span>:
+          <span class="code-number">10</span>,<br />
+          &nbsp;&nbsp;<span class="code-function">mostrarInfo</span>:
+          <span class="code-keyword">function</span>() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span>
+          <span class="code-string"
+            >`${this.nombre} viene de ${this.info.pais.nombre}`</span
+          >;<br />
+          &nbsp;&nbsp;}<br />
+          };<br /><br />
+
+          <span class="code-comment">// Destructuración simple</span><br />
+          <span class="code-keyword">const</span> { nombre, precio } =
+          producto;<br />
+          console.log(nombre, precio);
+          <span class="code-comment">// Output: cactus 10</span><br /><br />
+
+          <span class="code-comment">// Destructuración anidada</span><br />
+          <span class="code-keyword">const</span> { info: { pais: { nombre:
+          paisNombre } } } = producto;<br />
+          console.log(paisNombre);
+          <span class="code-comment">// Output: china</span><br /><br />
+
+          <span class="code-comment">// Destructuración de arrays</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">colores</span> = [<span
+            class="code-string"
+            >"rojo"</span
+          >, <span class="code-string">"verde"</span>,
+          <span class="code-string">"azul"</span>];<br />
+          <span class="code-keyword">const</span> [primero, segundo] =
+          colores;<br />
+          console.log(primero, segundo);
+          <span class="code-comment">// Output: rojo verde</span><br /><br />
+
+          <span class="code-comment">// Uso del método</span><br />
+          console.log(producto.mostrarInfo());
+          <span class="code-comment">// Output: cactus viene de china</span
+          ><br />
+        </div>
+      </section>
+
+      <!-- OPERADOR SPREAD -->
+      <section id="spread" class="section">
+        <h2>Operador Spread (Propagación)</h2>
+        <p>
+          El operador spread (...) permite expandir elementos de un iterable
+          (como un array) o propiedades de un objeto.
+        </p>
+
+        <div class="code-block">
+          <span class="code-comment">// Combinar objetos</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">us_nombre</span> = {<span
+            class="code-string"
+            >"nombre"</span
+          >: <span class="code-string">"juan"</span>};<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">us_pais</span> = {<span
+            class="code-string"
+            >"pais"</span
+          >: <span class="code-string">"españa"</span>};<br /><br />
+
+          <span class="code-comment">// Usando spread operator</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">datos_usuario</span> = {...us_nombre,
+          ...us_pais};<br />
+          console.log(datos_usuario);
+          <span class="code-comment"
+            >// Output: {nombre: "juan", pais: "españa"}</span
+          ><br /><br />
+
+          <span class="code-comment">// También funciona con arrays</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">arr1</span> = [<span class="code-number"
+            >1</span
+          >, <span class="code-number">2</span>,
+          <span class="code-number">3</span>];<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">arr2</span> = [<span class="code-number"
+            >4</span
+          >, <span class="code-number">5</span>,
+          <span class="code-number">6</span>];<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">combined</span> = [...arr1, ...arr2];<br />
+          console.log(combined);
+          <span class="code-comment">// Output: [1, 2, 3, 4, 5, 6]</span
+          ><br /><br />
+
+          <span class="code-comment">// Copiar arrays</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">original</span> = [<span
+            class="code-number"
+            >1</span
+          >, <span class="code-number">2</span>,
+          <span class="code-number">3</span>];<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">copia</span> = [...original];<br />
+          console.log(copia);
+          <span class="code-comment">// Output: [1, 2, 3]</span><br /><br />
+
+          <span class="code-comment"
+            >// Pasar elementos de un array como argumentos</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">numeros</span> = [<span
+            class="code-number"
+            >1</span
+          >, <span class="code-number">2</span>,
+          <span class="code-number">3</span>];<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">maximo</span> = Math.max(...numeros);<br />
+          console.log(maximo); <span class="code-comment">// Output: 3</span
+          ><br />
+        </div>
+
+        <div class="tip">
+          <p>
+            <strong>Tip:</strong> El operador spread crea una copia superficial
+            (shallow copy) del objeto o array original.
+          </p>
+        </div>
+      </section>
+
+      <!-- MÉTODOS DE OBJECT -->
+      <section id="object" class="section">
+        <h2>Métodos de Object</h2>
+        <p>JavaScript proporciona métodos útiles para trabajar con objetos.</p>
+
+        <div class="code-block">
+          <span class="code-keyword">const</span>
+          <span class="code-variable">producto</span> = {<br />
+          &nbsp;&nbsp;<span class="code-string">"nombre"</span>:
+          <span class="code-string">"cactus"</span>,<br />
+          &nbsp;&nbsp;<span class="code-string">"precio"</span>:
+          <span class="code-number">10</span>,<br />
+          &nbsp;&nbsp;<span class="code-string">"stock"</span>:
+          <span class="code-number">5</span><br />
+          };<br /><br />
+
+          <span class="code-comment"
+            >// Object.keys() - devuelve un array con las claves</span
+          ><br />
+          console.log(Object.keys(producto));
+          <span class="code-comment"
+            >// Output: ["nombre", "precio", "stock"]</span
+          ><br /><br />
+
+          <span class="code-comment"
+            >// Object.values() - devuelve un array con los valores</span
+          ><br />
+          console.log(Object.values(producto));
+          <span class="code-comment">// Output: ["cactus", 10, 5]</span
+          ><br /><br />
+
+          <span class="code-comment"
+            >// Object.entries() - devuelve un array de arrays [clave,
+            valor]</span
+          ><br />
+          console.log(Object.entries(producto));
+          <span class="code-comment"
+            >// Output: [["nombre", "cactus"], ["precio", 10], ["stock",
+            5]]</span
+          ><br /><br />
+
+          <span class="code-comment"
+            >// Object.assign() - copia propiedades de un objeto a otro</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">nuevoProducto</span> = Object.assign({},
+          producto, {<span class="code-string">"descuento"</span>:
+          <span class="code-number">2</span>});<br />
+          console.log(nuevoProducto);
+          <span class="code-comment"
+            >// Output: {nombre: "cactus", precio: 10, stock: 5, descuento:
+            2}</span
+          ><br /><br />
+
+          <span class="code-comment"
+            >// Object.freeze() - congela un objeto (no se puede
+            modificar)</span
+          ><br />
+          Object.freeze(producto);<br />
+          producto.precio = <span class="code-number">15</span>;<br />
+          <span class="code-comment"
+            >// Esto no tendrá efecto en modo estricto</span
+          ><br />
+          console.log(producto.precio);
+          <span class="code-comment">// Output: 10</span><br />
+        </div>
+      </section>
+
+      <!-- FUNCIONES GENERADORAS -->
+      <section id="generadoras" class="section">
+        <h2>Funciones Generadoras</h2>
+        <p>
+          Las funciones generadoras pueden pausar su ejecución y reanudarla
+          posteriormente.
+        </p>
+
+        <div class="code-block">
+          <span class="code-comment">// Función generadora básica</span><br />
+          <span class="code-keyword">function</span>*
+          <span class="code-function">contador</span>() {<br />
+          &nbsp;&nbsp;<span class="code-keyword">let</span> i =
+          <span class="code-number">1</span>;<br />
+          &nbsp;&nbsp;<span class="code-keyword">while</span> (<span
+            class="code-keyword"
+            >true</span
+          >) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">yield</span> i;
+          <span class="code-comment"
+            >// Pausa aquí y devuelve el valor actual</span
+          ><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;i++;<br />
+          &nbsp;&nbsp;}<br />
+          }<br /><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">gen</span> = contador();<br />
+          console.log(gen.next().value); <span class="code-comment">// 1</span
+          ><br />
+          console.log(gen.next().value); <span class="code-comment">// 2</span
+          ><br />
+          console.log(gen.next().value); <span class="code-comment">// 3</span
+          ><br /><br />
+
+          <span class="code-comment">// Función generadora con parámetros</span
+          ><br />
+          <span class="code-keyword">function</span>*
+          <span class="code-function">rango</span>(<span class="code-param"
+            >inicio, fin</span
+          >) {<br />
+          &nbsp;&nbsp;<span class="code-keyword">for</span> (<span
+            class="code-keyword"
+            >let</span
+          >
+          i = inicio; i <= fin; i++) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">yield</span>
+          i;<br />
+          &nbsp;&nbsp;}<br />
+          }<br /><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">numeros</span> = rango(<span
+            class="code-number"
+            >1</span
+          >, <span class="code-number">5</span>);<br />
+          <span class="code-keyword">for</span> (<span class="code-keyword"
+            >let</span
+          >
+          num <span class="code-keyword">of</span> numeros) {<br />
+          &nbsp;&nbsp;console.log(num);
+          <span class="code-comment">// 1, 2, 3, 4, 5</span><br />
+          }<br />
+        </div>
+        <div class="tip">
+          <p>
+            <strong>Tip:</strong> Las funciones generadoras son útiles para
+            crear iteradores personalizados y manejar flujos de datos
+            asíncronos.
+          </p>
+        </div>
+      </section>
+
+      <!-- MAPS -->
+      <section id="maps" class="section">
+        <h2>Maps</h2>
+        <p>
+          Los Maps son estructuras de datos que almacenan pares clave-valor.
+        </p>
+
+        <div class="code-block">
+          <span class="code-comment">// Crear un Map</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">mapa</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Map</span>([[<span class="code-string"
+            >"nombre"</span
+          >, <span class="code-string">"Juan"</span>], [<span
+            class="code-string"
+            >"edad"</span
+          >, <span class="code-number">30</span>], [<span class="code-number"
+            >1</span
+          >, <span class="code-string">"uno"</span>]]);<br /><br />
+
+          <span class="code-comment">// Iterar sobre un Map</span><br />
+          <span class="code-keyword">for</span> (<span class="code-keyword"
+            >const</span
+          >
+          [clave, valor] <span class="code-keyword">of</span> mapa) {<br />
+          &nbsp;&nbsp;console.log(<span class="code-string"
+            >`${clave}: ${valor}`</span
+          >);<br />
+          }<br />
+          <span class="code-comment"
+            >// Output: // nombre: Juan // edad: 30 // 1: uno</span
+          ><br /><br />
+
+          <span class="code-comment">// Métodos útiles de Map</span><br />
+          console.log(mapa.get(<span class="code-string">"nombre"</span>));
+          <span class="code-comment">// Juan</span><br />
+          console.log(mapa.has(<span class="code-string">"edad"</span>));
+          <span class="code-comment">// true</span><br />
+          mapa.set(<span class="code-string">"ciudad"</span>,
+          <span class="code-string">"Madrid"</span>);<br />
+          console.log(mapa.size); <span class="code-comment">// 4</span><br />
+          mapa.delete(<span class="code-string">"edad"</span>);<br />
+          console.log(mapa.size); <span class="code-comment">// 3</span><br />
+          mapa.clear();
+          <span class="code-comment">// elimina todos los elementos</span><br />
+        </div>
+      </section>
+
+      <!-- FUNCIONES ANÓNIMAS Y FLECHA -->
+      <section id="anonimas" class="section">
+        <h2>Funciones Anónimas y de Flecha</h2>
+        <p>
+          JavaScript permite definir funciones sin nombre (anónimas) y con
+          sintaxis de flecha.
+        </p>
+
+        <div class="code-block">
+          <span class="code-comment">// Función anónima</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">saludar</span> =
+          <span class="code-keyword">function</span>() { console.log(<span
+            class="code-string"
+            >"Hola mundo"</span
+          >); };<br /><br />
+
+          <span class="code-comment">// Función de flecha</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">saludarFlecha</span> = () =&gt; {
+          console.log(<span class="code-string">"Hola mundo"</span>); };<br /><br />
+
+          <span class="code-comment">// Funciones de flecha con parámetros</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">sumar</span> = (a, b) =&gt; {<br />
+          &nbsp;&nbsp;<span class="code-keyword">return</span> a + b;<br />
+          };<br /><br />
+
+          <span class="code-comment"
+            >// Cuando el cuerpo tiene una sola expresión, se puede omitir {} y
+            return</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">multiplicar</span> = (a, b) =&gt; a *
+          b;<br /><br />
+
+          <span class="code-comment"
+            >// Función de flecha con un solo parámetro (no necesita
+            paréntesis)</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">cuadrado</span> = x =&gt; x * x;<br /><br />
+
+          <span class="code-comment"
+            >// Función de flecha que devuelve un objeto (necesita
+            paréntesis)</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">crearPersona</span> = (nombre, edad) =&gt;
+          ({ nombre, edad });<br />
+          saludar(); <span class="code-comment">// Hola mundo</span><br />
+          saludarFlecha(); <span class="code-comment">// Hola mundo</span><br />
+          console.log(sumar(<span class="code-number">2</span>,
+          <span class="code-number">3</span>));
+          <span class="code-comment">// 5</span><br />
+          console.log(multiplicar(<span class="code-number">2</span>,
+          <span class="code-number">3</span>));
+          <span class="code-comment">// 6</span><br />
+          console.log(cuadrado(<span class="code-number">4</span>));
+          <span class="code-comment">// 16</span><br />
+          console.log(crearPersona(<span class="code-string">"Ana"</span>,
+          <span class="code-number">25</span>));
+          <span class="code-comment">// {nombre: "Ana", edad: 25}</span><br />
+        </div>
+
+        <div class="warning">
+          <p>
+            <strong>Importante:</strong> Las funciones de flecha no tienen su
+            propio <code>this</code>, heredan el <code>this</code> del contexto
+            en el que fueron creadas.
+          </p>
+        </div>
+      </section>
+
+      <!-- CLASES AVANZADAS -->
+      <section id="ejemploClases" class="section">
+        <h2>Clases Avanzadas: Static, Herencia y Sobrecarga</h2>
+        <p>
+          Las clases en JavaScript pueden tener miembros estáticos, heredar de
+          otras clases y simular sobrecarga de métodos.
+        </p>
+
+        <div class="code-block">
+          <span class="code-comment">// Clase base</span><br />
+          <span class="code-keyword">class</span>
+          <span class="code-function">Animal</span> {<br />
+          &nbsp;&nbsp;<span class="code-keyword">static</span> contador =
+          <span class="code-number">0</span>;
+          <span class="code-comment">// contador estático de la clase base</span
+          ><br /><br />
+
+          &nbsp;&nbsp;<span class="code-function">constructor</span>(nombre,
+          edad) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">this</span>._nombre
+          = nombre;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">this</span>._edad =
+          edad;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;Animal.contador++;<br />
+          &nbsp;&nbsp;}<br /><br />
+
+          &nbsp;&nbsp;<span class="code-comment">// Getter y Setter</span><br />
+          &nbsp;&nbsp;<span class="code-keyword">get</span>
+          <span class="code-function">nombre</span>() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return this</span
+          >._nombre;<br />
+          &nbsp;&nbsp;}<br />
+          &nbsp;&nbsp;<span class="code-keyword">set</span>
+          <span class="code-function">nombre</span>(nuevoNombre) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">this</span>._nombre
+          = nuevoNombre;<br />
+          &nbsp;&nbsp;}<br /><br />
+
+          &nbsp;&nbsp;<span class="code-comment">// Método normal</span><br />
+          &nbsp;&nbsp;<span class="code-function">hablar</span>() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="code-string"
+            >`${this._nombre} hace un sonido. Contador:
+            ${Animal.contador}`</span
+          >);<br />
+          &nbsp;&nbsp;}<br /><br />
+
+          &nbsp;&nbsp;<span class="code-comment">// "Sobrecarga" simulada</span
+          ><br />
+          &nbsp;&nbsp;<span class="code-function">describir</span>(detalle) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> (detalle)
+          {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span
+            class="code-string"
+            >`${this._nombre} tiene ${this._edad} años y detalle:
+            ${detalle}`</span
+          >);<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;}
+          <span class="code-keyword">else</span> {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span
+            class="code-string"
+            >`${this._nombre} tiene ${this._edad} años`</span
+          >);<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+          &nbsp;&nbsp;}<br />
+          }<br /><br />
+
+          <span class="code-comment">// Clase que extiende a Animal</span><br />
+          <span class="code-keyword">class</span>
+          <span class="code-function">Perro</span>
+          <span class="code-keyword">extends</span> Animal {<br />
+          &nbsp;&nbsp;<span class="code-keyword">static</span> contador =
+          <span class="code-number">0</span>;
+          <span class="code-comment"
+            >// contador estático de la clase extendida</span
+          ><br /><br />
+
+          &nbsp;&nbsp;<span class="code-function">constructor</span>(nombre,
+          edad, raza) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">super</span
+          >(nombre, edad);<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">this</span>._raza =
+          raza;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;Perro.contador++;<br />
+          &nbsp;&nbsp;}<br /><br />
+
+          &nbsp;&nbsp;<span class="code-comment">// Sobrescribir método</span
+          ><br />
+          &nbsp;&nbsp;<span class="code-function">hablar</span>() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="code-string"
+            >`${this._nombre} ladra. Contador base: ${Animal.contador}, contador
+            perro: ${Perro.contador}`</span
+          >);<br />
+          &nbsp;&nbsp;}<br /><br />
+
+          &nbsp;&nbsp;<span class="code-comment">// Método extra</span><br />
+          &nbsp;&nbsp;<span class="code-function">moverCola</span>() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">let</span>
+          movimientos = <span class="code-number">0</span>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;movimientos++;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="code-string"
+            >`${this._nombre} mueve la cola ${movimientos} vez(es). Contador
+            perro: ${Perro.contador}`</span
+          >);<br />
+          &nbsp;&nbsp;}<br />
+          }<br /><br />
+
+          <span class="code-comment">// Ejemplo de uso</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">a1</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Animal</span>(<span class="code-string"
+            >"Simba"</span
+          >, <span class="code-number">3</span>);<br />
+          a1.hablar();<br />
+          a1.describir();<br />
+          a1.describir(<span class="code-string">"es muy juguetón"</span
+          >);<br /><br />
+
+          <span class="code-keyword">const</span>
+          <span class="code-variable">p1</span> =
+          <span class="code-keyword">new</span>
+          <span class="code-function">Perro</span>(<span class="code-string"
+            >"Toby"</span
+          >, <span class="code-number">2</span>,
+          <span class="code-string">"Beagle"</span>);<br />
+          p1.hablar();<br />
+          p1.describir();<br />
+          p1.moverCola();<br />
+        </div>
+      </section>
+
+      <!-- DUPLICACIÓN DE OBJETOS -->
+      <section id="duplicacion" class="section">
+        <h2>Duplicación de Objetos</h2>
+        <p>JavaScript ofrece varias formas de crear copias de objetos.</p>
+
+        <div class="code-block">
+          <span class="code-keyword">const</span>
+          <span class="code-variable">coche</span> = {<span class="code-string"
+            >"marca"</span
+          >:<span class="code-string">"Ford"</span>,<span class="code-string"
+            >"modelo"</span
+          >:<span class="code-string">"fiesta"</span>};<br /><br />
+
+          <span class="code-comment"
+            >// Copia superficial con Object.assign()</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">copiaCoche</span> = Object.assign({},
+          coche);<br />
+          console.log(copiaCoche);
+          <span class="code-comment">// {marca: "Ford", modelo: "fiesta"}</span
+          ><br /><br />
+
+          <span class="code-comment"
+            >// Copia superficial con spread operator</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">otraCopia</span> = {...coche};<br />
+          console.log(otraCopia);
+          <span class="code-comment">// {marca: "Ford", modelo: "fiesta"}</span
+          ><br /><br />
+
+          <span class="code-comment"
+            >// Para copias profundas (nested objects) necesitamos otros
+            métodos</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">cocheComplejo</span> = { marca:
+          <span class="code-string">"Ford"</span>, modelo:
+          <span class="code-string">"fiesta"</span>, detalles: { color:
+          <span class="code-string">"rojo"</span>, año:
+          <span class="code-number">2020</span> } };<br /><br />
+
+          <span class="code-comment"
+            >// Copia profunda con JSON (solo funciona con objetos
+            serializables)</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">copiaProfunda</span> =
+          JSON.parse(JSON.stringify(cocheComplejo));<br /><br />
+
+          <span class="code-comment"
+            >// Copia profunda con structuredClone (nueva API)</span
+          ><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">copiaProfunda2</span> =
+          structuredClone(cocheComplejo);<br /><br />
+
+          <span class="code-comment"
+            >// Función personalizada para copia profunda</span
+          ><br />
+          <span class="code-keyword">function</span>
+          <span class="code-function">copiaProfundaPersonalizada</span>(objeto)
+          {<br />
+          &nbsp;&nbsp;<span class="code-keyword">if</span> (objeto ===
+          <span class="code-keyword">null</span> ||
+          <span class="code-keyword">typeof</span> objeto !==
+          <span class="code-string">'object'</span>) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span>
+          objeto;<br />
+          &nbsp;&nbsp;}<br /><br />
+          &nbsp;&nbsp;<span class="code-keyword">if</span> (objeto
+          <span class="code-keyword">instanceof</span> Date) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return new</span>
+          Date(objeto.getTime());<br />
+          &nbsp;&nbsp;}<br /><br />
+          &nbsp;&nbsp;<span class="code-keyword">if</span> (objeto
+          <span class="code-keyword">instanceof</span> Array) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span>
+          objeto.map(item => copiaProfundaPersonalizada(item));<br />
+          &nbsp;&nbsp;}<br /><br />
+          &nbsp;&nbsp;<span class="code-keyword">const</span> copia = {};<br />
+          &nbsp;&nbsp;<span class="code-keyword">for</span> (<span
+            class="code-keyword"
+            >const</span
+          >
+          clave <span class="code-keyword">in</span> objeto) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span>
+          (objeto.hasOwnProperty(clave)) {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copia[clave] =
+          copiaProfundaPersonalizada(objeto[clave]);<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+          &nbsp;&nbsp;}<br />
+          &nbsp;&nbsp;<span class="code-keyword">return</span> copia;<br />
+          }<br />
+        </div>
+      </section>
+
+      <!-- MAP PARA ARRAYS -->
+      <section id="metodoMap" class="section">
+        <h2>Método Map para Arrays</h2>
+        <p>
+          El método map() crea un nuevo array con los resultados de aplicar una
+          función a cada elemento.
+        </p>
+
+        <div class="code-block">
+          <span class="code-keyword">const</span>
+          <span class="code-variable">nums</span> = [<span class="code-number"
+            >1</span
+          >, <span class="code-number">2</span>,
+          <span class="code-number">3</span>];<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">dobles</span> = nums.map(n => n *
+          <span class="code-number">2</span>);<br />
+          console.log(dobles); <span class="code-comment">// [2, 4, 6]</span
+          ><br /><br />
+
+          <span class="code-comment">// Ejemplo más complejo</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">personas</span> = [ <br />
+          &nbsp;&nbsp;{ nombre:<span class="code-string">"Ana"</span>,
+          edad:<span class="code-number">25</span> },<br />
+          &nbsp;&nbsp;{ nombre:<span class="code-string">"Luis"</span>,
+          edad:<span class="code-number">30</span> },<br />
+          &nbsp;&nbsp;{ nombre:<span class="code-string">"Marta"</span>,
+          edad:<span class="code-number">28</span> }<br />
+          ];<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">nombres</span> = personas.map(persona =>
+          persona.nombre);<br />
+          console.log(nombres);
+          <span class="code-comment">// ["Ana", "Luis", "Marta"]</span
+          ><br /><br />
+
+          <span class="code-keyword">const</span>
+          <span class="code-variable">edadesIncrementadas</span> =
+          personas.map(persona => ({ ...persona, edad: persona.edad +
+          <span class="code-number">1</span> }));<br />
+          console.log(edadesIncrementadas);
+          <span class="code-comment"
+            >// [{nombre: "Ana", edad: 26}, {nombre: "Luis", edad: 31}, {nombre:
+            "Marta", edad: 29}]</span
+          ><br /><br />
+
+          <span class="code-comment">// Map con índice</span><br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">numerosConIndice</span> = [<span
+            class="code-number"
+            >10</span
+          >, <span class="code-number">20</span>,
+          <span class="code-number">30</span>];<br />
+          <span class="code-keyword">const</span>
+          <span class="code-variable">conIndice</span> =
+          numerosConIndice.map((num, index) =>
+          <span class="code-string">`${index}: ${num}`</span>);<br />
+          console.log(conIndice);
+          <span class="code-comment">// ["0: 10", "1: 20", "2: 30"]</span><br />
+        </div>
+      </section>
+
+      <!-- CHEATSHEETS -->
+      <section id="cheatSheets" class="section">
+        <h2>Cheatsheets</h2>
+
+        <div class="nav-tabs">
+          <div
+            class="tab active"
+            di="datecs"
+            onclick="openTab(event, 'date-tab')"
+          >
+            Date
+          </div>
+          <div class="tab" id="arrayscs" onclick="openTab(event, 'array-tab')">
+            Arrays
+          </div>
+          <div class="tab" id="mapscs" onclick="openTab(event, 'map-tab')">
+            Maps
+          </div>
+          <div class="tab" id="setscs" onclick="openTab(event, 'set-tab')">
+            Sets
+          </div>
+          <div
+            class="tab"
+            id="stringscs"
+            onclick="openTab(event, 'string-tab')"
+          >
+            Strings
+          </div>
+        </div>
+
+        <div id="date-tab" class="tab-content active">
+          <h3>Métodos de Date</h3>
+          <div class="code-block">
+            <span class="code-comment">// Creación</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">ahora</span> =
+            <span class="code-keyword">new</span>
+            <span class="code-function">Date</span>();<br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">fechaEspecifica</span> =
+            <span class="code-keyword">new</span>
+            <span class="code-function">Date</span>(<span class="code-number"
+              >2023</span
+            >, <span class="code-number">11</span>,
+            <span class="code-number">25</span>);<br />
+            <span class="code-comment">// 25 de diciembre de 2023</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">desdeString</span> =
+            <span class="code-keyword">new</span>
+            <span class="code-function">Date</span>(<span class="code-string"
+              >"2023-12-25"</span
+            >);<br /><br />
+
+            <span class="code-comment">// Obtener componentes</span><br />
+            console.log(ahora.getFullYear());
+            <span class="code-comment">// Año (4 dígitos)</span><br />
+            console.log(ahora.getMonth());
+            <span class="code-comment">// Mes (0-11)</span><br />
+            console.log(ahora.getDate());
+            <span class="code-comment">// Día del mes (1-31)</span><br />
+            console.log(ahora.getDay());
+            <span class="code-comment">// Día de la semana (0-6)</span><br />
+            console.log(ahora.getHours());
+            <span class="code-comment">// Horas (0-23)</span><br />
+            console.log(ahora.getMinutes());
+            <span class="code-comment">// Minutos (0-59)</span><br /><br />
+
+            <span class="code-comment">// Establecer componentes</span><br />
+            ahora.setFullYear(<span class="code-number">2024</span>);<br />
+            ahora.setMonth(<span class="code-number">5</span>);
+            <span class="code-comment">// Junio (0-11)</span><br />
+            ahora.setDate(<span class="code-number">15</span>);<br /><br />
+
+            <span class="code-comment">// Formateo</span><br />
+            console.log(ahora.toDateString());
+            <span class="code-comment">// Fecha legible</span><br />
+            console.log(ahora.toISOString());
+            <span class="code-comment">// Formato ISO</span><br />
+            console.log(ahora.toLocaleDateString());
+            <span class="code-comment">// Formato local</span><br /><br />
+
+            <span class="code-comment">// Diferencia entre fechas</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">otraFecha</span> =
+            <span class="code-keyword">new</span>
+            <span class="code-function">Date</span>(<span class="code-number"
+              >2024</span
+            >, <span class="code-number">0</span>,
+            <span class="code-number">1</span>);<br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">diferencia</span> = otraFecha -
+            ahora;<br />
+            <span class="code-comment">// Diferencia en milisegundos</span
+            ><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">dias</span> = Math.floor(diferencia /
+            (<span class="code-number">1000</span> *
+            <span class="code-number">60</span> *
+            <span class="code-number">60</span> *
+            <span class="code-number">24</span>));<br />
+            console.log(<span class="code-string"
+              >`Faltan ${dias} días para Año Nuevo`</span
+            >);<br />
+          </div>
+        </div>
+
+        <div id="array-tab" class="tab-content">
+          <h3>Métodos de Arrays</h3>
+          <div class="code-block">
+            <span class="code-keyword">const</span>
+            <span class="code-variable">frutas</span> = [<span
+              class="code-string"
+              >"manzana"</span
+            >, <span class="code-string">"banana"</span>,
+            <span class="code-string">"naranja"</span>];<br /><br />
+
+            <span class="code-comment">// Manipulación</span><br />
+            frutas.push(<span class="code-string">"uva"</span>);
+            <span class="code-comment">// Agregar al final</span><br />
+            frutas.pop(); <span class="code-comment">// Eliminar del final</span
+            ><br />
+            frutas.unshift(<span class="code-string">"fresa"</span>);
+            <span class="code-comment">// Agregar al inicio</span><br />
+            frutas.shift();
+            <span class="code-comment">// Eliminar del inicio</span><br /><br />
+
+            <span class="code-comment">// Iteración</span><br />
+            frutas.forEach(fruta => console.log(fruta));<br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">mayusculas</span> = frutas.map(fruta =>
+            fruta.toUpperCase());<br /><br />
+
+            <span class="code-comment">// Filtrado</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">filtradas</span> = frutas.filter(fruta
+            => fruta.length > <span class="code-number">5</span>);<br /><br />
+
+            <span class="code-comment">// Búsqueda</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">encontrada</span> = frutas.find(fruta =>
+            fruta === <span class="code-string">"banana"</span>);<br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">indice</span> = frutas.indexOf(<span
+              class="code-string"
+              >"naranja"</span
+            >);<br /><br />
+
+            <span class="code-comment">// Ordenamiento</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">numeros</span> = [<span
+              class="code-number"
+              >3</span
+            >, <span class="code-number">1</span>,
+            <span class="code-number">4</span>,
+            <span class="code-number">1</span>,
+            <span class="code-number">5</span>];<br />
+            numeros.sort(); <span class="code-comment">// [1, 1, 3, 4, 5]</span
+            ><br />
+            numeros.reverse();
+            <span class="code-comment">// [5, 4, 3, 1, 1]</span><br /><br />
+
+            <span class="code-comment">// Reducción</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">suma</span> = numeros.reduce((acum,
+            actual) => acum + actual,
+            <span class="code-number">0</span>);<br /><br />
+
+            <span class="code-comment">// Verificación</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">todosPositivos</span> =
+            numeros.every(num => num >
+            <span class="code-number">0</span>);<br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">algunoMayor</span> = numeros.some(num =>
+            num > <span class="code-number">3</span>);<br /><br />
+
+            <span class="code-comment">// Conversión a string</span><br />
+            console.log(frutas.join(<span class="code-string">", "</span>));
+            <span class="code-comment">// "manzana, banana, naranja"</span
+            ><br />
+          </div>
+        </div>
+
+        <div id="map-tab" class="tab-content">
+          <h3>Métodos de Map</h3>
+          <div class="code-block">
+            <span class="code-comment">// Creación</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">mapa</span> =
+            <span class="code-keyword">new</span>
+            <span class="code-function">Map</span>();<br /><br />
+
+            <span class="code-comment">// Agregar elementos</span><br />
+            mapa.set(<span class="code-string">"clave1"</span>,
+            <span class="code-string">"valor1"</span>);<br />
+            mapa.set(<span class="code-string">"clave2"</span>,
+            <span class="code-string">"valor2"</span>);<br />
+            mapa.set(<span class="code-number">1</span>,
+            <span class="code-string">"número uno"</span>);<br /><br />
+
+            <span class="code-comment">// Obtener valores</span><br />
+            console.log(mapa.get(<span class="code-string">"clave1"</span>));
+            <span class="code-comment">// "valor1"</span><br /><br />
+            <span class="code-comment">// Verificar existencia</span><br />
+            console.log(mapa.has(<span class="code-string">"clave2"</span>));
+            <span class="code-comment">// true</span><br /><br />
+            <span class="code-comment">// Eliminar elemento</span><br />
+            mapa.delete(<span class="code-string">"clave1"</span>);<br /><br />
+            <span class="code-comment">// Tamaño del mapa</span><br />
+            console.log(mapa.size); <span class="code-comment">// 2</span
+            ><br /><br />
+            <span class="code-comment">// Iteración</span><br />
+            <span class="code-keyword">for</span> (<span class="code-keyword"
+              >let</span
+            >
+            [clave, valor] <span class="code-keyword">of</span> mapa) {<br />
+            &nbsp;&nbsp;console.log(<span class="code-string"
+              >`${clave}: ${valor}`</span
+            >);<br />
+            }<br /><br />
+            <span class="code-comment">// Convertir a array</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">arrayDeClaves</span> =
+            Array.from(mapa.keys());<br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">arrayDeValores</span> =
+            Array.from(mapa.values());<br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">arrayDeEntradas</span> =
+            Array.from(mapa.entries());<br /><br />
+            <span class="code-comment">// Limpiar el mapa</span><br />
+            mapa.clear();<br />
+          </div>
+        </div>
+
+        <div id="set-tab" class="tab-content">
+          <h3>Métodos de Set</h3>
+          <div class="code-block">
+            <span class="code-comment"
+              >// Los Sets almacenan valores únicos</span
+            ><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">miSet</span> =
+            <span class="code-keyword">new</span>
+            <span class="code-function">Set</span>();<br /><br />
+
+            <span class="code-comment">// Agregar valores</span><br />
+            miSet.add(<span class="code-number">1</span>);<br />
+            miSet.add(<span class="code-number">5</span>);<br />
+            miSet.add(<span class="code-number">5</span>);
+            <span class="code-comment">// Duplicado, no se agregará</span><br />
+            miSet.add(<span class="code-string">"texto"</span>);<br />
+            miSet.add({a: <span class="code-number">1</span>, b:
+            <span class="code-number">2</span>});<br /><br />
+
+            <span class="code-comment">// Verificar existencia</span><br />
+            console.log(miSet.has(<span class="code-number">1</span>));
+            <span class="code-comment">// true</span><br />
+            console.log(miSet.has(<span class="code-number">3</span>));
+            <span class="code-comment">// false</span><br /><br />
+
+            <span class="code-comment">// Tamaño del Set</span><br />
+            console.log(miSet.size); <span class="code-comment">// 4</span
+            ><br /><br />
+            <span class="code-comment">// Eliminar elemento</span><br />
+            miSet.delete(<span class="code-number">5</span>);<br /><br />
+            <span class="code-comment">// Iteración</span><br />
+            miSet.forEach(valor => console.log(valor));<br /><br />
+            <span class="code-comment">// Convertir a Array</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">arrayDesdeSet</span> =
+            Array.from(miSet);<br /><br />
+            <span class="code-comment"
+              >// Usos comunes: eliminar duplicados de un array</span
+            ><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">arrayConDuplicados</span> = [<span
+              class="code-number"
+              >1</span
+            >, <span class="code-number">2</span>,
+            <span class="code-number">2</span>,
+            <span class="code-number">3</span>,
+            <span class="code-number">4</span>,
+            <span class="code-number">4</span>,
+            <span class="code-number">5</span>];<br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">arraySinDuplicados</span> = [...<span
+              class="code-keyword"
+              >new</span
+            >
+            <span class="code-function">Set</span>(arrayConDuplicados)];<br />
+            console.log(arraySinDuplicados);
+            <span class="code-comment">// [1, 2, 3, 4, 5]</span><br />
+          </div>
+        </div>
+
+        <div id="string-tab" class="tab-content">
+          <h3>Métodos de String</h3>
+          <div class="code-block">
+            <span class="code-keyword">const</span>
+            <span class="code-variable">texto</span> =
+            <span class="code-string">"Hola Mundo JavaScript"</span
+            >;<br /><br />
+
+            <span class="code-comment">// Longitud</span><br />
+            console.log(texto.length); <span class="code-comment">// 21</span
+            ><br /><br />
+
+            <span class="code-comment">// Búsqueda</span><br />
+            console.log(texto.indexOf(<span class="code-string">"Mundo"</span
+            >)); <span class="code-comment">// 5</span><br />
+            console.log(texto.includes(<span class="code-string"
+              >"JavaScript"</span
+            >)); <span class="code-comment">// true</span><br />
+            console.log(texto.startsWith(<span class="code-string">"Hola"</span
+            >)); <span class="code-comment">// true</span><br />
+            console.log(texto.endsWith(<span class="code-string">"Script"</span
+            >)); <span class="code-comment">// true</span><br /><br />
+
+            <span class="code-comment">// Extracción</span><br />
+            console.log(texto.slice(<span class="code-number">5</span>,
+            <span class="code-number">10</span>));
+            <span class="code-comment">// "Mundo"</span><br />
+            console.log(texto.substring(<span class="code-number">5</span>,
+            <span class="code-number">10</span>));
+            <span class="code-comment">// "Mundo"</span><br />
+            console.log(texto.substr(<span class="code-number">5</span>,
+            <span class="code-number">5</span>));
+            <span class="code-comment">// "Mundo"</span><br /><br />
+
+            <span class="code-comment">// Modificación</span><br />
+            console.log(texto.toUpperCase());
+            <span class="code-comment">// "HOLA MUNDO JAVASCRIPT"</span><br />
+            console.log(texto.toLowerCase());
+            <span class="code-comment">// "hola mundo javascript"</span><br />
+            console.log(texto.replace(<span class="code-string">"Mundo"</span>,
+            <span class="code-string">"Amigo"</span>));
+            <span class="code-comment">// "Hola Amigo JavaScript"</span
+            ><br /><br />
+
+            <span class="code-comment">// División y unión</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">palabras</span> = texto.split(<span
+              class="code-string"
+              >" "</span
+            >);<br />
+            console.log(palabras);
+            <span class="code-comment">// ["Hola", "Mundo", "JavaScript"]</span
+            ><br />
+            console.log(palabras.join(<span class="code-string">"-"</span>));
+            <span class="code-comment">// "Hola-Mundo-JavaScript"</span
+            ><br /><br />
+
+            <span class="code-comment">// Eliminación de espacios</span><br />
+            <span class="code-keyword">const</span>
+            <span class="code-variable">textoConEspacios</span> =
+            <span class="code-string">" Hola "</span>;<br />
+            console.log(textoConEspacios.trim());
+            <span class="code-comment">// "Hola"</span><br />
+            console.log(textoConEspacios.trimStart());
+            <span class="code-comment">// "Hola "</span><br />
+            console.log(textoConEspacios.trimEnd());
+            <span class="code-comment">// " Hola"</span><br />
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>Guía Completa de JavaScript - Conceptos Fundamentales</p>
+      <p>
+        Incluye fundamentos, tipos de datos, polimorfismo, objetos, funciones y
+        estructuras de datos
+      </p>
+    </footer>
+
+    <script>
+      // Funciones para las pestañas
+      function openTab(evt, tabName) {
+        // Ocultar todos los contenidos de pestañas
+        const tabContents = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabContents.length; i++) {
+          tabContents[i].classList.remove("active");
+        }
+
+        // Desactivar todas las pestañas
+        const tabs = document.getElementsByClassName("tab");
+        for (let i = 0; i < tabs.length; i++) {
+          tabs[i].classList.remove("active");
+        }
+
+        // Mostrar la pestaña actual y activarla
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+      }
+
+      // Ejemplos de uso de las funciones
+      console.log("=== Ejemplos de la Guía ===");
+
+      // Ejemplo de polimorfismo
+      class Animal {
+        constructor(nombre) {
+          this.nombre = nombre;
+        }
+
+        sonido() {
+          console.log("Los animales hacen sonidos...");
+        }
+      }
+
+      class Perro extends Animal {
+        sonido() {
+          console.log("El perro " + this.nombre + " hace guau.");
+        }
+      }
+
+      const perro1 = new Perro("Fido");
+      perro1.sonido(); // Output: El perro Fido hace guau.
+
+      // Ejemplo de destructuración
+      const producto = {
+        nombre: "cactus",
+        info: {
+          peso: 30,
+          alto: 50,
+          pais: {
+            nombre: "china",
+            region: "shangai",
+          },
+        },
+        precio: 10,
+        mostrarInfo: function () {
+          return `${this.nombre} viene de ${this.info.pais.nombre}`;
+        },
+      };
+
+      const { nombre, precio } = producto;
+      console.log(nombre, precio); // Output: cactus 10
+
+      // Ejemplo de operador spread
+      const arr1 = [1, 2, 3];
+      const arr2 = [4, 5, 6];
+      const combined = [...arr1, ...arr2];
+      console.log(combined); // Output: [1, 2, 3, 4, 5, 6]
+
+      // Ejemplo de función generadora
+      function* contador() {
+        let i = 1;
+        while (true) {
+          yield i;
+          i++;
+        }
+      }
+
+      const gen = contador();
+      console.log(gen.next().value); // 1
+      console.log(gen.next().value); // 2
+
+      console.log("=== Fin de Ejemplos ===");
+
+      function toggleSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        section.classList.toggle("collapsed");
+      }
+    </script>
+    <script>
+      // JavaScript para mostrar/ocultar el botón y funcionalidad
+      document.addEventListener("DOMContentLoaded", function () {
+        const scrollBtn = document.getElementById("scrollToTopBtn");
+
+        // Mostrar u ocultar el botón según el scroll
+        window.addEventListener("scroll", function () {
+          if (window.pageYOffset > 300) {
+            scrollBtn.classList.add("show");
+          } else {
+            scrollBtn.classList.remove("show");
+          }
+        });
+
+        // Función para ir arriba
+        scrollBtn.addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

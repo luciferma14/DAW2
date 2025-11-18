@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Getters y Setters - JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 Generador de Getters y Setters - JavaScript</h1>
+            <p>Crea automáticamente métodos get y set para tus clases JavaScript</p>
+        </div>
+        
+        <div class="content">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="attributes">Atributos:</label>
+                    <textarea 
+                        id="attributes" 
+                        placeholder="Ejemplo: nombre, edad, email&#10;O uno por línea:&#10;nombre&#10;edad&#10;email"
+                    ></textarea>
+                </div>
+
+                <div class="options">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="generateConstructor" checked>
+                        <label for="generateConstructor">Generar constructor</label>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="generateGettersSetters()">✨ Generar Getters y Setters</button>
+            </div>
+
+            <div class="output-section">
+                <div class="output-header">
+                    <h3>Código Generado:</h3>
+                    <button class="copy-btn" onclick="copyToClipboard()">📋 Copiar</button>
+                </div>
+                <pre id="output">// El código generado aparecerá aquí...</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function parseAttributes(input) {
+            if (!input.trim()) return [];
+            
+            // Intentar separar por comas primero
+            if (input.includes(',')) {
+                return input.split(',')
+                    .map(attr => attr.trim())
+                    .filter(attr => attr.length > 0);
+            }
+            
+            // Si no hay comas, separar por líneas
+            return input.split('\n')
+                .map(attr => attr.trim())
+                .filter(attr => attr.length > 0);
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        function generateJavaScriptGettersSetters(attributes, generateConstructor) {
+            let code = 'class MyClass {\n';
+            
+            if (generateConstructor) {
+                code += '    constructor(' + attributes.join(', ') + ') {\n';
+                attributes.forEach(attr => {
+                    code += `        this._${attr} = ${attr};\n`;
+                });
+                code += '    }\n\n';
+            } else {
+                code += '\n';
+            }
+
+            attributes.forEach(attr => {
+                const capitalized = capitalizeFirstLetter(attr);
+                
+                // Getter
+                code += `    get${capitalized}() {\n`;
+                code += `        return this._${attr};\n`;
+                code += '    }\n\n';
+                
+                // Setter
+                code += `    set${capitalized}(${attr}) {\n`;
+                code += `        this._${attr} = ${attr};\n`;
+                code += '    }\n\n';
+            });
+
+            code += '}';
+            return code;
+        }
+
+        function generateGettersSetters() {
+            const attributesInput = document.getElementById('attributes').value;
+            const output = document.getElementById('output');
+            
+            const generateConstructor = document.getElementById('generateConstructor').checked;
+
+            const attributes = parseAttributes(attributesInput);
+            
+            if (attributes.length === 0) {
+                output.textContent = '// Por favor, ingresa al menos un atributo.';
+                return;
+            }
+
+            const generatedCode = generateJavaScriptGettersSetters(attributes, generateConstructor);
+            output.textContent = generatedCode;
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('output');
+            const textArea = document.createElement('textarea');
+            textArea.value = output.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Feedback visual
+            const copyBtn = document.querySelector('.copy-btn');
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = '✅ Copiado!';
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+            }, 2000);
+        }
+
+        // Generar automáticamente al cargar con un ejemplo
+        window.addEventListener('load', function() {
+            document.getElementById('attributes').value = 'nombre, edad, email, activo';
+            generateGettersSetters();
+        });
+    </script>
+</body>
+</html>
