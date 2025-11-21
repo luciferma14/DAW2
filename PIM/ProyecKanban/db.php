@@ -7,7 +7,7 @@ $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;
         dbname=$db;
-        charset=$charset";
+        charset=$charset"; 
         
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
