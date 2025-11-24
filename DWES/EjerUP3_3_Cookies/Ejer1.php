@@ -1,4 +1,5 @@
 <?php
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $usuario_anterior = $_COOKIE["usuario"] ?? "Ninguno";
