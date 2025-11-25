@@ -3,21 +3,17 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        // Valores anteriores en cookies
         $dinero_anterior = $_COOKIE["dinero"] ?? "Ninguno";
         $conversion_anterior = $_COOKIE["conversion"] ?? "Ninguna";
         $resultado_anterior = $_COOKIE["resultado"] ?? "Ninguno";
 
-        // Valores actuales enviados por el formulario
         $dinero = $_POST["dinero"];
         $conversion = $_POST["conversion"];
         $pesetas = 166.386;
 
-        // Guardamos valores actuales en SESIÓN
         $_SESSION["dinero"] = $dinero;
         $_SESSION["conversion"] = $conversion;
 
-        // Conversión usando SESIÓN (✔)
         if ($_SESSION["conversion"] == "Euros a Pesetas") {
             $resultado = round($_SESSION["dinero"] * $pesetas, 2);
             $mensaje = "{$_SESSION['dinero']} euros son $resultado pesetas.";
@@ -26,7 +22,6 @@
             $mensaje = "{$_SESSION['dinero']} pesetas son $resultado euros.";
         }
 
-        // Guardar datos actuales en cookie para próxima ejecución
         setcookie("dinero", $_SESSION["dinero"], time() + 3600);
         setcookie("conversion", $_SESSION["conversion"], time() + 3600);
         setcookie("resultado", $mensaje, time() + 3600);
@@ -43,15 +38,13 @@
         } else {
             echo "<p>No hay datos anteriores guardados.</p>";
         }
-
-        exit();
     }
 ?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Lucía Ferrandis Martínez</title>
+        <title>Lucía Ferrandis</title>
     </head>
     <body>
         <h2>Lucía Ferrandis Martínez</h2>

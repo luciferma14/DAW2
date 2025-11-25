@@ -20,7 +20,6 @@
         $hobbies = $_POST["hobbies"] ?? [];
         $otroHobbie = $_POST["otroHbb"] ?? "";
 
-        // Validaciones
         if (empty($nombre)) $errores["nombre"] = "El nombre es obligatorio.";
         if (empty($apellidos)) $errores["apellidos"] = "Los apellidos son obligatorios.";
         if (empty($correo)) $errores["correo"] = "Introduce un correo válido.";
@@ -28,7 +27,6 @@
         if (empty($situacion)) $errores["situacion"] = "Selecciona al menos una situación.";
         if (empty($hobbies)) $errores["hobbies"] = "Selecciona al menos un hobbie.";
 
-        // Si todo es correcto y se pulsa "Enviar"
         if (isset($_POST["enviar"]) && empty($errores)) {
             $_SESSION["datos"] = [
                 "nombre" => $nombre,
@@ -40,9 +38,7 @@
                 "otroHbb" => $otroHobbie
             ];
 
-            // Redirige al script de visualización
             header("Location: Ejer11.php");
-            exit;
         }
     }
 ?>
@@ -51,73 +47,72 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Lucía Ferrandis Martínez</title>
+        <title>Lucía Ferrandis</title>
     </head>
     <body>
 
-    <h2>Lucía Ferrandis Martínez</h2>
-    <hr>
-    <h1>Recoger datos</h1>
+        <h2>Lucía Ferrandis Martínez</h2>
+        <hr>
+        <h1>Recoger datos</h1>
 
-    <form method="POST">
+        <form method="POST">
 
-        <label>Nombre:</label><br>
-        <input type="text" name="nombre" value="<?= htmlspecialchars($nombre) ?>" size="25">
-        <br><span class="error"><?= $errores["nombre"] ?? "" ?></span><br><br>
+            <label>Nombre:</label><br>
+            <input type="text" name="nombre" value="<?= $nombre ?>" size="25">
+            <br><span class="error"><?= $errores["nombre"] ?? "" ?></span><br><br>
 
-        <label>Apellidos:</label><br>
-        <input type="text" name="apellidos" value="<?= htmlspecialchars($apellidos) ?>" size="25">
-        <br><span class="error"><?= $errores["apellidos"] ?? "" ?></span><br><br>
+            <label>Apellidos:</label><br>
+            <input type="text" name="apellidos" value="<?= $apellidos ?>" size="25">
+            <br><span class="error"><?= $errores["apellidos"] ?? "" ?></span><br><br>
 
-        <label>Correo electrónico:</label><br>
-        <input type="email" name="correo" value="<?= htmlspecialchars($correo) ?>" size="25">
-        <br><span class="error"><?= $errores["correo"] ?? "" ?></span><br><br>
+            <label>Correo electrónico:</label><br>
+            <input type="email" name="correo" value="<?= $correo ?>" size="25">
+            <br><span class="error"><?= $errores["correo"] ?? "" ?></span><br><br>
 
-        <label>Nivel de estudios:</label><br>
-        <select name="estudios">
-            <option value="">Seleccione...</option>
+            <label>Nivel de estudios:</label><br>
+            <select name="estudios">
+                <option value="">Seleccione...</option>
+                <?php
+                $opciones = ["ESO", "Bachillerato", "Grado Medio", "Grado Superior", "Universidad"];
+                foreach ($opciones as $op) {
+                    $sel = ($estudios == $op) ? "selected" : "";
+                    echo "<option value='$op' $sel>$op</option>";
+                }
+                ?>
+            </select>
+            <br><span class="error"><?= $errores["estudios"] ?? "" ?></span><br><br>
+
+            <label>Situación actual:</label><br>
             <?php
-            $opciones = ["ESO", "Bachillerato", "Grado Medio", "Grado Superior", "Universidad"];
-            foreach ($opciones as $op) {
-                $sel = ($estudios == $op) ? "selected" : "";
-                echo "<option value='$op' $sel>$op</option>";
+            $situaciones = ["estudiando" => "Estudiando", "trabajando" => "Trabajando", "buscando" => "Buscando empleo", "desempleado" => "Desempleado"];
+            foreach ($situaciones as $val => $txt) {
+                $chk = in_array($val, $situacion) ? "checked" : "";
+                echo "<input type='checkbox' name='situacion[]' value='$val' $chk>$txt<br>";
             }
             ?>
-        </select>
-        <br><span class="error"><?= $errores["estudios"] ?? "" ?></span><br><br>
+            <span class="error"><?= $errores["situacion"] ?? "" ?></span><br><br>
 
-        <label>Situación actual:</label><br>
-        <?php
-        $situaciones = ["estudiando" => "Estudiando", "trabajando" => "Trabajando", "buscando" => "Buscando empleo", "desempleado" => "Desempleado"];
-        foreach ($situaciones as $val => $txt) {
-            $chk = in_array($val, $situacion) ? "checked" : "";
-            echo "<input type='checkbox' name='situacion[]' value='$val' $chk>$txt<br>";
-        }
-        ?>
-        <span class="error"><?= $errores["situacion"] ?? "" ?></span><br><br>
-
-        <label>Hobbies:</label><br>
-        <?php
-        $hobbys = [
-            "musica" => "Escuchar música",
-            "juegos" => "Jugar videojuegos",
-            "deporte" => "Hacer deporte",
-            "otro" => "Otro"
-        ];
-        foreach ($hobbys as $val => $txt) {
-            $chk = in_array($val, $hobbies) ? "checked" : "";
-            if ($val == "otro") {
-                echo "<input type='checkbox' name='hobbies[]' value='$val' $chk>$txt: <input type='text' name='otroHbb' placeholder='Leer comics...' size='25' value='" . htmlspecialchars($otroHobbie) . "'><br>";
-            } else {
-                echo "<input type='checkbox' name='hobbies[]' value='$val' $chk>$txt<br>";
+            <label>Hobbies:</label><br>
+            <?php
+            $hobbys = [
+                "musica" => "Escuchar música",
+                "juegos" => "Jugar videojuegos",
+                "deporte" => "Hacer deporte",
+                "otro" => "Otro"
+            ];
+            foreach ($hobbys as $val => $txt) {
+                $chk = in_array($val, $hobbies) ? "checked" : "";
+                if ($val == "otro") {
+                    echo "<input type='checkbox' name='hobbies[]' value='$val' $chk>$txt: <input type='text' name='otroHbb' placeholder='Leer comics...' size='25' value='" . htmlspecialchars($otroHobbie) . "'><br>";
+                } else {
+                    echo "<input type='checkbox' name='hobbies[]' value='$val' $chk>$txt<br>";
+                }
             }
-        }
-        ?>
-        <span class="error"><?= $errores["hobbies"] ?? "" ?></span><br><br>
+            ?>
+            <span class="error"><?= $errores["hobbies"] ?? "" ?></span><br><br>
 
-        <input type="submit" name="enviar" value="Enviar">
-        <input type="reset" value="Borrar">
-    </form>
-
+            <input type="submit" name="enviar" value="Enviar">
+            <input type="reset" value="Borrar">
+        </form>
     </body>
 </html>

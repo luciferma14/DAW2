@@ -1,5 +1,5 @@
 <?php
-    session_start(); // Iniciamos sesión
+    session_start();
 
     $errores = [];
     $nombre = "";
@@ -21,7 +21,6 @@
         $otroEstado = $_POST["otroEst"] ?? "";
         $aficiones = $_POST["aficiones"] ?? [];
 
-        // Validaciones
         if (empty($nombre)) $errores["nombre"] = "El nombre es obligatorio.";
         if (empty($apellidos)) $errores["apellidos"] = "Los apellidos son obligatorios.";
         if (empty($edad)) $errores["edad"] = "Introduce una edad válida.";
@@ -30,7 +29,6 @@
         if (empty($estadoCivil)) $errores["estadoCivil"] = "Selecciona tu estado civil.";
         if (empty($aficiones)) $errores["aficiones"] = "Selecciona sus aficiones.";
 
-        // Guardar en sesión y redirigir si no hay errores
         if (isset($_POST["enviar"]) && empty($errores)) {
             $_SESSION["datos"] = [
                 "nombre" => $nombre,
@@ -43,7 +41,6 @@
                 "aficiones" => $aficiones
             ];
             header("Location: Ejer12.php");
-            exit;
         }
     }
 ?>
@@ -52,8 +49,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Lucía Ferrandis Martínez</title>
-        <style>label{font-weight: bold;}</style>
+        <title>Lucía Ferrandis</title>
     </head>
     <body>
         <h2>Lucía Ferrandis Martínez</h2>

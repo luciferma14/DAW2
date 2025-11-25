@@ -1,10 +1,10 @@
 <?php
     session_start();
 
-        $nombre_anterior = $_COOKIE["nombre"] ?? "Ninguno";
-        $idioma_anterior = $_COOKIE["idioma"] ?? "Ninguno";
-        $color_anterior = $_COOKIE["color"] ?? "Ninguno";
-        $ciudad_anterior = $_COOKIE["ciudad"] ?? "Ninguna";
+    $nombre_anterior = $_COOKIE["nombre"] ?? "Ninguno";
+    $idioma_anterior = $_COOKIE["idioma"] ?? "Ninguno";
+    $color_anterior = $_COOKIE["color"] ?? "Ninguno";
+    $ciudad_anterior = $_COOKIE["ciudad"] ?? "Ninguna";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

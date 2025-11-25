@@ -2,7 +2,6 @@
     session_start();
     if (!isset($_SESSION["datos"])) {
         header("Location: index.php");
-        exit;
     }
     $datos = $_SESSION["datos"];
     session_unset();

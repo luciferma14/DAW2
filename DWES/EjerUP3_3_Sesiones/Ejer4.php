@@ -3,17 +3,13 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        // Datos anteriores guardados en cookies
         $num_anterior = $_COOKIE["num"] ?? "Ninguno";
         $resultado_anterior = $_COOKIE["resultado"] ?? "Ninguno";
 
-        // Valor actual enviado
         $num_actual = $_POST["num"];
 
-        // Guardamos el número actual en sesión
         $_SESSION["num"] = $num_actual;
 
-        // Cálculo usando SESIÓN
         if ($_SESSION["num"] <= 0 || $_SESSION["num"] > 31) {
             $_SESSION["resultado"] = "El día no existe";
         } else {
@@ -24,7 +20,6 @@
             }
         }
 
-        // Guardar valores actuales en cookies
         setcookie("num", $_SESSION["num"], time() + 3600);
         setcookie("resultado", $_SESSION["resultado"], time() + 3600);
 
@@ -33,8 +28,6 @@
 
         echo "<h3>Datos anteriores (COOKIE):</h3>";
         echo "Resultado anterior: <strong>{$resultado_anterior}</strong><br>";
-
-        exit();
     }
 ?>
 <!DOCTYPE html>

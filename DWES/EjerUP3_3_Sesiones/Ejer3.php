@@ -3,13 +3,11 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        // Datos anteriores (COOKIE)
         $num1_anterior = $_COOKIE["num1"] ?? "Ninguno";
         $num2_anterior = $_COOKIE["num2"] ?? "Ninguno";
         $operador_anterior = $_COOKIE["operador"] ?? "Ninguno";
         $resultado_anterior = $_COOKIE["resultado"] ?? "Ninguno";
 
-        // Datos actuales del formulario
         $_SESSION["num1"] = $_POST["num1"];
         $_SESSION["num2"] = $_POST["num2"];
         $_SESSION["operador"] = $_POST["operador"];
@@ -18,7 +16,6 @@
         $n2 = $_SESSION["num2"];
         $op = $_SESSION["operador"];
 
-        // Calcular usando SESIÓN (✔)
         switch($op){
             case "+":
                 $_SESSION["resultado"] = $n1 + $n2;
@@ -36,7 +33,6 @@
                 $_SESSION["resultado"] = "Operador no válido";
         }
 
-        // Guardar en cookies para próxima ejecución
         setcookie("num1", $n1, time() + 3600);
         setcookie("num2", $n2, time() + 3600);
         setcookie("operador", $op, time() + 3600);
@@ -53,8 +49,6 @@
         echo "Número 2: <strong>{$num2_anterior}</strong><br>";
         echo "Operador: <strong>{$operador_anterior}</strong><br>";
         echo "Resultado: <strong>{$resultado_anterior}</strong><br><br>";
-
-        exit();
     }
 ?>
 <!DOCTYPE html>
