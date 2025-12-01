@@ -37,6 +37,7 @@
     </head>
     <body>
         <h1>Lucía Ferrandis Martínez</h1>
+        <hr>
         <h2>Elegir una opción</h2>
 
         <form method="post">

@@ -74,7 +74,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Lucía Ferrandis Martínez</title>
+        <title>Lucía Ferrandis</title>
     </head>
     <body>
         <h2>Lucía Ferrandis Martínez</h2>

@@ -39,9 +39,9 @@
         <title>Lucía Ferrandis</title>
     </head>
     <body>
-        <h2>Lucía Ferrandis Martínez</h2>
+        <h1>Lucía Ferrandis Martínez</h1>
         <hr>
-        <h1>Cálculo de Media, Mediana y Moda</h1>
+        <h2>Cálculo de Media, Mediana y Moda</h2>
 
         <form method="POST">
             <label>Introduce números separados por comas:</label><br>

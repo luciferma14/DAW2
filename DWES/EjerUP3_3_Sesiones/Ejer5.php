@@ -47,9 +47,9 @@
         <title>Lucía Ferrandis</title>
     </head>
     <body>
-        <h2>Lucía Ferrandis Martínez</h2>
+        <h1>Lucía Ferrandis Martínez</h1>
         <hr>
-        <h1>Conversor Euros ↔ Pesetas</h1>
+        <h2>Conversor Euros ↔ Pesetas</h2>
 
         <form method="POST">
             <label>Cantidad:</label>

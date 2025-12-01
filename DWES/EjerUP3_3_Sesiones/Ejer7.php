@@ -61,9 +61,9 @@
         <title>Lucía Ferrandis</title>
     </head>
     <body>
-        <h2>Lucía Ferrandis Martínez</h2>
+        <h1>Lucía Ferrandis Martínez</h1>
         <hr>
-        <h1>Caja fuerte</h1>
+        <h2>Caja fuerte</h2>
 
         <form method="POST">
             <label>Contraseña:</label>

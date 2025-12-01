@@ -37,7 +37,7 @@
         <title>Lucía Ferrandis</title>
     </head>
     <body>
-        <h2>Lucía Ferrandis Martínez</h2>
+        <h1>Lucía Ferrandis Martínez</h1>
         <hr>
         <h2>Quincena del mes</h2>
 

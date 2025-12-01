@@ -45,9 +45,9 @@
         <title>Lucía Ferrandis</title>
     </head>
     <body>
-        <h2>Lucía Ferrandis Martínez</h2>
+        <h1>Lucía Ferrandis Martínez</h1>
         <hr> 
-        <h1>Formulario de correo</h1>
+        <h2>Formulario de correo</h2>
 
         <form method="POST">
             <label>Introduzca el correo electrónico</label><br>

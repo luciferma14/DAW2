@@ -14,11 +14,13 @@
     <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Datos introducidos</title>
+        <title>Lucía Ferrandis</title>
     </head>
     <body>
-        <h2>Datos introducidos</h2>
+        <h1>Lucía Ferrandis Martínez</h1>
         <hr>
+        <h2>Datos introducidos</h2>
+        
         <p><strong>Nombre:</strong> <?= $datos["nombre"] ?></p>
         <p><strong>Apellidos:</strong> <?= $datos["apellidos"] ?></p>
         <p><strong>Edad:</strong> <?= $datos["edad"] ?></p>

@@ -12,12 +12,12 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Datos procesados</title>
+        <title>Lucía Ferrandis</title>
     </head>
     <body>
-        <h2>Lucía Ferrandis Martínez</h2>
+        <h1>Lucía Ferrandis Martínez</h1>
         <hr>
-        <h1>Formulario procesado con éxito</h1>
+        <h2>Formulario procesado con éxito</h2>
 
         <p><strong>Nombre:</strong> <?= $datos["nombre"] ?></p>
         <p><strong>Estudios:</strong> <?= $datos["estudios"] ?></p>

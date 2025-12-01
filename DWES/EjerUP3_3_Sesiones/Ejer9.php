@@ -36,10 +36,9 @@
         <title>Lucía Ferrandis</title>
     </head>
     <body>
-
-        <h2>Lucía Ferrandis Martínez</h2>
+        <h1>Lucía Ferrandis Martínez</h1>
         <hr>
-        <h1>Zona Horaria</h1>
+        <h2>Zona Horaria</h2>
 
         <form method="POST">
             <label>Elige una zona horaria:</label><br>

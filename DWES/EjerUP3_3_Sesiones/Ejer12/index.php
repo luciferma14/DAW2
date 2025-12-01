@@ -52,9 +52,9 @@
         <title>Lucía Ferrandis</title>
     </head>
     <body>
-        <h2>Lucía Ferrandis Martínez</h2>
+        <h1>Lucía Ferrandis Martínez</h1>
         <hr>
-        <h1>Recoger datos</h1>
+        <h2>Recoger datos</h2>
 
         <form method="POST" action="index.php">
             <label>Nombre</label><br>
