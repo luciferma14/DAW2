@@ -6,42 +6,39 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Actividad 4.1 — BOM / DOM</title>
   <link rel="stylesheet" href="styles.css">
+  
 </head>
 <body>
   <header>
     <h1>Actividad 4.1 — BOM / DOM</h1>
   </header>
 
-  <nav>
-    <a href="#encontrar">Encontrar</a> |
-    <a href="#cambiar">Cambiar</a> |
-    <a href="#crear">Crear/Borrar</a>
-  </nav>
-
   <main>
-    <section id="encontrar">
-      <h2>Encontrar elementos</h2>
-      <p id="texto-ejemplo">Texto ejemplo</p>
-      <p class="clase-ejemplo">Elemento con clase</p>
-    </section>
-
     <section id="cambiar">
       <h2>Cambiar elementos</h2>
-      <p id="cambiar-texto">Cambia el texto de color</p>
-      <label>Color: <input type="text" id="color" placeholder="Color en inglés. Ejemplo: red" size="25"></label><br><br>
+      <p id="cambiar-texto">Clica el botón y cambiaré de color :o</p>
       <button id="btnCambiarColor">Cambiar color</button>
     </section>
 
-    <section id="crearBorrar">
-      <h2>Crear / Borrar elementos</h2>
-      <div id="contenedor">
-        <p>Elemento existente</p>
-      </div>
+    <section id="crear">
+      <h2>Crear y Borrar elementos</h2>
+
+      <input type="text" id="textoNuevo" placeholder="Escribe algo"><br><br>
+
+      <button id="btnCrear">Crear elemento</button>
+
+      <button id="btnBorrar">Borrar último elemento</button>
+
+      <p id="lista"></p>
+
     </section>
   </main>
 
   <footer>
     <p>2º DAW — Práctica HTML + CSS + JS</p>
+    <p>Iván y Lucía</p>
   </footer>
+
+  <script src="./scripts.js"></script>
 </body>
 </html>
