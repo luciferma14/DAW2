@@ -46,6 +46,10 @@ body {
 #boton-control:hover {
     background-color: #eee;
 }
+
+
+/* CLASES PARA MANIPULACIÓN DEL DOM (Tareas 2 y 3) */
+
 #detenerBtn {
     padding: 10px 20px;
     font-size: 1em;
@@ -60,8 +64,6 @@ body {
 #detenerBtn:hover {
     background-color: #eee;
 }
-
-/* CLASES PARA MANIPULACIÓN DEL DOM (Tareas 2 y 3) */
 
 /* Tarea 2: Estado de Alerta (Menos de 3 minutos) */
 .alerta {

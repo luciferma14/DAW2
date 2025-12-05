@@ -1,11 +1,12 @@
-// 1. Obtener elementos del DOM
 const inputMinutos = document.getElementById('minutos-input');
 const iniciarBtn = document.getElementById('boton-control');
 const detenerBtn = document.getElementById('detenerBtn');
-const temporizadorDiv = document.getElementById('tiempo');
+const temporizadorDiv = document.getElementById('temporizador');
+const tiempo = document.getElementById('tiempo');
+const estado = document.getElementById('estado');
 
 let intervalo; // Variable para guardar el ID de setInterval
-let segundosRestantes; // Tiempo en segundos
+let segundosRestantes;
 
 // Función para formatear tiempo (segundos a MM:SS)
 function formatearTiempo(segundos) {
@@ -23,7 +24,7 @@ function iniciarTemporizador() {
     }
 
     segundosRestantes = minutosUsuario * 60;
-    temporizadorDiv.textContent = formatearTiempo(segundosRestantes);
+    tiempo.textContent = formatearTiempo(segundosRestantes);
 
     inputMinutos.disabled = true;
     iniciarBtn.disabled = true;
@@ -32,23 +33,25 @@ function iniciarTemporizador() {
     // Iniciar el intervalo (cada segundo)
     intervalo = setInterval(() => {
         segundosRestantes--;
-        temporizadorDiv.textContent = formatearTiempo(segundosRestantes);
+        tiempo.textContent = formatearTiempo(segundosRestantes);
 
+        if(segundosRestantes > 180){
+            temporizadorDiv.classList.remove('finalizado', 'alerta');
+            estado.textContent = "Descontando tiempo"
+            
+        }else if(segundosRestantes <= 180){
+            temporizadorDiv.classList.add('alerta');
+            estado.textContent = "Quedan menos de 3 mins";
+
+        }
         if(segundosRestantes <= 10){
             temporizadorDiv.classList.add('finalizado');
+            estado.textContent = "Quedan menos de 10 segs";
         }
-
-        if(segundosRestantes <= 180){
-            temporizadorDiv.classList.add('alerta');
-        }
-        if(segundosRestantes >= 180){
-            temporizadorDiv.classList.remove('finalizado', 'alerta');
-        }
-
 
         if (segundosRestantes <= 0) {
             clearInterval(intervalo); // Detener el temporizador
-            temporizadorDiv.textContent = "¡Tiempo Agotado!";
+            estado.textContent = "¡Tiempo Agotado!";
             // Reestablecer botones
             inputMinutos.disabled = false;
             iniciarBtn.disabled = false;
@@ -60,7 +63,7 @@ function iniciarTemporizador() {
 // Función para detener el temporizador
 function detenerTemporizador() {
     clearInterval(intervalo);
-    temporizadorDiv.textContent = "Temporizador detenido";
+    estado.textContent = "Temporizador detenido";
     // Reestablecer botones
     inputMinutos.disabled = false;
     iniciarBtn.disabled = false;
