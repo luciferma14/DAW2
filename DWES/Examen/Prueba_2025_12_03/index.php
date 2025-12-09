@@ -54,7 +54,7 @@
 
             $partes = explode(".", $nombreArchivo);
             $extension = strtolower(end($partes)); // pasamos a minúsculas el string
-            $extensionesValidas = ["jpg", "jpeg", "png", "gif"];
+            $extensionesValidas = ["jpg" , "png", "gif"];
 
             if (!in_array($extension, $extensionesValidas)) {
                 $errores["foto"] = "Formato no válido. Solo se permiten JPG, PNG o GIF.";
