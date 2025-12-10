@@ -119,7 +119,7 @@
             ?>
             <br>
             <label>Email:</label><br>
-            <input type="email" name="email" value="<?= $email ?>"><br><br>
+            <input type="text" name="email" value="<?= $email ?>"><br><br>
 
             <label>Adjuntar foto:</label><br>
             <input type="file" name="foto" accept=".jpg,.png,.gif"><br><br>
