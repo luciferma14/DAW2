@@ -6,7 +6,7 @@ class TaskAPI {
             throw new Error("La descripción debe ser texto válido.");
         }
 
-        const validStatus = ["Some day", "To do", "In progress", "Done", "Today", "Tomorrow", "Deleted"];
+        const validStatus = ["Some day", "To do", "In progress", "Done", "Today", "Tomorrow", "Deleted", "This week"];
 
         if (status && !validStatus.includes(status)) {
             throw new Error(
