@@ -1,5 +1,5 @@
 <?php
-$conexion = new mysqli("localhost", "usuario", "contraseña", "proyecanonimo_db");
+$conexion = new mysqld("localhost","root","","chat");
 $codigo = $_GET["codigo"];
 
 $result = $conexion->query("SELECT * FROM mensajes WHERE codigo='$codigo' ORDER BY id ASC");

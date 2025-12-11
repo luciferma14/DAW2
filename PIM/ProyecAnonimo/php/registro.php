@@ -1,12 +1,24 @@
 <?php
-require "generador_base36.php";
-$conexion = new mysqli("localhost", "root", "", "chat");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
 
-$nickname = $_POST["nickname"];
-$password = $_POST["password"];
+<?php
+require "generador_base36.php";
+$conexion = new mysqli("localhost", "usuario", "contraseña", "proyecanonimo_db");
+
+if ($conexion->connect_error) {
+    die("Error de conexión: " . $conexion->connect_error);
+}
+$nickname = isset($_POST['nickname']) ? $_POST['nickname'] : '';
+$password = isset($_POST['password']) ? $_POST['password'] : '';
 
 // proteger contraseña
-$hash = password_hash($password, PASSWORD_DEFAULT);
+if ($password !== '') {
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+} else {
+    $hashedPassword = '';
+}
 
 // generar código único
 $codigo = generarCodigo();
@@ -17,5 +29,5 @@ $stmt->execute();
 
 echo "<h1>Registro completado</h1>";
 echo "<p>Tu código es: <b>".$codigo."</b></p>";
-echo "<a href='./index.html'>Volver</a>";
+echo "<a href='../index.html'>Volver</a>";
 ?>

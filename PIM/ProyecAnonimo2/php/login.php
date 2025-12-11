@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conexion = new mysqli("localhost", "usuario", "contraseña", "proyecanonimo_db");
+$conexion = new mysqld("localhost", "root", "", "chat");
 
 $codigo = $_POST["codigo"];
 
