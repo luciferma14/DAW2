@@ -1,0 +1,51 @@
+<?php
+    session_start();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $num_anterior = $_COOKIE["num"] ?? "Ninguno";
+        $resultado_anterior = $_COOKIE["resultado"] ?? "Ninguno";
+
+        $num_actual = $_POST["num"];
+
+        $_SESSION["num"] = $num_actual;
+
+        if ($_SESSION["num"] <= 0 || $_SESSION["num"] > 31) {
+            $_SESSION["resultado"] = "El día no existe";
+        } else {
+            if ($_SESSION["num"] <= 15) {
+                $_SESSION["resultado"] = "Primera quincena. Día: {$_SESSION['num']}";
+            } else {
+                $_SESSION["resultado"] = "Segunda quincena. Día: {$_SESSION['num']}";
+            }
+        }
+
+        setcookie("num", $_SESSION["num"], time() + 3600);
+        setcookie("resultado", $_SESSION["resultado"], time() + 3600);
+
+        echo "<h3>Datos actuales (SESION):</h3>";
+        echo "Resultado: <strong>{$_SESSION['resultado']}</strong><br>";
+
+        echo "<h3>Datos anteriores (COOKIE):</h3>";
+        echo "Resultado anterior: <strong>{$resultado_anterior}</strong><br>";
+    }
+?>
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lucía Ferrandis</title>
+    </head>
+    <body>
+        <h1>Lucía Ferrandis Martínez</h1>
+        <hr>
+        <h2>Quincena del mes</h2>
+
+        <form method="post" action="">
+            <label>Día del mes:</label>
+            <input type="number" name="num" required><br><br>
+
+            <input type="submit" value="Calcular">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+body{
+  font-family: Arial, sans-serif;
+  background-color: #98e1fd;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+header, footer{
+  background-color: #69ccfa;
+  text-align: center;
+  padding: 1rem;
+}
+
+main{
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+section{
+  background-color: #c4e8f8;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+#btnCambiarColor{
+  background-color: #00b3ff41;
+  border-radius: 15px;
+}
+
+section h2{
+  margin-top: 0;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Anónimo</title>
+    <script src="./js/scripts.js"></script>
+</head>
+<body>
+
+<h1>Chat Anónimo</h1>
+
+<h2>Registrarse</h2>
+<form action="./php/registro.php" method="post" onsubmit="return validarRegistro()">
+    <input type="text" id="nick" name="nickname" placeholder="Nickname" required>
+    <input type="password" id="pass" name="password" placeholder="Contraseña" required>
+    <button type="submit">Crear usuario anónimo</button>
+</form>
+
+<hr>
+
+<h2>Entrar con código</h2>
+<form action="./php/login.php" method="post" onsubmit="return validarLogin()">
+    <input type="text" id="codigo" name="codigo" placeholder="Código de chat" required>
+    <button type="submit">Entrar</button>
+</form>
+
+</body>
+</html>
