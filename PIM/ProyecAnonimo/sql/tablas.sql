@@ -1,24 +1,14 @@
--- Crear base de datos
-CREATE DATABASE IF NOT EXISTS chatAnonimo;
-USE chatAnonimo;
-
-
-CREATE TABLE chats (
+CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    codigo VARCHAR(20) NOT NULL,
-    nickname VARCHAR(30) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    nickname VARCHAR(30),
+    password VARCHAR(255),
+    codigo VARCHAR(20) UNIQUE
 );
 
--- CREATE TABLE conversaciones (
---   id INT AUTO_INCREMENT PRIMARY KEY,
---   codigo VARCHAR(50) UNIQUE,
---   nickname VARCHAR(50)
--- );
-
--- CREATE TABLE mensajes (
---   id INT AUTO_INCREMENT PRIMARY KEY,
---   conversacion_id INT,
---   mensaje TEXT,
---   fecha DATETIME DEFAULT CURRENT_TIMESTAMP
--- );
+CREATE TABLE mensajes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(20),
+    usuario VARCHAR(30),
+    mensaje TEXT,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
