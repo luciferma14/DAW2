@@ -1,10 +1,5 @@
 <?php
     session_start();
-
-    if (isset($_SESSION["rol"])) {
-        header("Location: procesar_login.php");
-        exit();
-    }
 ?>
 
 <!DOCTYPE html>
@@ -34,16 +29,10 @@
                 <input type="text" name="grupo" required>
             </label><br><br>
 
-            <label>Perfil:</label><br>
-            <input type="radio" name="rol" value="Delegado" required> Delegado<br>
-            <input type="radio" name="rol" value="Estudiante" required> Estudiante<br>
-            <input type="radio" name="rol" value="Profesor" required> Profesor<br>
-            <input type="radio" name="rol" value="Director" required> Director<br><br>
-
             <label>Edad:</label><br>
             <select name="edad">
-                <option value="Mayor de edad">Mayor de edad</option>
-                <option value="Menor de edad">Menor de edad</option>
+                <option value="mayor">Mayor de edad</option>
+                <option value="menor">Menor de edad</option>
             </select><br><br>
 
             <label>Cargo:</label><br>

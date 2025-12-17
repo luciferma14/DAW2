@@ -1,25 +1,27 @@
 <?php
     session_start();
 
-    $_SESSION["usuario"] = $_POST["usuario"];
-    $_SESSION["rol"] = $_POST["rol"];
+    $edad  = $_POST["edad"]  ?? "";
+    $cargo = $_POST["cargo"] ?? "";
+    $_SESSION["nombre"] = $_POST["nombre"];
+    $_SESSION["apellido"] = $_POST["apellido"];
+    $_SESSION["asignatura"] = $_POST["asignatura"];
+    $_SESSION["grupo"] = $_POST["grupo"];
 
-    $nombres = $_POST["nombres"];
-    $salarios = $_POST["salarios"];
-
-    switch ($_SESSION["rol"]) {
-        case "Deleagdo":
-            header("Location: delagado.php");
-            break;
-        case "Estudiante":
-            header("Location: estudiante.php");
-            break;
-        case "Profesor":
-            header("Location: profesor.php");
-            break;
-        case "Director":
-            header("Location: director.php");
-         
+    if ($edad === "menor" && $cargo === "Con cargo") {
+        header("Location: delegado.php");
+        exit();
     }
-    exit();
+    if ($edad === "menor" && $cargo === "Sin cargo") {
+        header("Location: estudiante.php");
+        exit();
+    }
+    if ($edad === "mayor" && $cargo === "Sin cargo") {
+        header("Location: profesor.php");
+        exit();
+    }
+    if ($edad === "mayor" && $cargo === "Con cargo") {
+        header("Location: director.php");
+        exit();
+    }
 ?>
