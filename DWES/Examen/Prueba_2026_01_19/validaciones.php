@@ -10,11 +10,11 @@ function validaRequerido($valor){
 }
 
 function validaEmail($valor){
-    $email = "usuario@ejemplo.com";
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "El email es válido.";
-    } else {
-        echo "El email NO es válido.";
+   
+    if (filter_var($valor, FILTER_VALIDATE_EMAIL)) {
+        return false;
+    }else{
+        return true;
     }
     
     return false; // <-- completar
@@ -22,16 +22,17 @@ function validaEmail($valor){
 
 function validaAlfabeto($valor){
     // Debe devolver true si el valor contiene SOLO letras
-        return (bool) preg_match('/^[a-zA-Z]+$/', $valor);
-
-    
+    if(ctype_alpha($valor) ){
+        return true;
+    }
     return false; // <-- completar
 }
 
 function validaAlfanum($valor){
     // Debe devolver true si el valor contiene SOLO letras y números 
-    return (bool) preg_match('/^[a-zA-Z0-9]+$/', $valor);
-    
+    if (ctype_alnum($valor)){
+        return true;
+    }
     return false; // <-- completar
 }
 

@@ -1,11 +1,11 @@
 <?php
     session_start();
 
-    /* Generar token */
+    // Generar token
     $_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(24));
 
     //Incluir el archivo de validaciones
-    include 'validaciones.php';
+    require_once 'validaciones.php';
 
     //Inicializar variables y errores
     $errores = [];
@@ -23,17 +23,21 @@
 
     //Verificar si el formulario ha sido enviado
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        if (!isset($_POST['token']) || $_POST['token'] !== $_SESSION['token']) {
+            die("Token inválido");
+        }
         // Recoger datos
-        $usuario = trim($_POST['usuario'] ?? '');
-        $password = trim($_POST['password'] ?? '');
-        $nombre = trim($_POST['nombre'] ?? '');
-        $email = trim($_POST['email'] ?? '');
+        $usuario = isset($_POST['usuario']) ? $_POST['usuario'] : null;
+        $password = isset($_POST['password']) ? $_POST['password'] : null;
+        $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
         $direccion = trim($_POST['direccion'] ?? '');
-        $codPost = trim($_POST['codPost'] ?? '');
+        $codPost = isset($_POST['codPost']) ? $_POST['codPost'] : null;
         $rol = trim($_POST['rol'] ?? '');
-        $alojamiento = trim($_POST['alojamiento'] ?? []);
-        $servicios = trim($_POST['servicios'] ?? []);
-        $foto = $_POST['foto'] ?? '';
+        $alojamiento = $_POST['alojamiento'] ?? [];
+        $servicios = $_POST['servicios'] ?? [];
+        $foto = $_FILES['foto'] ?? null;
 
         //Realizar validaciones llamando a las funciones
         $error_nombre = validaRequerido($nombre);
@@ -76,6 +80,15 @@
     <title>Lucía Ferrandis</title>
 </head>
 <body>
+
+    <?php if (!empty($errores)): ?>
+        <ul style="color: #f00;">
+        <?php foreach ($errores as $erro): ?>
+        <li> <?php echo $erro ?> </li>
+        <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+
     <form method="POST" action="alumno.php" enctype="multipart/form-data">
 
         <label>Usuario:</label>
