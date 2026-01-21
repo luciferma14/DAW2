@@ -92,25 +92,25 @@
     <form method="POST" action="alumno.php" enctype="multipart/form-data">
 
         <label>Usuario:</label>
-        <input type="text" name="usuario" required><br><br>
+        <input type="text" name="usuario" ><br><br>
 
         <label>Password:</label>
-        <input type="password" name="password" required><br><br>
+        <input type="password" name="password" ><br><br>
 
         <label>Nombre</label>
-        <input type="text" name="nombre" required><br><br>
+        <input type="text" name="nombre" ><br><br>
 
         <label>Email</label>
-        <input type="text" name="email" required><br><br>
+        <input type="text" name="email" ><br><br>
 
         <label>Dirección:</label>
-        <input type="text" name="direccion" required><br><br>
+        <input type="text" name="direccion" ><br><br>
 
         <label>Código postal</label>
-        <input type="number" name="codPost" required><br><br>
+        <input type="number" name="codPost" ><br><br>
        
         <label>Rol:</label><br>
-        <input type="radio" name="rol" value="Ya registrado" required> Ya estoy registrado<br>
+        <input type="radio" name="rol" value="Ya registrado" > Ya estoy registrado<br>
         <input type="radio" name="rol" value="Usuario nuevo">Usuario nuevo<br><br>
 
         <label>Tipo alojamiento</label><br>
