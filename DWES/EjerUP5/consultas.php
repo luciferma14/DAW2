@@ -8,7 +8,7 @@ include_once __DIR__ . '\..\..\db.php';
 // Verifica si se ha enviado el formulario
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Conecta a la base de datos (ajusta los detalles de la conexión según tu configuración)
-    
+    $db = getPDO(); 
 
     // Determina el tipo de consulta
   
