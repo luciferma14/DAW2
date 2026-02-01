@@ -12,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Determina el tipo de consulta
   
-
-    switch () {
+// BORRA $b SOLO PUESTA PARA QUE NO DE ERROR
+    switch ($b) {
             //consultas de Clientes
         case 'ClientePorDni':
             //Datos de cliente por DNI
