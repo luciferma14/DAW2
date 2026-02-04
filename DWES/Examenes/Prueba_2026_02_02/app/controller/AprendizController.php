@@ -20,7 +20,7 @@ function validarFormularioAprendiz(array $datos, array &$errores = []): array {
     // Nombre
     $nombre = trim($datos['nombre'] ?? '');
     if ($nombre === '') $errores['nombre'] = 'El nombre es obligatorio';
-    $limpios['nombre'] = htmlspecialchars($nombre, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    $limpios['nombre'] = $nombre;
 
     // Casa
     $casa = $datos['casa'] ?? '';

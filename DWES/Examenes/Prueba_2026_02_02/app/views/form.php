@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'envia
 // Funciones auxiliares para el formulario
 function valor($campo, $porDefecto = '') { 
     global $datos; 
-    return htmlspecialchars($datos[$campo] ?? $porDefecto, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); 
+    return $datos[$campo] ?? $porDefecto; 
 }
 function checkedAsign($valor) { 
     global $datos; 
@@ -110,7 +110,7 @@ function selectedVarita($valor) {
 <?php if (!empty($errores)): ?>
     <ul class="error">
         <?php foreach ($errores as $error): ?>
-            <li><?= htmlspecialchars($error); ?></li>
+            <li><?= $error; ?></li>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>

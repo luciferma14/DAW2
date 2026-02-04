@@ -25,15 +25,15 @@ if (!$datosAprendiz) {
 
     <h1>Lucía Ferrandis Martínez</h1>
 
-    <p><strong>Nombre:</strong> <?= htmlspecialchars($datosAprendiz['nombre']); ?></p>
-    <p><strong>Casa:</strong> <?= htmlspecialchars($datosAprendiz['casa']); ?></p>
-    <p><strong>Varita:</strong> <?= htmlspecialchars($datosAprendiz['varita']); ?></p>
-    <p><strong>Asignaturas:</strong> <?= htmlspecialchars(implode(', ', $datosAprendiz['asignaturas'] ?? [])); ?></p>
-    <p><strong>Nivel mágico:</strong> <?= htmlspecialchars($datosAprendiz['nivelMago']); ?></p>
+    <p><strong>Nombre:</strong> <?= $datosAprendiz['nombre']; ?></p>
+    <p><strong>Casa:</strong> <?= $datosAprendiz['casa']; ?></p>
+    <p><strong>Varita:</strong> <?= $datosAprendiz['varita']; ?></p>
+    <p><strong>Asignaturas:</strong> <?= implode(', ', $datosAprendiz['asignaturas'] ?? []); ?></p>
+    <p><strong>Nivel mágico:</strong> <?= $datosAprendiz['nivelMago']; ?></p>
 
     <?php if (!empty($datosAprendiz['imagen'])): ?>
         <p><strong>Foto:</strong></p>
-        <img src="<?= htmlspecialchars($datosAprendiz['imagen']); ?>" alt="Foto del aprendiz" width="200">
+        <img src="<?= $datosAprendiz['imagen']; ?>" alt="Foto del aprendiz" width="200">
     <?php endif; ?>
 
     <!-- Botón para volver al formulario -->
