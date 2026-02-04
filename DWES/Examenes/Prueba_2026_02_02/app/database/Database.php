@@ -15,7 +15,7 @@ class Database {
    public function connect(): PDO {
         if ($this->pdo === null) {
             $dsn = "mysql:host={$this->host};dbname={$this->db};charset={$this->charset}";
-            $this->pdo = new PDO($dsn, $this->user, $this->pass);
+            $this->pdo = new PDO($dsn, $this->usuario, $this->contrasena);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         return $this->pdo;

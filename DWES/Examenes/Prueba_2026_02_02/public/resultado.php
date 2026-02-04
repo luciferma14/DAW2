@@ -1,26 +1,12 @@
 <?php
 // resultado.php
+session_start();
 
-// Obtenemos el id del aprendiz desde el GET o POST, si existe
-$idAprendiz = $_GET['id'] ?? null;
+// Comprobar si hay datos del aprendiz en sesión
+$datosAprendiz = $_SESSION['datos_form'] ?? null;
 
-// Si no hay id, mostramos mensaje de error y detenemos la ejecución
-if (!$idAprendiz) {
-    die("Acceso no permitido.");
-}
-
-// Incluir el modelo Aprendiz
-include_once 'Aprendiz.php';
-
-// Crear una instancia del modelo
-$aprendiz = new Aprendiz();
-
-// Buscar el aprendiz por su id
-$datosAprendiz = $aprendiz->buscarPorId($idAprendiz);
-
-// Si no se encuentra el aprendiz, mostramos mensaje de error y detenemos la ejecución
 if (!$datosAprendiz) {
-    die("Aprendiz no encontrado.");
+    die("Acceso no permitido.");
 }
 ?>
 
@@ -28,26 +14,30 @@ if (!$datosAprendiz) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Resultado Aprendiz</title>
+    <title>Lucía Ferrandis Martínez</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        img { margin-top: 10px; border: 1px solid #ccc; }
+        p { margin: 5px 0; }
+    </style>
 </head>
 <body>
 
-    <!-- Título con mensaje de confirmación -->
-    <h1>Aprendiz registrado correctamente - Tu Nombre</h1>
+    <h1>Lucía Ferrandis Martínez</h1>
 
-    <!-- Mostrar los datos del aprendiz -->
-    <p><strong>Nombre:</strong> <?php echo htmlspecialchars($datosAprendiz['nombre']); ?></p>
-    <p><strong>Edad:</strong> <?php echo htmlspecialchars($datosAprendiz['edad']); ?></p>
-    <p><strong>Curso:</strong> <?php echo htmlspecialchars($datosAprendiz['curso']); ?></p>
+    <p><strong>Nombre:</strong> <?= htmlspecialchars($datosAprendiz['nombre']); ?></p>
+    <p><strong>Casa:</strong> <?= htmlspecialchars($datosAprendiz['casa']); ?></p>
+    <p><strong>Varita:</strong> <?= htmlspecialchars($datosAprendiz['varita']); ?></p>
+    <p><strong>Asignaturas:</strong> <?= htmlspecialchars(implode(', ', $datosAprendiz['asignaturas'] ?? [])); ?></p>
+    <p><strong>Nivel mágico:</strong> <?= htmlspecialchars($datosAprendiz['nivelMago']); ?></p>
 
-    <!-- Mostrar foto si existe -->
-    <?php if (!empty($datosAprendiz['foto'])): ?>
-        <p><strong>Foto:</strong> <?php echo htmlspecialchars($datosAprendiz['foto']); ?></p>
-        <img src="uploads/<?php echo htmlspecialchars($datosAprendiz['foto']); ?>" alt="Foto del aprendiz" width="200">
+    <?php if (!empty($datosAprendiz['imagen'])): ?>
+        <p><strong>Foto:</strong></p>
+        <img src="<?= htmlspecialchars($datosAprendiz['imagen']); ?>" alt="Foto del aprendiz" width="200">
     <?php endif; ?>
 
     <!-- Botón para volver al formulario -->
-    <form action="volver.php" method="post">
+    <form action="index.php" method="post" style="margin-top:20px;">
         <button type="submit">Volver al formulario</button>
     </form>
 
