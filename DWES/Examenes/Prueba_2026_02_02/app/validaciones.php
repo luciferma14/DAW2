@@ -50,7 +50,7 @@
 		return isset($_SESSION['token']) && hash_equals($_SESSION['token'], $token);
 	}
 
-	function validarFormulario(array $post, array $files): array {
+	function validarFormulario(array $post): array {
 		$errores = [];
 
 		if (empty($post['nombre'])) {
@@ -63,10 +63,6 @@
 
 		if (empty($post['asignaturas'])) {
 			$errores[] = "Debes seleccionar al menos una asignatura";
-		}
-
-		if ($files['imagen']['error'] !== 0) {
-			$errores[] = "Error al subir la imagen";
 		}
 
 		return $errores;

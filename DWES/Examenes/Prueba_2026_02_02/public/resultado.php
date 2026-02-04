@@ -33,7 +33,7 @@ if (!$datosAprendiz) {
 
     <?php if (!empty($datosAprendiz['imagen'])): ?>
         <p><strong>Foto:</strong></p>
-        <img src="<?= $datosAprendiz['imagen']; ?>" alt="Foto del aprendiz" width="200">
+        <img src="<?= $datosAprendiz['imagen']; ?>"width="200">
     <?php endif; ?>
 
     <!-- Botón para volver al formulario -->

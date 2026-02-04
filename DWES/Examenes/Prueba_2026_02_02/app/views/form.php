@@ -32,14 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'valid
         $errores['nivelMago'] = "Ingrese un nivel mágico entre 1 y 100.";
     }
 
-    // Validar imagen si hay archivo
-    if (!empty($_FILES['imagen']['name'])) {
-        $ext = strtolower(pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION));
-        $permitidas = ['jpg','jpeg','png','gif'];
-        if (!in_array($ext, $permitidas)) $errores['imagen'] = "Solo se permiten imágenes jpg, png o gif.";
-        if ($_FILES['imagen']['size'] > 2000000) $errores['imagen'] = "La imagen no puede superar los 2MB.";
-    }
-
     $_SESSION['datos_form'] = $datos;
     $_SESSION['errores'] = $errores;
 }
@@ -65,8 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'envia
 
     // Subir la imagen si hay archivo
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === 0) {
-        $ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-        $nombreFinal = "aprendiz_" . time() . "." . $ext;
+        $nombreFinal = "aprendiz_" . time();
         $rutaDestino = __DIR__ . '/uploads/' . $nombreFinal;
         if (!file_exists(__DIR__ . '/uploads')) mkdir(__DIR__ . '/uploads', 0777, true);
         move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino);
@@ -124,7 +115,7 @@ function selectedVarita($valor) {
 
     <label>Casa
         <select name="casa">
-            <option value="">-- Elige tu casa --</option>
+            <option value="">Elige tu casa </option>
             <option value="Gryffindor" <?= selectedCasa('Gryffindor'); ?>>Gryffindor</option>
             <option value="Slytherin" <?= selectedCasa('Slytherin'); ?>>Slytherin</option>
             <option value="Ravenclaw" <?= selectedCasa('Ravenclaw'); ?>>Ravenclaw</option>
@@ -134,7 +125,7 @@ function selectedVarita($valor) {
 
     <label>Varita
         <select name="varita">
-            <option value="">-- Elige tu varita --</option>
+            <option value="">Elige tu varita </option>
             <option value="Roble con núcleo de fénix" <?= selectedVarita('Roble con núcleo de fénix'); ?>>Roble con núcleo de fénix</option>
             <option value="Sauce con núcleo de unicornio" <?= selectedVarita('Sauce con núcleo de unicornio'); ?>>Sauce con núcleo de unicornio</option>
             <option value="Acebo de núcleo de dragón" <?= selectedVarita('Acebo de núcleo de dragón'); ?>>Acebo de núcleo de dragón</option>

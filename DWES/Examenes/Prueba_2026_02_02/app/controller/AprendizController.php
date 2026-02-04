@@ -69,7 +69,7 @@ class AprendizController {
                 exit;
 
             case 'validar':
-                $errores = validarFormulario($_POST, $_FILES);
+                $errores = validarFormulario($_POST);
                 validarFormularioAprendiz($_POST, $errores);
                 $_SESSION['errores'] = $errores;
                 header('Location: ../../public/index.php');
@@ -77,7 +77,7 @@ class AprendizController {
 
             case 'enviar':
             default:
-                $errores = validarFormulario($_POST, $_FILES);
+                $errores = validarFormulario($_POST);
                 $datosLimpios = validarFormularioAprendiz($_POST, $errores);
 
                 if (!empty($errores)) {
@@ -89,8 +89,7 @@ class AprendizController {
                 // Subir foto
                 $rutaFoto = null;
                 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === 0) {
-                    $ext = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-                    $nombreFinal = "aprendiz_" . time() . "." . $ext;
+                    $nombreFinal = "aprendiz_" . time();
                     $destino = __DIR__ . '/../../public/uploads/' . $nombreFinal;
 
                     if (!file_exists(__DIR__ . '/../../public/uploads')) {
