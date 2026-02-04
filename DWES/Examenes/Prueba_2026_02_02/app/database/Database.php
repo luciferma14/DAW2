@@ -10,14 +10,14 @@ class Database {
     private $usuario = "dwes";
     private $contrasena = "dbdwespass";
     private $charset = "utf8mb4";
+    private ?PDO $pdo = null;
 
-    public function conectar() {
-        $dsn = "XXX:host={};dbname={};charset={$this->charset}";
-        $opciones = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ];
-
-        return new PDO($dsn, $this->usuario, $this->contrasena, $opciones);
+   public function connect(): PDO {
+        if ($this->pdo === null) {
+            $dsn = "mysql:host={$this->host};dbname={$this->db};charset={$this->charset}";
+            $this->pdo = new PDO($dsn, $this->user, $this->pass);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        return $this->pdo;
     }
 }

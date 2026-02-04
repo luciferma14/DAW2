@@ -39,107 +39,44 @@
         }
     }
 
-// ---------------- TOKEN CSRF ----------------
-
-function crearTokenFormulario()
-{
-	$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(24));
-	return $_SESSION['token'];
-}
-
-// Alternativa sin openssl_random_pseudo_bytes (por si la extensión no está disponible)
-// Mantiene la idea de token aleatorio pero usando funciones estándar de PHP.
-function crearTokenFormularioAlternativo()
-{
-	if (function_exists('random_bytes')) {
-		$_SESSION['token'] = bin2hex(random_bytes(24));
-	} else {
-		// Fallback menos seguro pero válido para entorno de prácticas/examen sin extensiones
-		$entropia = uniqid((string)mt_rand(), true) . session_id() . microtime(true);
-		$_SESSION['token'] = hash('sha256', $entropia);
+	function generarToken(): string {
+		if (empty($_SESSION['token'])) {
+			$_SESSION['token'] = bin2hex(random_bytes(32));
+		}
+		return $_SESSION['token'];
 	}
 
-	return $_SESSION['token'];
-}
-
-function verificarToken(string $tokenEnviado): bool
-{
-	if (isset($_SESSION['token']) && hash_equals($_SESSION['token'], $tokenEnviado)) {
-		return true;
+	function validarToken(string $token): bool {
+		return isset($_SESSION['token']) && hash_equals($_SESSION['token'], $token);
 	}
-	return false;
-}
 
-// ---------------- SUBIDA DE IMAGEN ----------------
+	function validarFormulario(array $post, array $files): array {
+		$errores = [];
 
-function subirImagen(string $input = 'imagen', string $directorio = 'uploads/')
-{
-	if (isset($_FILES[$input]) && is_uploaded_file($_FILES[$input]['tmp_name'])) {
-		if (!is_dir($directorio)) {
-			// Intentamos crear el directorio si no existe (modo examen: simple).
-			@mkdir($directorio, 0777, true);
+		if (empty($post['nombre'])) {
+			$errores[] = "El nombre es obligatorio";
 		}
 
-		$nombre = time() . '_' . basename($_FILES[$input]['name']);
-		$ruta   = rtrim($directorio, '/\\') . '/' . $nombre;
-
-		if (move_uploaded_file($_FILES[$input]['tmp_name'], $ruta)) {
-			$_SESSION['foto'] = $ruta;
-			return $ruta;
+		if (!isset($post['nivelMago']) || !is_numeric($post['nivelMago'])) {
+			$errores[] = "Nivel de mago incorrecto";
 		}
+
+		if (empty($post['asignaturas'])) {
+			$errores[] = "Debes seleccionar al menos una asignatura";
+		}
+
+		if ($files['imagen']['error'] !== 0) {
+			$errores[] = "Error al subir la imagen";
+		}
+
+		return $errores;
 	}
 
-	return false;
-}
+	function subirImagen(array $imagen): string {
+		$nombre = uniqid() . "_" . $imagen['name'];
+		$ruta = __DIR__ . "/uploads/" . $nombre;
 
-// ---------------- VALIDACIÓN FORMULARIO HARRY POTTER ----------------
+		move_uploaded_file($imagen['tmp_name'], $ruta);
 
-/**
- * Valida los datos del formulario de aprendiz (Harry Potter).
- * Devuelve un array con los datos saneados y rellena $errores si algo falla.
- */
-function validarFormularioAprendiz(array $datos, array &$errores = []): array
-{
-	$limpios = [];
-
-	// Nombre (obligatorio)
-	$nombre = trim($datos['nombre'] ?? '');
-	if ($nombre === '') {
-		$errores['nombre'] = 'El nombre es obligatorio.';
+		return $nombre;
 	}
-	$limpios['nombre'] = htmlspecialchars($nombre, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-
-	//casa / característica (obligatorio)
-	$casa = $datos['casa'] ?? '';
-	if ($casa === '') {
-		$errores['casa'] = 'Debes seleccionar una casa.';
-	}
-	$limpios['casa'] = $casa;
-
-	// Varita (opcional)
-	$varita = trim($datos['varita'] ?? '');
-	$limpios['varita'] = $varita !== ''
-		? htmlspecialchars($varita, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')
-		: null;
-
-	// Asignaturas (checkbox múltiple)
-	$asignaturas = $datos['asignaturas'] ?? [];
-	if (!is_array($asignaturas)) {
-		$asignaturas = [];
-	}
-
-	$limpios['asignaturas'] = $asignaturas;
-	// Guardamos datos limpios en sesión para recargar el formulario
-	$_SESSION['datos_form'] = $limpios;
-
-	return $limpios;
-}
-
-function limpiarSesionFormulario(): void
-{
-	unset($_SESSION['datos_form'], $_SESSION['errores'], $_SESSION['foto'], $_SESSION['aprendiz']);
-}
-
-
-    
-?>
