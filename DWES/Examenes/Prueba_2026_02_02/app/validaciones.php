@@ -67,12 +67,3 @@
 
 		return $errores;
 	}
-
-	function subirImagen(array $imagen): string {
-		$nombre = uniqid() . "_" . $imagen['name'];
-		$ruta = __DIR__ . "/uploads/" . $nombre;
-
-		move_uploaded_file($imagen['tmp_name'], $ruta);
-
-		return $nombre;
-	}
